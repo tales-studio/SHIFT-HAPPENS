@@ -1,15 +1,19 @@
-using System;
 using System.Collections.Generic;
-using NUnit.Framework;
 using UnityEngine;
 
 public class PlayerInteract : MonoBehaviour
 {
     private List<IInteractable> interactablesInRange;
+    private IHighlightable _currentHighlighted;
 
     private void Awake()
     {
         interactablesInRange = new List<IInteractable>();
+    }
+
+    private void Update()
+    {
+        UpdateHighlighting();
     }
 
     private void OnTriggerEnter2D(Collider2D foundCollider)
@@ -56,22 +60,51 @@ public class PlayerInteract : MonoBehaviour
 
         foreach (IInteractable interactable in interactablesInRange)
         {
-            
-            float distance = Vector2.Distance(transform.position, interactable.GetTransform().position);
+            if (interactable == null || interactable.GetTransform() == null) continue;
 
-            if (closest == null)
+            float distance = Vector2.Distance(transform.position, interactable.GetTransform().position);
+            
+            if (distance < minDistance)
             {
+                minDistance = distance;
                 closest = interactable;
             }
-            else
-            {
-                if(distance < minDistance)
-                {
-                    closest = interactable;
-                }
-            }
+            
         }
         return closest;
     }
 
+    private void UpdateHighlighting()
+    {
+        interactablesInRange.RemoveAll(item => item == null || item.GetTransform() == null);
+
+        IInteractable closestInteractable = GetClosestInteractable();
+        IHighlightable newHighlightable = null;
+
+        if (closestInteractable != null)
+        {
+            if (closestInteractable is IHighlightable highlightable)
+            {
+                newHighlightable = highlightable;
+            }
+            else
+            {
+                newHighlightable = closestInteractable.GetTransform().GetComponent<IHighlightable>();
+            }
+        }
+
+        if (_currentHighlighted != newHighlightable)
+        {
+            _currentHighlighted?.SetHighlight(false);
+            _currentHighlighted = newHighlightable;
+            _currentHighlighted?.SetHighlight(true);
+        }
+    }
+
+    private void OnDisable()
+    {
+        _currentHighlighted?.SetHighlight(false);
+        _currentHighlighted = null;
+        interactablesInRange.Clear();
+    }
 }

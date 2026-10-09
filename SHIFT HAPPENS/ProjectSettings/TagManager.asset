@@ -8,11 +8,11 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - Ceilings
+  - 
   - Water
   - UI
-  - Interactables
-  - Floor
+  - 
+  - 
   - 
   - 
   - 
@@ -38,8 +38,14 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Floor
+    uniqueID: 3446831307
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Roof
+    uniqueID: 321611845
     locked: 0
   m_RenderingLayers:
   - Default

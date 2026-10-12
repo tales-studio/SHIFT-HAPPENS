@@ -6,14 +6,11 @@ public class InteractableObject : MonoBehaviour, IInteractable
     [SerializeField] private GameObject readyToInteractSprite;
     [SerializeField] private float detectionRange = 3f;
 
-    private SpriteOutlineEffect outlineEffect;
     private Transform playerTransform;
     private bool isPlayerInRange = false;
 
     private void Start()
     {
-        outlineEffect = GetComponentInChildren<SpriteOutlineEffect>();
-
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         if (player != null)
         {
@@ -23,7 +20,7 @@ public class InteractableObject : MonoBehaviour, IInteractable
 
     private void Update()
     {
-        if (playerTransform == null || outlineEffect == null) return;
+        if (playerTransform == null) return;
 
         float distance = Vector2.Distance(transform.position, playerTransform.position);
         bool inRange = distance <= detectionRange;
@@ -31,7 +28,6 @@ public class InteractableObject : MonoBehaviour, IInteractable
         if (inRange != isPlayerInRange)
         {
             isPlayerInRange = inRange;
-            outlineEffect.SetOutlineActive(isPlayerInRange);
         }
     }
 

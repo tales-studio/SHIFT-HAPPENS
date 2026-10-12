@@ -1,38 +1,46 @@
 using UnityEngine;
 
-public class InteractableObject : MonoBehaviour, IInteractable, IHighlightable
+public class InteractableObject : MonoBehaviour, IInteractable
 {
+    [Header("Configuración de Interacción")]
     [SerializeField] private GameObject readyToInteractSprite;
-    private IHighlightable _highlightEffect;
+    [SerializeField] private float detectionRange = 3f;
 
-    private void Awake()
+    private Transform playerTransform;
+    private bool isPlayerInRange = false;
+
+    private void Start()
     {
-        _highlightEffect = GetComponent<ObjectOutlineHighlighter>();
-
-        if (_highlightEffect == null)
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        if (player != null)
         {
-            _highlightEffect = GetComponentInChildren<ObjectOutlineHighlighter>();
+            playerTransform = player.transform;
+        }
+    }
+
+    private void Update()
+    {
+        if (playerTransform == null) return;
+
+        float distance = Vector2.Distance(transform.position, playerTransform.position);
+        bool inRange = distance <= detectionRange;
+
+        if (inRange != isPlayerInRange)
+        {
+            isPlayerInRange = inRange;
         }
     }
 
     public void Interact()
     {
-        //Desactivar el sprite reventado
-        readyToInteractSprite.SetActive(false);
-
-        SetHighlight(false);
-
-        //Notificar al gestor de tareas
+        if (readyToInteractSprite != null)
+        {
+            readyToInteractSprite.SetActive(false);
+        }
     }
-
 
     public Transform GetTransform()
     {
         return transform;
-    }
-
-    public void SetHighlight(bool active)
-    {
-        _highlightEffect?.SetHighlight(active);
     }
 }

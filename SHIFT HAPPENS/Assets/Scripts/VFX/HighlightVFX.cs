@@ -23,6 +23,13 @@ public class HighlightVFX : MonoBehaviour
     private static readonly int _ThicknessID = Shader.PropertyToID("_OutlineThickness");
     private static readonly int _EnabledID = Shader.PropertyToID("_OutlineEnabled");
 
+    public void DisableHighlight()
+    {
+        _isOutlined = false;
+        UpdateOutlineState(); 
+        enabled = false;     
+    }
+
     private void Awake()
     {
         _spriteRenderer = GetComponent<SpriteRenderer>();

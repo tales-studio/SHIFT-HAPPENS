@@ -8,6 +8,7 @@ public class InteractableObject : MonoBehaviour, IInteractable
 
     private Transform playerTransform;
     private bool isPlayerInRange = false;
+    private HighlightVFX highlightVFX;
 
     private void Start()
     {
@@ -15,6 +16,11 @@ public class InteractableObject : MonoBehaviour, IInteractable
         if (player != null)
         {
             playerTransform = player.transform;
+        }
+
+        if (transform.parent != null)
+        {
+            highlightVFX = transform.parent.GetComponentInChildren<HighlightVFX>();
         }
     }
 
@@ -36,6 +42,11 @@ public class InteractableObject : MonoBehaviour, IInteractable
         if (readyToInteractSprite != null)
         {
             readyToInteractSprite.SetActive(false);
+        }
+
+        if (highlightVFX != null)
+        {
+            highlightVFX.DisableHighlight();
         }
     }
 

@@ -107,6 +107,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InteractableObject
   readyToInteractSprite: {fileID: 6813824499873567690}
+  detectionRange: 3
 --- !u!70 &4832790516445851694
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

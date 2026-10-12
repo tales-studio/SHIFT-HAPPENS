@@ -82,7 +82,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: -1866358624384410056, guid: 077e1df7615828e4fa184f52bcce465f, type: 3}
+  m_Sprite: {fileID: 6147558050822098061, guid: 9dd5462b134a77e44b3f3010d72318c2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -106,6 +106,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::HighlightVFX
   _activationDistance: 10
   _playerTransform: {fileID: 0}
-  _outlineColor: {r: 1, g: 1, b: 0.8509804, a: 1}
-  _outlineThickness: 30
+  _outlineColor: {r: 0.78436655, g: 0.78436655, b: 0.78436655, a: 1}
+  _outlineThickness: 20
   _checkInterval: 0.2

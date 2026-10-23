@@ -6,6 +6,9 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float moveSpeed = 5f;
     [SerializeField] private float sneakSpeed = 2.5f;
 
+    [SerializeField] private Transform interactionArea;
+    [SerializeField] private float colliderPosMult = 2f;
+
     private Rigidbody2D rb;
     private Animator animator;
 
@@ -22,8 +25,6 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        isSneaking = Keyboard.current.leftShiftKey.isPressed;
-
         if (movement != Vector2.zero)
         {
             lastMovement = movement;
@@ -34,6 +35,11 @@ public class PlayerMovement : MonoBehaviour
         animator.SetFloat("Speed", movement.sqrMagnitude);
 
         animator.SetBool("Shift", isSneaking);
+
+        interactionArea.localPosition = new Vector2(
+            lastMovement.x * colliderPosMult,
+            lastMovement.y * colliderPosMult
+        );
     }
 
     private void FixedUpdate()
@@ -41,6 +47,7 @@ public class PlayerMovement : MonoBehaviour
         float currentSpeed = isSneaking ? sneakSpeed : moveSpeed;
 
         rb.linearVelocity = movement * currentSpeed;
+
     }
 
     public void OnMove(InputValue value)
@@ -50,10 +57,6 @@ public class PlayerMovement : MonoBehaviour
 
     public void OnSneak(InputValue value)
     {
-        Debug.Log("Sneak callback: " + value.isPressed);
-
         isSneaking = value.isPressed;
-
-        Debug.Log("isSneaking actual: " + isSneaking);
     }
 }

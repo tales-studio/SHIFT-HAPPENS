@@ -29,7 +29,16 @@ public class HighlightVFX : MonoBehaviour
         UpdateOutlineState(); 
         enabled = false;     
     }
-
+    public void EnableHighlight()
+    {
+        enabled = true;
+        _timer = 0f;
+        EvaluateDistance(true);
+    }
+    private void OnEnable()
+    {
+        if (_spriteRenderer != null) EvaluateDistance(true);
+    }
     private void Awake()
     {
         _spriteRenderer = GetComponent<SpriteRenderer>();

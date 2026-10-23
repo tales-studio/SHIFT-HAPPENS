@@ -1,52 +1,34 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 public class InteractableObject : MonoBehaviour, IInteractable
 {
-    [Header("Configuración de Interacción")]
-    [SerializeField] private GameObject readyToInteractSprite;
-    [SerializeField] private float detectionRange = 3f;
+    //Solo ofrece funciones para activar y desactivar el objeto
+    //"listo para interactuar" y avisa de que la interacci�n se ha producido
 
-    private Transform playerTransform;
-    private bool isPlayerInRange = false;
-    private HighlightVFX highlightVFX;
+    [SerializeField] private GameObject readyToInteractObj;
 
-    private void Start()
-    {
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
-        if (player != null)
-        {
-            playerTransform = player.transform;
-        }
-
-        if (transform.parent != null)
-        {
-            highlightVFX = transform.parent.GetComponentInChildren<HighlightVFX>();
-        }
-    }
-
-    private void Update()
-    {
-        if (playerTransform == null) return;
-
-        float distance = Vector2.Distance(transform.position, playerTransform.position);
-        bool inRange = distance <= detectionRange;
-
-        if (inRange != isPlayerInRange)
-        {
-            isPlayerInRange = inRange;
-        }
-    }
+    public UnityEvent onInteract;
 
     public void Interact()
     {
-        if (readyToInteractSprite != null)
-        {
-            readyToInteractSprite.SetActive(false);
-        }
+        onInteract.Invoke();
+    }
 
-        if (highlightVFX != null)
+    public void ShowIndicators()
+    {
+        if (readyToInteractObj != null)
         {
-            highlightVFX.DisableHighlight();
+            readyToInteractObj.SetActive(true);
+        }
+    
+    }
+
+    public void HideIndicators()
+    {
+        if (readyToInteractObj != null)
+        {
+            readyToInteractObj.SetActive(false);
         }
     }
 

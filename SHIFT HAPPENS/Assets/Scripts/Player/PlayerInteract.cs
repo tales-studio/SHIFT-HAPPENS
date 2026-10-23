@@ -35,7 +35,7 @@ public class PlayerInteract : MonoBehaviour
         if (interactablesInRange.Count > 0)
         {
             IInteractable closest = GetClosestInteractable();
-
+           
             if (closest != null)
             {
                 closest.Interact(); 

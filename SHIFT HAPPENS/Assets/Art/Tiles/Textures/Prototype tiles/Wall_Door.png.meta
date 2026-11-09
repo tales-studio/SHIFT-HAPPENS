@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 6c74608eb69edee4ab51e4e473009e89
+guid: 22547ccf20c6cc743ad5ed4917868e6d
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 5545353877668818159
-    second: Wall_Door_0
+      213: 2071192620679466093
+    second: Wall_Door 1_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -49,14 +49,14 @@ TextureImporter:
   spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
-  alignment: 0
-  spritePivot: {x: 0.5, y: 0.5}
+  alignment: 7
+  spritePivot: {x: 0.5, y: 0}
   spritePixelsToUnits: 64
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
   alphaIsTransparency: 1
-  spriteTessellationDetail: -1
+  spriteTessellationDetail: 1
   textureType: 8
   textureShape: 1
   singleChannelComponent: 0
@@ -96,24 +96,11 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Wall_Door_0
+      name: Wall_Door 1_0
       rect:
         serializedVersion: 2
         x: 0
@@ -121,25 +108,37 @@ TextureImporter:
         width: 512
         height: 512
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: fece840a8fd05fc40800000000000000
-      internalID: 5545353877668818159
+      spriteID: d6c820107ba5ebc10800000000000000
+      internalID: 2071192620679466093
       vertices: []
       indices: 
       edges: []
       weights: []
     outline: []
     customData: 
-    physicsShape: []
+    physicsShape:
+    - - {x: -137, y: -30}
+      - {x: -256, y: -29}
+      - {x: -256, y: 256}
+      - {x: 256, y: 256}
+      - {x: 256, y: -27}
+      - {x: 137, y: -28}
+      - {x: 137, y: -256}
+      - {x: 256, y: -256}
+      - {x: 256, y: 256}
+      - {x: -256, y: 256}
+      - {x: -256, y: -256}
+      - {x: -137, y: -256}
     bones: []
     spriteID: 5e97eb03825dee720800000000000000
-    internalID: 0
+    internalID: 1537655665
     vertices: []
     indices: 
     edges: []
@@ -148,7 +147,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Wall_Door_0: 5545353877668818159
+      Wall_Door 1_0: 2071192620679466093
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

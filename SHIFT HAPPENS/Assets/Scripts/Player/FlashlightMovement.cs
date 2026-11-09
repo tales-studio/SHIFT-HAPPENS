@@ -15,7 +15,6 @@ public class FlashlightMovement : MonoBehaviour
     private void Update()
     {
         Vector2 mouseScreen = aimAction.ReadValue<Vector2>();
-        Debug.Log(mouseScreen);
         Vector2 mouseWorld = cam.ScreenToWorldPoint(mouseScreen);
         Vector2 direction = mouseWorld - (Vector2)this.transform.position;
 

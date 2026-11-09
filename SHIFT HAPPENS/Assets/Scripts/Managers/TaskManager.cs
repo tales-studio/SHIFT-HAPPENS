@@ -21,6 +21,22 @@ public class TaskManager : MonoBehaviour
     public event Action<TaskLogic> OnTaskCompleted;
     public event Action<TaskLogic> OnTaskFailed;
 
+    public int ActiveTaskCount
+    {
+        get
+        {
+            int count = 0;
+            foreach (TaskLogic logic in allTasks)
+            {
+                if (logic.isActive)
+                {
+                    count++;
+                }
+            }
+            return count;
+        }
+    }
+
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -71,6 +87,16 @@ public class TaskManager : MonoBehaviour
         spawnTimer = firstTaskDelay;
     }
 
+    public void ReportCompleted(TaskLogic taskLogic)
+    {
+        OnTaskCompleted?.Invoke(taskLogic);
+    }
+
+    public void ReportFailed(TaskLogic taskLogic)
+    {
+        OnTaskFailed?.Invoke(taskLogic);
+    }
+
     private void TrySpawnRandomTask()
     {
         int activeCount = 0;
@@ -87,7 +113,6 @@ public class TaskManager : MonoBehaviour
                 candidates.Add(logic);
             }
         }
-
         if (activeCount >= maxActiveTasks || candidates.Count == 0) return;
 
         TaskLogic chosen = candidates[UnityEngine.Random.Range(0, candidates.Count)];

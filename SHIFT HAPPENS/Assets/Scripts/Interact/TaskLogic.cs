@@ -72,12 +72,14 @@ public class TaskLogic : MonoBehaviour
 
         isActive = false;
         interactable.HideIndicators();
+        TaskManager.Instance.ReportCompleted(this);
     }
 
     private void Fail()
     {
         isActive = false;
         interactable.HideIndicators();
+        TaskManager.Instance.ReportFailed(this);
     }
 
 

@@ -25,6 +25,7 @@ public class GameManager : MonoBehaviour
     public event Action<GamePhase> OnPhaseChanged;
     public event Action OnBlackout;
 
+
     private void Awake()
     {
         if (Instance != null && Instance != this)

@@ -6,4 +6,5 @@ public class TaskData : ScriptableObject
         public string displayName;
         public float expirationSeconds;
         public float anxietyOnFail;
+        public float reliefOnComplete;
 }

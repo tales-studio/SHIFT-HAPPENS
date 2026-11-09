@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: Vomit
   m_EditorClassIdentifier: Assembly-CSharp::TaskData
   displayName: "Limpia el v\xF3mito"
-  expirationSeconds: 20
-  anxietyOnFail: 0
+  expirationSeconds: 10
+  anxietyOnFail: 20
+  reliefOnComplete: 30

@@ -19,7 +19,8 @@ public enum NPCDestinationType
     StudyRoom,
     CommonRoom,
     Reception,
-    Laundry
+    Laundry,
+    GraffitiSpot
 }
 
 public class NPCDestination : MonoBehaviour
@@ -36,6 +37,23 @@ public class NPCDestination : MonoBehaviour
     private readonly Dictionary<GameObject, Transform> reservations =
         new Dictionary<GameObject, Transform>();
 
+    private TaskLogic task;
+    private bool taskSearched;
+
+    public TaskLogic Task
+    {
+        get
+        {
+            if (!taskSearched)
+            {
+                task = GetComponent<TaskLogic>();
+                taskSearched = true;
+            }
+            return task;
+        }
+    }
+
+    public bool IsBlockedByTask => Task != null && Task.isActive;
     public string DisplayName => displayName;
     public NPCDestinationType Type => destinationType;
     public BuildingFloor Floor => floor;

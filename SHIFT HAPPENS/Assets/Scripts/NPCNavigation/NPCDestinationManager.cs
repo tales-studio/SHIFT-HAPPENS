@@ -4,8 +4,41 @@ using UnityEngine;
 
 public class NPCDestinationManager : MonoBehaviour
 {
+    public static NPCDestinationManager Instance { get; private set; }
+
     [Header("Available Destinations")]
     [SerializeField] private NPCDestination[] destinations;
+
+    private void Awake()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
+    }
+
+    private void OnDestroy()
+    {
+        if (Instance == this) Instance = null;
+    }
+
+    public bool HasAvailableDestination(NPCDestinationType type, BuildingFloor targetFloor, GameObject requester)
+    {
+        foreach (NPCDestination destination in destinations)
+        {
+            if (destination != null &&
+                destination.Type == type &&
+                destination.Floor == targetFloor &&
+                destination.CanReserve(requester))
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
 
     public bool TryRequestRandomDestination(
         NPCDestinationType type,

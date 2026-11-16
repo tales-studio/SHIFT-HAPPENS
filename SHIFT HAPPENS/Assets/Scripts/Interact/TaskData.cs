@@ -7,4 +7,6 @@ public class TaskData : ScriptableObject
         public float expirationSeconds;
         public float anxietyOnFail;
         public float reliefOnComplete;
+
+        [Range(0f, 1f)] public float spawnChance = 0.2f;
 }

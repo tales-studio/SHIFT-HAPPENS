@@ -97,6 +97,17 @@ public class TaskManager : MonoBehaviour
         OnTaskFailed?.Invoke(taskLogic);
     }
 
+    public bool TryActivate(TaskLogic task, bool force = false)
+    {
+        if (task == null || task.Data == null || task.isActive) return false;
+        if (GameManager.Instance != null && !GameManager.Instance.isPlaying) return false;
+
+        if (!force && UnityEngine.Random.value > task.Data.spawnChance) return false;
+
+        ActivateTask(task);
+        return true;
+    }
+
     private void TrySpawnRandomTask()
     {
         int activeCount = 0;
@@ -116,7 +127,13 @@ public class TaskManager : MonoBehaviour
         if (activeCount >= maxActiveTasks || candidates.Count == 0) return;
 
         TaskLogic chosen = candidates[UnityEngine.Random.Range(0, candidates.Count)];
-        chosen.Activate();
+        ActivateTask(chosen);
+    }
+
+    private void ActivateTask(TaskLogic task)
+    {
+        task.Activate();
+        OnTaskActivated?.Invoke(task);
     }
 
 }

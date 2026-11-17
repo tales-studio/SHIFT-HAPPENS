@@ -8,7 +8,7 @@ public class HighlightSensor : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        IHighlightable highlightable = other.GetComponentInParent<IHighlightable>();
+        IHighlightable highlightable = other.GetComponentInParent<IHighlightable>(true);
 
         if (highlightable == null || inRange.Contains(highlightable)) return;
 
@@ -18,7 +18,7 @@ public class HighlightSensor : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        IHighlightable highlightable = other.GetComponentInParent<IHighlightable>();
+        IHighlightable highlightable = other.GetComponentInParent<IHighlightable>(true);
 
         if (highlightable == null || !inRange.Remove(highlightable)) return;
 

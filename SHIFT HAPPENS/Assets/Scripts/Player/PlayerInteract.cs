@@ -3,68 +3,42 @@ using UnityEngine;
 
 public class PlayerInteract : MonoBehaviour
 {
-    private List<IInteractable> interactablesInRange;
+    [SerializeField] private Collider2D interactionArea;
 
-    private void Awake()
-    {
-        interactablesInRange = new List<IInteractable>(); 
-    }
-
-    private void OnTriggerEnter2D(Collider2D foundCollider)
-    {
-        IInteractable interactable = foundCollider.GetComponentInParent<IInteractable>();
-
-        if (interactable != null && !interactablesInRange.Contains(interactable))
-        {
-            interactablesInRange.Add(interactable); 
-        }
-    }
-
-    private void OnTriggerExit2D(Collider2D foundCollider)
-    {
-        IInteractable interactable = foundCollider.GetComponentInParent<IInteractable>(); 
-
-        if (interactable != null)
-        {
-            interactablesInRange.Remove(interactable); 
-        }
-    }
+    private readonly List<Collider2D> overlaps = new List<Collider2D>();
+    private ContactFilter2D filter = new ContactFilter2D().NoFilter();
 
     public void OnInteract()
     {
-        if (interactablesInRange.Count > 0)
+        IInteractable closest = GetClosestInteractable();
+
+        if (closest != null)
         {
-            IInteractable closest = GetClosestInteractable();
-           
-            if (closest != null)
-            {
-                closest.Interact(); 
-            }
+            closest.Interact();
         }
     }
 
     private IInteractable GetClosestInteractable()
     {
         IInteractable closest = null;
-        float minDistance = float.MaxValue; 
+        float minSqrDistance = float.MaxValue;
+        Vector2 position = transform.position;
 
-        foreach (IInteractable interactable in interactablesInRange)
+        interactionArea.Overlap(filter, overlaps);
+
+        foreach (Collider2D overlap in overlaps)
         {
-            if (interactable == null || interactable.GetTransform() == null) continue; 
+            IInteractable interactable = overlap.GetComponentInParent<IInteractable>();
+            if (interactable == null) continue;
 
-            float distance = Vector2.Distance(transform.position, interactable.GetTransform().position); 
+            float sqrDistance = (position - (Vector2)interactable.GetTransform().position).sqrMagnitude;
 
-            if (distance < minDistance)
+            if (sqrDistance < minSqrDistance)
             {
-                minDistance = distance;
-                closest = interactable; 
+                minSqrDistance = sqrDistance;
+                closest = interactable;
             }
         }
         return closest;
-    }
-
-    private void OnDisable()
-    {
-        interactablesInRange.Clear(); 
     }
 }

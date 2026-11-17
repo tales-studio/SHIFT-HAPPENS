@@ -1,135 +1,47 @@
 using UnityEngine;
 
 [RequireComponent(typeof(SpriteRenderer))]
-public class HighlightVFX : MonoBehaviour
+public class HighlightVFX : MonoBehaviour, IHighlightable
 {
-    [Header("Configuration")]
-    [SerializeField] private float _activationDistance = 10f;
-    [SerializeField] private Transform _playerTransform;
-
-    [Header("Outline Appearance")]
     [SerializeField] private Color _outlineColor = Color.white;
-    [SerializeField] private float _outlineThickness = 20f;
-
-    [Header("Performance")]
-    [SerializeField] private float _checkInterval = 0.2f;
-
-    private SpriteRenderer _spriteRenderer;
-    private MaterialPropertyBlock _propertyBlock;
-    private bool _isOutlined = true;
-    private float _timer;
+    [SerializeField, Range(0f, 16f)] private float _outlineThickness = 3f;
+    [SerializeField] private bool _previewInEditor;
 
     private static readonly int _ColorID = Shader.PropertyToID("_OutlineColor");
     private static readonly int _ThicknessID = Shader.PropertyToID("_OutlineThickness");
     private static readonly int _EnabledID = Shader.PropertyToID("_OutlineEnabled");
 
-    public void DisableHighlight()
-    {
-        _isOutlined = false;
-        UpdateOutlineState(); 
-        enabled = false;     
-    }
-    public void EnableHighlight()
-    {
-        enabled = true;
-        _timer = 0f;
-        EvaluateDistance(true);
-    }
+    private SpriteRenderer _spriteRenderer;
+    private MaterialPropertyBlock _propertyBlock;
+    private bool _isHighlighted;
+
     private void OnEnable()
     {
-        if (_spriteRenderer != null) EvaluateDistance(true);
-    }
-    private void Awake()
-    {
-        _spriteRenderer = GetComponent<SpriteRenderer>();
-        _propertyBlock = new MaterialPropertyBlock();
-
-        TryFindPlayer();
-        EvaluateDistance(true);
+        SetHighlighted(false);
     }
 
-    private void Update()
+    public void SetHighlighted(bool highlighted)
     {
-        if (_playerTransform == null)
-        {
-            TryFindPlayer();
-            if (_playerTransform == null) return;
-        }
-
-        _timer += Time.deltaTime;
-        if (_timer < _checkInterval) return;
-        _timer = 0f;
-
-        EvaluateDistance(false);
+        _isHighlighted = highlighted;
+        Apply();
     }
 
-    private void TryFindPlayer()
+    private void Apply()
     {
-        if (_playerTransform != null) return;
+        if (_spriteRenderer == null) _spriteRenderer = GetComponent<SpriteRenderer>();
+        if (_propertyBlock == null) _propertyBlock = new MaterialPropertyBlock();
 
-        GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
-        if (playerObj != null)
-        {
-            _playerTransform = playerObj.transform;
-        }
-    }
-
-    private void EvaluateDistance(bool forceUpdate)
-    {
-        if (_playerTransform == null) return;
-
-        Vector2 currentObjPos = _spriteRenderer != null ? (Vector2)_spriteRenderer.bounds.center : (Vector2)transform.position;
-
-        float sqrDistance = (currentObjPos - (Vector2)_playerTransform.position).sqrMagnitude;
-        bool shouldOutline = sqrDistance <= (_activationDistance * _activationDistance);
-
-        if (shouldOutline != _isOutlined || forceUpdate)
-        {
-            _isOutlined = shouldOutline;
-            UpdateOutlineState();
-        }
-    }
-
-    private void UpdateOutlineState()
-    {
-        if (_spriteRenderer == null) return;
+        bool visible = Application.isPlaying ? _isHighlighted : _previewInEditor;
 
         _spriteRenderer.GetPropertyBlock(_propertyBlock);
-
-        if (_isOutlined)
-        {
-            _propertyBlock.SetColor(_ColorID, _outlineColor);
-            _propertyBlock.SetFloat(_ThicknessID, _outlineThickness);
-            _propertyBlock.SetFloat(_EnabledID, 1f);
-        }
-        else
-        {
-            _propertyBlock.SetFloat(_EnabledID, 0f);
-        }
-
+        _propertyBlock.SetColor(_ColorID, _outlineColor);
+        _propertyBlock.SetFloat(_ThicknessID, _outlineThickness);
+        _propertyBlock.SetFloat(_EnabledID, visible ? 1f : 0f);
         _spriteRenderer.SetPropertyBlock(_propertyBlock);
     }
 
     private void OnValidate()
     {
-        if (_spriteRenderer == null)
-            _spriteRenderer = GetComponent<SpriteRenderer>();
-
-        if (_propertyBlock == null)
-            _propertyBlock = new MaterialPropertyBlock();
-
-        if (_spriteRenderer != null)
-        {
-            UpdateOutlineState();
-        }
-    }
-
-    private void OnDrawGizmosSelected()
-    {
-        SpriteRenderer sr = GetComponent<SpriteRenderer>();
-        Vector3 drawCenter = sr != null ? sr.bounds.center : transform.position;
-
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(drawCenter, _activationDistance);
+        Apply();
     }
 }

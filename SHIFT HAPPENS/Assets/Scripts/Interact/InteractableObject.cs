@@ -4,7 +4,7 @@ using UnityEngine.Events;
 public class InteractableObject : MonoBehaviour, IInteractable
 {
     //Solo ofrece funciones para activar y desactivar el objeto
-    //"listo para interactuar" y avisa de que la interacción se ha producido
+    //"listo para interactuar" y avisa de que la interacciÃ³n se ha producido
 
     [SerializeField] private GameObject readyToInteractObj;
 
@@ -21,7 +21,6 @@ public class InteractableObject : MonoBehaviour, IInteractable
         {
             readyToInteractObj.SetActive(true);
         }
-    
     }
 
     public void HideIndicators()

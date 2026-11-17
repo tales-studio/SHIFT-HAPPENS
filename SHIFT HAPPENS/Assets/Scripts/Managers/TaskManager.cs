@@ -101,7 +101,6 @@ public class TaskManager : MonoBehaviour
     {
         if (task == null || task.Data == null || task.isActive) return false;
         if (GameManager.Instance != null && !GameManager.Instance.isPlaying) return false;
-
         if (!force && UnityEngine.Random.value > task.Data.spawnChance) return false;
 
         ActivateTask(task);

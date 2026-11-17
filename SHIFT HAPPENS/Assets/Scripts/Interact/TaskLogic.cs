@@ -12,8 +12,6 @@ public class TaskLogic : MonoBehaviour
     public TaskData Data => task;
     public bool isActive { get; private set; }
     public bool CanSpawnRandomly => canSpawnRandomly;
-
-    [SerializeField] private GameObject activeVisual;
     public float remainingTime { get; private set; }
     public float NormalizedTime
     {
@@ -66,6 +64,7 @@ public class TaskLogic : MonoBehaviour
         isActive = true;
         remainingTime = task.expirationSeconds;
         interactable.ShowIndicators();
+        Debug.Log(task.displayName);
     }
 
     public void Complete()

@@ -4,6 +4,7 @@ using UnityEngine;
 public class TaskData : ScriptableObject
 {
         public string displayName;
+        public bool expires;
         public float expirationSeconds;
         public float anxietyOnFail;
         public float reliefOnComplete;

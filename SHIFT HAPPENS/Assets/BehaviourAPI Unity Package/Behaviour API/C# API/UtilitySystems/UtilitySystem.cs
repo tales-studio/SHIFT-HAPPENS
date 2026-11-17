@@ -431,7 +431,7 @@ namespace BehaviourAPI.UtilitySystems
         protected override void OnUpdated()
         {
             foreach (UtilityNode node in _utilityNodes) node.MarkUtilityAsDirty();
-            UnityEngine.Debug.LogWarning("UpdateUtilitySystem");
+            //UnityEngine.Debug.LogWarning("UpdateUtilitySystem");
             var newBestAction = ComputeCurrentBestAction();
             // If the best action changes:
             if (newBestAction != _currentBestElement)

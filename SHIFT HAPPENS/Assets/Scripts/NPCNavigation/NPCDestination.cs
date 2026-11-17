@@ -54,6 +54,33 @@ public class NPCDestination : MonoBehaviour
     }
 
     public bool IsBlockedByTask => Task != null && Task.isActive;
+
+    // NUEVO: caché de la tarea de cada slot
+    private readonly Dictionary<Transform, TaskLogic> slotTasks =
+        new Dictionary<Transform, TaskLogic>();
+
+    // Tarea de un slot: la del propio slot o, si no tiene, la del destino (compartida).
+    public TaskLogic GetTaskForSlot(Transform slot)
+    {
+        if (slot == null || slot == transform)
+            return Task;
+
+        if (!slotTasks.TryGetValue(slot, out TaskLogic slotTask))
+        {
+            slotTask = slot.GetComponentInChildren<TaskLogic>(true);
+            slotTasks[slot] = slotTask;
+        }
+
+        return slotTask != null ? slotTask : Task;
+    }
+
+    // Un slot está bloqueado si su tarea (o la compartida) está activa.
+    private bool IsSlotBlocked(Transform slot)
+    {
+        TaskLogic slotTask = GetTaskForSlot(slot);
+        return slotTask != null && slotTask.isActive;
+    }
+
     public string DisplayName => displayName;
     public NPCDestinationType Type => destinationType;
     public BuildingFloor Floor => floor;
@@ -82,7 +109,7 @@ public class NPCDestination : MonoBehaviour
             {
                 Transform slot = GetSlot(i);
 
-                if (slot != null && !IsSlotReserved(slot))
+                if (slot != null && !IsSlotReserved(slot) && !IsSlotBlocked(slot))
                     return true;
             }
 
@@ -237,7 +264,7 @@ public class NPCDestination : MonoBehaviour
         {
             Transform slot = GetSlot(i);
 
-            if (slot != null && !IsSlotReserved(slot))
+            if (slot != null && !IsSlotReserved(slot) && !IsSlotBlocked(slot))
                 return slot;
         }
 

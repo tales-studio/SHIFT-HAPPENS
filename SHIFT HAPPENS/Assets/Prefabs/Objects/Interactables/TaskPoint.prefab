@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2850195167202276758}
   - component: {fileID: 3145929851890966212}
   m_Layer: 0
-  m_Name: InteractableObject
+  m_Name: TaskPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

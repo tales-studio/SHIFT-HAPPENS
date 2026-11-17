@@ -319,12 +319,16 @@ public class StudentBrain : MonoBehaviour
     // 6. Generar tarea: la tarea es la del propio punto de destino
     public Status GenerateTask()
     {
-        TaskLogic task = destination != null ? destination.Task : null;
-
+        TaskLogic task = destination != null? 
+            destination.GetTaskForSlot(navigator.CurrentDestinationSlot) : null;
         if (task != null && TaskManager.Instance != null &&
             TaskManager.Instance.TryActivate(task, profile.alwaysGeneratesTasks))
         {
             Log("Genera tarea " + task.Data.displayName + " en " + destination.DisplayName);
+        }
+        else
+        {
+            Log("No genera tarea");
         }
         return Status.Success;
     }

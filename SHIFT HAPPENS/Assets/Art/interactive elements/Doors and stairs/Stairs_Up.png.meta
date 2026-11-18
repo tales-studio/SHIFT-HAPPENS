@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 41ca57525a3261841a45ca6f3c370844
+guid: fd002c2b6500e3e4ea7c07ad15605b5e
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -8931691507785442857
-    second: Door_Open3_0
+      213: 3356941620603393267
+    second: Stairs_Up_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -46,7 +46,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Door_Open3_0
+      name: Stairs_Up_0
       rect:
         serializedVersion: 2
-        x: 149
-        y: 11
-        width: 241
-        height: 485
+        x: 0
+        y: 0
+        width: 1024
+        height: 1024
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 7d9531355e14c0480800000000000000
-      internalID: -8931691507785442857
+      spriteID: 3f41acb3e90469e20800000000000000
+      internalID: 3356941620603393267
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Door_Open3_0: -8931691507785442857
+      Stairs_Up_0: 3356941620603393267
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

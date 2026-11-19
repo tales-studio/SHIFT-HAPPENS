@@ -23,9 +23,17 @@ public class ShiftClock : MonoBehaviour
         if (!isRunning) return;
 
         elapsedTime += Time.deltaTime * debugSpeedMultiplier;
-        elapsedGameHours = (int) (elapsedTime / realSecondsPerGameHour);
+        UpdateHours();
+    }
 
-        OnHourChanged?.Invoke((startHour + hoursAlreadyNotified) % 24);
+    private void UpdateHours()
+    {
+        elapsedGameHours = (int)(elapsedTime / realSecondsPerGameHour);
+        while (hoursAlreadyNotified < elapsedGameHours)
+        {
+            hoursAlreadyNotified++;
+            OnHourChanged?.Invoke((startHour + hoursAlreadyNotified) % 24);
+        }
     }
 
     public void StartClock()

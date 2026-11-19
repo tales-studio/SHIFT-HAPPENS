@@ -8,6 +8,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2267101500186196878, guid: a220bb12f7d3057479254ff9ff56e82b, type: 3}
+      propertyPath: m_Size.x
+      value: 4.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2267101500186196878, guid: a220bb12f7d3057479254ff9ff56e82b, type: 3}
+      propertyPath: m_Size.y
+      value: 4.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2267101500186196878, guid: a220bb12f7d3057479254ff9ff56e82b, type: 3}
+      propertyPath: m_Offset.x
+      value: 0.04
+      objectReference: {fileID: 0}
+    - target: {fileID: 2267101500186196878, guid: a220bb12f7d3057479254ff9ff56e82b, type: 3}
+      propertyPath: m_Offset.y
+      value: 2.5
+      objectReference: {fileID: 0}
     - target: {fileID: 2705334181771547136, guid: a220bb12f7d3057479254ff9ff56e82b, type: 3}
       propertyPath: m_Name
       value: Door
@@ -66,23 +82,7 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: 2bcbcb005ce8b194e8ec013dfc7410ad, type: 3}
     - target: {fileID: 5190062734834561693, guid: a220bb12f7d3057479254ff9ff56e82b, type: 3}
       propertyPath: m_SortingOrder
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2267101500186196878, guid: a220bb12f7d3057479254ff9ff56e82b, type: 3}
-      propertyPath: m_Size.x
-      value: 4.6
-      objectReference: {fileID: 0}
-    - target: {fileID: 2267101500186196878, guid: a220bb12f7d3057479254ff9ff56e82b, type: 3}
-      propertyPath: m_Size.y
-      value: 4.6
-      objectReference: {fileID: 0}
-    - target: {fileID: 2267101500186196878, guid: a220bb12f7d3057479254ff9ff56e82b, type: 3}
-      propertyPath: m_Offset.x
-      value: 0.04
-      objectReference: {fileID: 0}
-    - target: {fileID: 2267101500186196878, guid: a220bb12f7d3057479254ff9ff56e82b, type: 3}
-      propertyPath: m_Offset.y
-      value: 2.5
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -178,3 +178,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Door
   blocker: {fileID: 3632989892065328610}
+  startsOpen: 0
+  startsLocked: 0

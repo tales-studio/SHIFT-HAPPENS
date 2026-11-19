@@ -5,10 +5,13 @@ public class ShiftClock : MonoBehaviour
 {
     [SerializeField] private int startHour = 22;
     [SerializeField] private int endHour = 6;
+    [SerializeField] private float fastForwardMinutesPerSecond = 30f;
 
     private float elapsedMinutes;
     private int hoursNotified;
     private bool isRunning;
+    private float targetMinutes;
+    public int StartHour => startHour;
     public int TotalHours => (endHour - startHour + 24) % 24;
     public float TotalMinutes => TotalHours * 60f;
     public int CurrentHour => (startHour + (int)(elapsedMinutes / 60f)) % 24;
@@ -21,22 +24,17 @@ public class ShiftClock : MonoBehaviour
     public void AdvanceTime(float gameMinutes)
     {
         if (!isRunning || gameMinutes <= 0f) return;
-        
-        elapsedMinutes = Mathf.Min(elapsedMinutes + gameMinutes, TotalMinutes);
-        OnTimeAdvanced?.Invoke(gameMinutes);
 
-        int hoursPassed = (int)(elapsedMinutes / 60f);
-        while (hoursNotified < hoursPassed)
-        {
-            hoursNotified++;
-            OnHourChanged?.Invoke((startHour + hoursNotified) % 24);
-        }
+        targetMinutes = Mathf.Min(targetMinutes + gameMinutes, TotalMinutes);
+    }
 
-        if (elapsedMinutes >= TotalMinutes)
-        {
-            isRunning = false;
-            OnShiftEnded?.Invoke();
-        }
+    private void Update()
+    {
+        if (!isRunning || elapsedMinutes >= targetMinutes) return;
+
+        FastForward();
+        NotifyPassedHours();
+        CheckShiftEnd();
     }
 
     public void StartClock()
@@ -48,6 +46,7 @@ public class ShiftClock : MonoBehaviour
     {
         elapsedMinutes = 0f;
         hoursNotified = 0;
+        targetMinutes = 0f;
     }
 
     public void StopClock() => isRunning = false;
@@ -55,5 +54,30 @@ public class ShiftClock : MonoBehaviour
 
     [ContextMenu("Debug: Advance 1 hour")]
     private void DebugAdvanceHour() => AdvanceTime(60f);
+
+    private void FastForward()
+    {
+        float previous = elapsedMinutes;
+        elapsedMinutes = Mathf.MoveTowards(elapsedMinutes, targetMinutes, fastForwardMinutesPerSecond * Time.deltaTime);
+        OnTimeAdvanced?.Invoke(elapsedMinutes - previous);
+    }
+
+    private void NotifyPassedHours()
+    {
+        int hoursPassed = (int)(elapsedMinutes / 60f);
+        while (hoursNotified < hoursPassed)
+        {
+            hoursNotified++;
+            OnHourChanged?.Invoke((startHour + hoursNotified) % 24);
+        }
+    }
+
+    private void CheckShiftEnd()
+    {
+        if (elapsedMinutes < TotalMinutes) return;
+
+        isRunning = false;
+        OnShiftEnded?.Invoke();
+    }
 
 }

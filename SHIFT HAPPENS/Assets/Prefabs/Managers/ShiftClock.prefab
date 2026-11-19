@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5130638239423925108}
   - component: {fileID: 3740848844866690747}
+  - component: {fileID: 232467137051871441}
   m_Layer: 0
   m_Name: ShiftClock
   m_TagString: Untagged
@@ -46,5 +47,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ShiftClock
   startHour: 22
   endHour: 6
-  realSecondsPerGameHour: 225
-  debugSpeedMultiplier: 1
+--- !u!114 &232467137051871441
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3752766320310424288}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c74175afdcee3ca439a54452761966ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TaskTimeReward
+  clock: {fileID: 3740848844866690747}

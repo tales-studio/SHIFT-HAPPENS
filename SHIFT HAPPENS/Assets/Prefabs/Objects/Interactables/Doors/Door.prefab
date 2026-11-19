@@ -183,4 +183,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Door
   blocker: {fileID: 3632989892065328610}
   startsOpen: 0
-  startsLocked: 0
+  startsLocked: 1

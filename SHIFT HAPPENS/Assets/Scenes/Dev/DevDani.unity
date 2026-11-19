@@ -63361,6 +63361,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 6001527583351373628, guid: cd5839a3be1cfb046a31123d69a30eff, type: 3}
+      propertyPath: interactableLayers.m_Bits
+      value: 55
+      objectReference: {fileID: 0}
     - target: {fileID: 6949783778234782126, guid: cd5839a3be1cfb046a31123d69a30eff, type: 3}
       propertyPath: m_LocalScale.x
       value: 1
@@ -64961,9 +64965,13 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1048862576135364506, guid: 449010f4eb7967d42be868f15795dcdf, type: 3}
-      propertyPath: _outlineThickness
-      value: 64
+    - target: {fileID: 4718203956627301845, guid: 449010f4eb7967d42be868f15795dcdf, type: 3}
+      propertyPath: fadedAlpha
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4718203956627301845, guid: 449010f4eb7967d42be868f15795dcdf, type: 3}
+      propertyPath: fadeDuration
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 7017490645415698624, guid: 449010f4eb7967d42be868f15795dcdf, type: 3}
       propertyPath: startsLocked
@@ -64975,7 +64983,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7087771451823214885, guid: 449010f4eb7967d42be868f15795dcdf, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 21.94
+      value: 27.38
       objectReference: {fileID: 0}
     - target: {fileID: 7087771451823214885, guid: 449010f4eb7967d42be868f15795dcdf, type: 3}
       propertyPath: m_LocalPosition.z

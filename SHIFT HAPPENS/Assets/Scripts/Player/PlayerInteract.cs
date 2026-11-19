@@ -5,8 +5,18 @@ public class PlayerInteract : MonoBehaviour
 {
     [SerializeField] private Collider2D interactionArea;
 
+    [Tooltip("Layers whose colliders count as interactable. Exclude helper triggers like FadeZone.")]
+    [SerializeField] private LayerMask interactableLayers = ~0;
+
     private readonly List<Collider2D> overlaps = new List<Collider2D>();
-    private ContactFilter2D filter = new ContactFilter2D().NoFilter();
+    private ContactFilter2D filter;
+
+    private void Awake()
+    {
+        filter = new ContactFilter2D().NoFilter();
+        filter.SetLayerMask(interactableLayers);
+        filter.useTriggers = true;
+    }
 
     public void OnInteract()
     {

@@ -313,6 +313,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerInteract
   interactionArea: {fileID: 3938547208934638834}
+  interactableLayers:
+    serializedVersion: 2
+    m_Bits: 4294967167
 --- !u!114 &7340192837465019283
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -407,3 +410,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8fb5f73621284d0ab8d8698485431023, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HighlightSensor
+  highlightableLayers:
+    serializedVersion: 2
+    m_Bits: 4294967167

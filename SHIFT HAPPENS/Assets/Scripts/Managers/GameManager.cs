@@ -39,6 +39,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         clock.OnHourChanged += HandleHourChanged;
+        clock.OnShiftEnded += HandleShiftEnded;
 
         if (startOnPlay) StartShift();
     }
@@ -48,6 +49,7 @@ public class GameManager : MonoBehaviour
         if (clock != null)
         {
             clock.OnHourChanged -= HandleHourChanged;
+            clock.OnShiftEnded -= HandleShiftEnded;
         }
         if (Instance == this) Instance = null;
     }
@@ -67,9 +69,13 @@ public class GameManager : MonoBehaviour
             TriggerBlackout();
     }
 
+    private void HandleShiftEnded()
+    {
+        SetPhase(GamePhase.Ended);
+    }
+
     private void TriggerBlackout()
     {
-        clock.StopClock();
         SetPhase(GamePhase.Blackout);
         OnBlackout?.Invoke();
     }
@@ -79,7 +85,6 @@ public class GameManager : MonoBehaviour
         if (CurrentPhase != GamePhase.Blackout) return;
 
         SetPhase(GamePhase.Outbreak);
-        clock.ResumeClock();
     }
     private void SetPhase(GamePhase newPhase)
     {

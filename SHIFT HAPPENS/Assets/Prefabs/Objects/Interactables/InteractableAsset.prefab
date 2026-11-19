@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5190062734834561693}
   - component: {fileID: 5812987195117990484}
   - component: {fileID: 2267101500186196878}
+  - component: {fileID: 3644913247872266454}
   m_Layer: 0
   m_Name: InteractableAsset
   m_TagString: Untagged
@@ -145,3 +146,20 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 0.16000001, y: 0.16000001}
   m_Direction: 0
+--- !u!114 &3644913247872266454
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2705334181771547136}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ec5b5060c192ac46983031173dc84c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TwoStateVisual
+  startsInAlternateState: 0
+  spriteRenderer: {fileID: 5190062734834561693}
+  defaultSprite: {fileID: 0}
+  alternateSprite: {fileID: 0}
+  alternateOnlyObjects: []

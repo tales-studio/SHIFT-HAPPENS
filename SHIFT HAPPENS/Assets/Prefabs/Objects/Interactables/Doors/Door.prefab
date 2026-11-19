@@ -68,6 +68,22 @@ PrefabInstance:
       propertyPath: m_SortingOrder
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 2267101500186196878, guid: a220bb12f7d3057479254ff9ff56e82b, type: 3}
+      propertyPath: m_Size.x
+      value: 4.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2267101500186196878, guid: a220bb12f7d3057479254ff9ff56e82b, type: 3}
+      propertyPath: m_Size.y
+      value: 4.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2267101500186196878, guid: a220bb12f7d3057479254ff9ff56e82b, type: 3}
+      propertyPath: m_Offset.x
+      value: 0.04
+      objectReference: {fileID: 0}
+    - target: {fileID: 2267101500186196878, guid: a220bb12f7d3057479254ff9ff56e82b, type: 3}
+      propertyPath: m_Offset.y
+      value: 2.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

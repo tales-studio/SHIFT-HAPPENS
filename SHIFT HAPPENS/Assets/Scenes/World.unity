@@ -6012,6 +6012,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26cd73f63e8491f48bb51fc83b0c9a14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::StairTransition
+  playerStairCollider: {fileID: 2131039497}
   destination: {fileID: 60126612}
 --- !u!61 &152925277
 BoxCollider2D:
@@ -31635,6 +31636,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26cd73f63e8491f48bb51fc83b0c9a14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::StairTransition
+  playerStairCollider: {fileID: 2131039497}
   destination: {fileID: 2067878733}
 --- !u!61 &494940635
 BoxCollider2D:
@@ -44569,6 +44571,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26cd73f63e8491f48bb51fc83b0c9a14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::StairTransition
+  playerStairCollider: {fileID: 2131039497}
   destination: {fileID: 95565678}
 --- !u!61 &796759778
 BoxCollider2D:
@@ -47722,6 +47725,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26cd73f63e8491f48bb51fc83b0c9a14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::StairTransition
+  playerStairCollider: {fileID: 2131039497}
   destination: {fileID: 1544095066}
 --- !u!61 &871332892
 BoxCollider2D:
@@ -52401,6 +52405,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26cd73f63e8491f48bb51fc83b0c9a14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::StairTransition
+  playerStairCollider: {fileID: 2131039497}
   destination: {fileID: 1597230968}
 --- !u!61 &994733861
 BoxCollider2D:
@@ -65331,6 +65336,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26cd73f63e8491f48bb51fc83b0c9a14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::StairTransition
+  playerStairCollider: {fileID: 2131039497}
   destination: {fileID: 1947787173}
 --- !u!61 &1370644893
 BoxCollider2D:
@@ -163609,6 +163615,11 @@ Transform:
 --- !u!95 &2131039493 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 6751978330703760189, guid: cd5839a3be1cfb046a31123d69a30eff, type: 3}
+  m_PrefabInstance: {fileID: 1844986896}
+  m_PrefabAsset: {fileID: 0}
+--- !u!58 &2131039497 stripped
+CircleCollider2D:
+  m_CorrespondingSourceObject: {fileID: 3015675381559108781, guid: cd5839a3be1cfb046a31123d69a30eff, type: 3}
   m_PrefabInstance: {fileID: 1844986896}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2131163060

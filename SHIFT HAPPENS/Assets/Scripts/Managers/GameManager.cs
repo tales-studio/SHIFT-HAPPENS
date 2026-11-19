@@ -34,6 +34,16 @@ public class GameManager : MonoBehaviour
             return;
         }
         Instance = this;
+        ResolveClock();
+    }
+
+    private void ResolveClock()
+    {
+        if (clock != null && clock.gameObject.scene.IsValid()) return;
+
+        clock = FindFirstObjectByType<ShiftClock>();
+        if (clock == null)
+            Debug.LogError("GameManager: no ShiftClock found in the scene.", this);
     }
 
     private void Start()

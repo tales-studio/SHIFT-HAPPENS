@@ -10,4 +10,6 @@ public class TaskData : ScriptableObject
         public float reliefOnComplete;
 
         [Range(0f, 1f)] public float spawnChance = 0.2f;
+
+        [Min(0f)] public float minutesGainedOnComplete = 15f;
 }

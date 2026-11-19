@@ -17,6 +17,7 @@ public class ShiftClock : MonoBehaviour
     public int CurrentHour => (startHour + (int)(elapsedMinutes / 60f)) % 24;
     public int CurrentMinute => (int)(elapsedMinutes % 60f);
     public string TimeString => $"{CurrentHour:00}:{CurrentMinute:00}";
+    public bool IsFastForwarding => isRunning && elapsedMinutes < targetMinutes;
     public event Action<int> OnHourChanged;
     public event Action<float> OnTimeAdvanced;
     public event Action OnShiftEnded;

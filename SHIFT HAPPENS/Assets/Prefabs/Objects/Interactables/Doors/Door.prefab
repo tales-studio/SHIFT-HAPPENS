@@ -92,8 +92,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::OccluderFade
   spriteRenderer: {fileID: 1595225850902962003}
-  fadedAlpha: 0.45
-  fadeDuration: 0.15
+  fadedAlpha: 0.5
+  fadeDuration: 0.5
 --- !u!1001 &6784021904200641998
 PrefabInstance:
   m_ObjectHideFlags: 0

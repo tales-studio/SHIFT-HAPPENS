@@ -64965,14 +64965,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 4718203956627301845, guid: 449010f4eb7967d42be868f15795dcdf, type: 3}
-      propertyPath: fadedAlpha
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4718203956627301845, guid: 449010f4eb7967d42be868f15795dcdf, type: 3}
-      propertyPath: fadeDuration
-      value: 0.5
-      objectReference: {fileID: 0}
     - target: {fileID: 7017490645415698624, guid: 449010f4eb7967d42be868f15795dcdf, type: 3}
       propertyPath: startsLocked
       value: 0

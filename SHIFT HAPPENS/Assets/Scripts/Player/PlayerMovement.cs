@@ -17,6 +17,9 @@ public class PlayerMovement : MonoBehaviour
 
     private bool isSneaking;
 
+    public bool IsMoving => enabled && movement != Vector2.zero;
+    public bool IsSneaking => isSneaking;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -47,7 +50,6 @@ public class PlayerMovement : MonoBehaviour
         float currentSpeed = isSneaking ? sneakSpeed : moveSpeed;
 
         rb.linearVelocity = movement * currentSpeed;
-
     }
 
     public void OnMove(InputValue value)

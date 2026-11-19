@@ -1,10 +1,7 @@
+using System;
 using TMPro;
 using UnityEngine;
 
-/// <summary>
-/// Convierte la ansiedad (0 a 1) en pulsaciones (por defecto de 60 a 180 BPM),
-/// las muestra en un texto y hace latir el icono del corazon a ese ritmo.
-/// </summary>
 public class BPMDisplay : MonoBehaviour
 {
     [SerializeField] private TMP_Text bpmText;
@@ -19,6 +16,8 @@ public class BPMDisplay : MonoBehaviour
 
     private float displayedBpm;
     private float beatPhase;
+
+    public event Action Beat;
 
     private void Start()
     {
@@ -42,7 +41,11 @@ public class BPMDisplay : MonoBehaviour
         if (heartIcon == null) return;
 
         beatPhase += (displayedBpm / 60f) * Time.deltaTime;
-        beatPhase = beatPhase % 1f;
+        if (beatPhase >= 1f)
+        {
+            beatPhase %= 1f;
+            Beat?.Invoke();
+        }
 
         float pulse = 1f - Mathf.Clamp01(beatPhase * 3f);
         float scale = 1f + pulse * pulseSize;

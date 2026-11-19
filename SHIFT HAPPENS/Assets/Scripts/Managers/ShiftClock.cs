@@ -6,6 +6,11 @@ public class ShiftClock : MonoBehaviour
     [SerializeField] private int startHour = 22;
     [SerializeField] private int endHour = 6;
     [SerializeField] private float fastForwardMinutesPerSecond = 30f;
+    //[SerializeField] private float realSecondsPerGameHour = 225f;
+    //[SerializeField] private float debugSpeedMultiplier = 1f;
+    //private int elapsedGameHours;
+    //private float elapsedTime;
+    //private int hoursAlreadyNotified;
 
     private float elapsedMinutes;
     private int hoursNotified;
@@ -38,6 +43,24 @@ public class ShiftClock : MonoBehaviour
         CheckShiftEnd();
     }
 
+    //private void Update()
+    //{
+    //    if (!isRunning) return;
+    //
+    //    elapsedTime += Time.deltaTime * debugSpeedMultiplier;
+    //    UpdateHours();
+    //}
+    //
+    //private void UpdateHours()
+    //{
+    //    elapsedGameHours = (int)(elapsedTime / realSecondsPerGameHour);
+    //    while (hoursAlreadyNotified < elapsedGameHours)
+    //    {
+    //        hoursAlreadyNotified++;
+    //        OnHourChanged?.Invoke((startHour + hoursAlreadyNotified) % 24);
+    //    }
+    //}
+
     public void StartClock()
     {
         isRunning = true;
@@ -48,6 +71,7 @@ public class ShiftClock : MonoBehaviour
         elapsedMinutes = 0f;
         hoursNotified = 0;
         targetMinutes = 0f;
+        //elapsedTime = 0;
     }
 
     public void StopClock() => isRunning = false;

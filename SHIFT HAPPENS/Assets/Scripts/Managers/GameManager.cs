@@ -86,6 +86,7 @@ public class GameManager : MonoBehaviour
 
     private void TriggerBlackout()
     {
+        //clock.StopClock();
         SetPhase(GamePhase.Blackout);
         OnBlackout?.Invoke();
     }
@@ -95,6 +96,7 @@ public class GameManager : MonoBehaviour
         if (CurrentPhase != GamePhase.Blackout) return;
 
         SetPhase(GamePhase.Outbreak);
+        //clock.ResumeClock();
     }
     private void SetPhase(GamePhase newPhase)
     {

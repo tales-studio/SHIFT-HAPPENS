@@ -64961,13 +64961,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1048862576135364506, guid: 449010f4eb7967d42be868f15795dcdf, type: 3}
+      propertyPath: _outlineThickness
+      value: 64
+      objectReference: {fileID: 0}
+    - target: {fileID: 7017490645415698624, guid: 449010f4eb7967d42be868f15795dcdf, type: 3}
+      propertyPath: startsLocked
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7087771451823214885, guid: 449010f4eb7967d42be868f15795dcdf, type: 3}
       propertyPath: m_LocalPosition.x
       value: -43.98677
       objectReference: {fileID: 0}
     - target: {fileID: 7087771451823214885, guid: 449010f4eb7967d42be868f15795dcdf, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 27.64
+      value: 21.94
       objectReference: {fileID: 0}
     - target: {fileID: 7087771451823214885, guid: 449010f4eb7967d42be868f15795dcdf, type: 3}
       propertyPath: m_LocalPosition.z
@@ -69071,6 +69079,10 @@ PrefabInstance:
     - target: {fileID: 8586668537934377362, guid: deac741db755b2041b428f5d4f770f9e, type: 3}
       propertyPath: m_Name
       value: TaskManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 8586668537934377362, guid: deac741db755b2041b428f5d4f770f9e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8598329721453070121, guid: deac741db755b2041b428f5d4f770f9e, type: 3}
       propertyPath: m_LocalPosition.x

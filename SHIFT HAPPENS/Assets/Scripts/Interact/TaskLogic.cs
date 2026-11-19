@@ -8,6 +8,7 @@ public class TaskLogic : MonoBehaviour
     [SerializeField] private bool canSpawnRandomly = true;
 
     private InteractableObject interactable;
+    private TwoStateVisual visual;
 
     public TaskData Data => task;
     public bool isActive { get; private set; }
@@ -26,6 +27,12 @@ public class TaskLogic : MonoBehaviour
     private void Awake()
     {
         interactable = GetComponent<InteractableObject>();
+        visual = GetComponent<TwoStateVisual>();
+    }
+
+    private void SetBroken(bool broken)
+    {
+        if (visual != null) visual.SetAlternateState(broken);
     }
     private void Start()
     {
@@ -64,6 +71,7 @@ public class TaskLogic : MonoBehaviour
         isActive = true;
         remainingTime = task.expirationSeconds;
         interactable.ShowIndicators();
+        SetBroken(true);
         Debug.Log(task.displayName);
     }
 
@@ -73,6 +81,7 @@ public class TaskLogic : MonoBehaviour
 
         isActive = false;
         interactable.HideIndicators();
+        SetBroken(false);
         TaskManager.Instance.ReportCompleted(this);
     }
 
@@ -80,6 +89,7 @@ public class TaskLogic : MonoBehaviour
     {
         isActive = false;
         interactable.HideIndicators();
+        SetBroken(false);
         TaskManager.Instance.ReportFailed(this);
     }
 
@@ -89,5 +99,6 @@ public class TaskLogic : MonoBehaviour
         isActive = false;
         remainingTime = 0f;
         interactable.HideIndicators();
+        SetBroken(false);
     }
 }

@@ -28,6 +28,7 @@ public class TaskLogic : MonoBehaviour
     private void Awake()
     {
         interactable = GetComponent<InteractableObject>();
+        interactable.SetCanInteract(false);
     }
 
     private void SetActiveState(bool active)
@@ -39,7 +40,6 @@ public class TaskLogic : MonoBehaviour
     private void Start()
     {
         interactable.onInteract.AddListener(Complete);
-        interactable.HideIndicators();
         TaskManager.Instance.Register(this);
     }
 
@@ -71,7 +71,7 @@ public class TaskLogic : MonoBehaviour
         if (isActive || task == null) return;
 
         remainingTime = task.expirationSeconds;
-        interactable.ShowIndicators();
+        interactable.SetCanInteract(true);
         SetActiveState(true);
         Debug.Log(task.displayName);
     }
@@ -80,14 +80,14 @@ public class TaskLogic : MonoBehaviour
     {
         if (!isActive) return;
 
-        interactable.HideIndicators();
+        interactable.SetCanInteract(false);
         SetActiveState(false);
         TaskManager.Instance.ReportCompleted(this);
     }
 
     private void Fail()
     {
-        interactable.HideIndicators();
+        interactable.SetCanInteract(false);
         SetActiveState(false);
         TaskManager.Instance.ReportFailed(this);
     }
@@ -96,7 +96,7 @@ public class TaskLogic : MonoBehaviour
     public void ResetTask()
     {
         remainingTime = 0f;
-        interactable.HideIndicators();
+        interactable.SetCanInteract(false);
         SetActiveState(false);
     }
 }

@@ -150980,6 +150980,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8812345678901234204, guid: cd5839a3be1cfb046a31123d69a30eff, type: 3}
+      propertyPath: highlightableLayers.m_Bits
+      value: 55
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:

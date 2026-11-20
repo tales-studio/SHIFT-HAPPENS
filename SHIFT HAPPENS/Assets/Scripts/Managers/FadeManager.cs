@@ -15,6 +15,8 @@ public class FadeManager : MonoBehaviour
 
     private bool isTransitioning;
 
+    public event System.Action OnTransitionStarted;
+
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -45,6 +47,7 @@ public class FadeManager : MonoBehaviour
         Transform destination)
     {
         isTransitioning = true;
+        OnTransitionStarted?.Invoke();
 
         bool movementWasEnabled =
             playerMovement != null && playerMovement.enabled;

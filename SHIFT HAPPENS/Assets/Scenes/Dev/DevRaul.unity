@@ -5132,6 +5132,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1183260662081520861, guid: 103148f328b49d14d82de92c1541fb7f, type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 2380765420145597850, guid: 103148f328b49d14d82de92c1541fb7f, type: 3}
       propertyPath: m_Name
       value: Nerd

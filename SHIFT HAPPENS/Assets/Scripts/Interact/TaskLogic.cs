@@ -8,7 +8,8 @@ public class TaskLogic : MonoBehaviour
     [SerializeField] private bool canSpawnRandomly = true;
 
     private InteractableObject interactable;
-    private TwoStateVisual visual;
+
+    public event Action<bool> ActiveChanged;
 
     public TaskData Data => task;
     public bool isActive { get; private set; }
@@ -27,13 +28,14 @@ public class TaskLogic : MonoBehaviour
     private void Awake()
     {
         interactable = GetComponent<InteractableObject>();
-        visual = GetComponent<TwoStateVisual>();
     }
 
-    private void SetBroken(bool broken)
+    private void SetActiveState(bool active)
     {
-        if (visual != null) visual.SetAlternateState(broken);
+        isActive = active;
+        ActiveChanged?.Invoke(active);
     }
+
     private void Start()
     {
         interactable.onInteract.AddListener(Complete);
@@ -68,10 +70,9 @@ public class TaskLogic : MonoBehaviour
     {
         if (isActive || task == null) return;
 
-        isActive = true;
         remainingTime = task.expirationSeconds;
         interactable.ShowIndicators();
-        SetBroken(true);
+        SetActiveState(true);
         Debug.Log(task.displayName);
     }
 
@@ -79,26 +80,23 @@ public class TaskLogic : MonoBehaviour
     {
         if (!isActive) return;
 
-        isActive = false;
         interactable.HideIndicators();
-        SetBroken(false);
+        SetActiveState(false);
         TaskManager.Instance.ReportCompleted(this);
     }
 
     private void Fail()
     {
-        isActive = false;
         interactable.HideIndicators();
-        SetBroken(false);
+        SetActiveState(false);
         TaskManager.Instance.ReportFailed(this);
     }
 
 
     public void ResetTask()
     {
-        isActive = false;
         remainingTime = 0f;
         interactable.HideIndicators();
-        SetBroken(false);
+        SetActiveState(false);
     }
 }

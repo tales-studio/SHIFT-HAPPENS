@@ -21,5 +21,5 @@ MonoBehaviour:
   interactionMode: 2
   interactionTask: {fileID: 11400000, guid: 70ccd08a70786794bb6e23220505f28d, type: 2}
   interactionAt: 0
-  animatorBool: 
+  animatorBool: IsCrying
   blocksEntity: 0

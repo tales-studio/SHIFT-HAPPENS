@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &6239481057362910482
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 8185209364000001, guid: 209f99ee032d3f3321b419a306c29f84, type: 3}
+      propertyPath: m_Name
+      value: Notes_Task
+      objectReference: {fileID: 0}
+    - target: {fileID: 8185209364000004, guid: 209f99ee032d3f3321b419a306c29f84, type: 3}
+      propertyPath: task
+      value: 
+      objectReference: {fileID: 11400000, guid: 8448c8f2aef8bd14a80bf000879eca6d, type: 2}
+    - target: {fileID: 8185209364000005, guid: 209f99ee032d3f3321b419a306c29f84, type: 3}
+      propertyPath: sound
+      value: 708
+      objectReference: {fileID: 0}
+    - target: {fileID: 8185209364000005, guid: 209f99ee032d3f3321b419a306c29f84, type: 3}
+      propertyPath: repeatInterval
+      value: 6
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 209f99ee032d3f3321b419a306c29f84, type: 3}

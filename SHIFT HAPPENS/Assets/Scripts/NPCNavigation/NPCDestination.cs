@@ -67,7 +67,7 @@ public class NPCDestination : MonoBehaviour
 
         if (!slotTasks.TryGetValue(slot, out TaskLogic slotTask))
         {
-            slotTask = slot.GetComponentInChildren<TaskLogic>(true);
+            slotTask = slot.GetComponentInParent<TaskLogic>(true);
             slotTasks[slot] = slotTask;
         }
 

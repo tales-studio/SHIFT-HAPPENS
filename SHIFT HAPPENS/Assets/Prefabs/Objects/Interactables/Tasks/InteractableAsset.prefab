@@ -84,15 +84,15 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 6147558050822098061, guid: 9dd5462b134a77e44b3f3010d72318c2, type: 3}
+  m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 5.6949997, y: 3.6366668}
+  m_Size: {x: 0.025000002, y: 0.027500002}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_SpriteSortPoint: 0
 --- !u!114 &5812987195117990484
 MonoBehaviour:
@@ -108,6 +108,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::HighlightVFX
   _outlineColor: {r: 1, g: 1, b: 1, a: 1}
   _outlineThickness: 16
+  _outlineSortingOrderOffset: 50
   _previewInEditor: 1
 --- !u!70 &2267101500186196878
 CapsuleCollider2D:

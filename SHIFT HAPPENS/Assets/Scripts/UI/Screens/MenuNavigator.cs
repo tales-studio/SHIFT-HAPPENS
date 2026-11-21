@@ -59,6 +59,10 @@ public class MenuNavigator : MonoBehaviour
     public void CloseAll()
     {
         if (Current != null) Current.Hide();
+
+        foreach (UIScreen screen in stack)
+            screen.ForgetSelection();
+
         stack.Clear();
     }
 

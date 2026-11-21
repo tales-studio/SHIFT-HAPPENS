@@ -29,6 +29,11 @@ public class UIScreen : MonoBehaviour
         gameObject.SetActive(false);
     }
 
+    public void ForgetSelection()
+    {
+        lastSelected = null;
+    }
+
     public void SelectDefault()
     {
         GameObject target = lastSelected;

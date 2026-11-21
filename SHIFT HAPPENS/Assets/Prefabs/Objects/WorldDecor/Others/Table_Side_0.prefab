@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4858343359972123202}
   - component: {fileID: 8846498025922668397}
   - component: {fileID: 3354531560688152173}
+  - component: {fileID: -2348409636463298592}
   m_Layer: 0
   m_Name: Table_Side_0
   m_TagString: Untagged
@@ -138,3 +139,19 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 6.076935, y: 3.8472757}
   m_EdgeRadius: 0
+--- !u!114 &-2348409636463298592
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3434471176436590849}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9809bf1345abc5648af68b3a82653f08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: NavMeshPlus::NavMeshPlus.Components.NavMeshModifier
+  m_OverrideArea: 1
+  m_Area: 1
+  m_IgnoreFromBuild: 0
+  m_AffectedAgents: ffffffff

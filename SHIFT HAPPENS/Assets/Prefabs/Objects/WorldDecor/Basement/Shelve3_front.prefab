@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5913171884427235107}
   - component: {fileID: 1367005096655942853}
   - component: {fileID: -4881588208442572546}
+  - component: {fileID: 7513916950022873403}
   m_Layer: 0
   m_Name: Shelve3_front
   m_TagString: Untagged
@@ -138,3 +139,19 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 9.131538, y: 1.8345747}
   m_EdgeRadius: 0
+--- !u!114 &7513916950022873403
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 251741371743900730}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9809bf1345abc5648af68b3a82653f08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: NavMeshPlus::NavMeshPlus.Components.NavMeshModifier
+  m_OverrideArea: 1
+  m_Area: 1
+  m_IgnoreFromBuild: 0
+  m_AffectedAgents: ffffffff

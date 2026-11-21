@@ -17,8 +17,8 @@ MonoBehaviour:
   kitchenPreference: 0.3
   wanderPreference: 0
   exclusiveActivities:
-  - activity: {fileID: 11400000, guid: e65298070cd58b04f81777ab8c322fa9, type: 2}
-    preference: 0.8
+  - activity: {fileID: 11400000, guid: 3b01233858b00d44eb2e23107e701123, type: 2}
+    preference: 0.9
   durationMultiplier: 0.8
   decisionNoise: 0.3
   alwaysGeneratesTasks: 0

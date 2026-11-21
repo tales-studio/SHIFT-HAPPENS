@@ -48,6 +48,9 @@ public abstract class EntityBrain : MonoBehaviour
         AssociatedStudent = student;
         TargetPlayer = player;
 
+        if (TargetPlayer != null)
+            TargetPlayer.OnHiddenChanged += HandlePlayerHiddenChanged;
+
         if (NavMesh.SamplePosition(transform.position, out NavMeshHit hit, 1f, agent.areaMask))
             agent.Warp(hit.position);
 
@@ -108,9 +111,17 @@ public abstract class EntityBrain : MonoBehaviour
         return Vector2.Distance(transform.position, TargetPlayer.Position);
     }
 
-    public bool PlayerInAttackRange()
+    public virtual bool PlayerInAttackRange()
     {
+        if (TargetPlayer != null && TargetPlayer.IsHidden) return false;
         return DistanceToPlayer() <= Config.attackRange;
+    }
+
+    // Percepción pull de escape. Por defecto: Ramón está escondido.
+    // El bully añade la distancia de escape.
+    public virtual bool ShouldEscape()
+    {
+        return TargetPlayer != null && TargetPlayer.IsHidden;
     }
 
 
@@ -122,10 +133,18 @@ public abstract class EntityBrain : MonoBehaviour
         StopMovement();
         SetTrigger("Attack");
         Log("Ataca a Ramón");
+        PerformAttack();
+    }
+
+    public Status UpdateAttack() => Wait(AttackDuration);
+
+    // Lo que hace el ataque. Por defecto, el jumpscare.
+    protected virtual void PerformAttack()
+    {
         OnPlayerCaught?.Invoke(this);
     }
 
-    public Status UpdateAttack() => Wait(Config.attackDuration);
+    protected virtual float AttackDuration => Config.attackDuration;
 
 
     // Desaparecer
@@ -161,7 +180,18 @@ public abstract class EntityBrain : MonoBehaviour
     // avisa igualmente para que el controller restaure al estudiante.
     protected virtual void OnDestroy()
     {
+        if (TargetPlayer != null)
+            TargetPlayer.OnHiddenChanged -= HandlePlayerHiddenChanged;
+
         NotifyFinished();
+    }
+
+    // Percepción push "Escondido en la taquilla": vale para todas las entidades
+    private void HandlePlayerHiddenChanged(bool hidden)
+    {
+        if (!hidden) return;
+        Log("Ramón se ha escondido");
+        Interrupt(); // Solo surte efecto en Aparecer, Acechar o Perseguir
     }
 
 

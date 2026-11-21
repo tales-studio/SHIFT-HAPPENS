@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3997623134703136948}
   - component: {fileID: 6780849918314055132}
   - component: {fileID: 632792347923137808}
+  - component: {fileID: -529579507651600527}
   m_Layer: 0
   m_Name: Chair_Front_0
   m_TagString: Untagged
@@ -138,3 +139,19 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 2.629547, y: 1.3389182}
   m_EdgeRadius: 0
+--- !u!114 &-529579507651600527
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4666549751965499749}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9809bf1345abc5648af68b3a82653f08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: NavMeshPlus::NavMeshPlus.Components.NavMeshModifier
+  m_OverrideArea: 1
+  m_Area: 1
+  m_IgnoreFromBuild: 0
+  m_AffectedAgents: ffffffff

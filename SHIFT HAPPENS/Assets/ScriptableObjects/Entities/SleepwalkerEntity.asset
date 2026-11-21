@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39893d5a845708d42aedd09463390a4e, type: 3}
+  m_Name: SleepwalkerEntity
+  m_EditorClassIdentifier: Assembly-CSharp::EntityConfig
+  archetype: 3
+  entityPrefab: {fileID: 4249073993557280935, guid: f0bc7245bb14c3c409b059b9fd3250ac, type: 3}
+  hidesStudent: 1
+  activationRange: 100
+  sneakActivationRange: 10
+  reactivationCooldown: 30
+  chaseSpeed: 10
+  attackRange: 3
+  repathInterval: 0.2
+  appearDuration: 0.6
+  attackDuration: 0
+  disappearDuration: 0
+  spawnIntervalMin: 60
+  spawnIntervalMax: 120
+  sneakTimeToVanish: 5
+  escapeRange: 8
+  screamDuration: 1.5
+  shakeForce: 1

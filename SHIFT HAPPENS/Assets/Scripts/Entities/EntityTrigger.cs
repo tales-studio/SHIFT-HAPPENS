@@ -26,6 +26,24 @@ public class EntityTrigger : MonoBehaviour
         student = GetComponent<StudentBrain>();
     }
 
+    protected virtual void OnEnable()
+    {
+        student.OnActivityFinished += HandleActivityFinished;
+    }
+
+    protected virtual void OnDisable()
+    {
+        student.OnActivityFinished -= HandleActivityFinished;
+    }
+
+    // Al terminar una actividad que bloquea la entidad (llorar del emo),
+    // empieza el cooldown para que Ramón pueda alejarse.
+    private void HandleActivityFinished(StudentBrain brain, ActivityData activity)
+    {
+        if (activity != null && activity.blocksEntity)
+            StartCooldown();
+    }
+
     private void Update()
     {
         HallucinationController controller = HallucinationController.Instance;
@@ -48,7 +66,9 @@ public class EntityTrigger : MonoBehaviour
     {
         if (config == null || player == null) return false;
         if (IsEntityActive || IsOnCooldown) return false;
+        if (player.IsHidden) return false;
         if (student.BlocksEntity) return false; // emo llorando
+        if (player.IsHidden) return false;
 
         // Agachado se acerca más sin activarla (o nunca, si el rango es 0)
         float range = player.IsSneaking ? config.sneakActivationRange : config.activationRange;

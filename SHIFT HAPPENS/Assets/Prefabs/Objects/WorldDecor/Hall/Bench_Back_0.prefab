@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 257728294603067598}
   - component: {fileID: 2065169828967253185}
   - component: {fileID: 5630805803029636387}
+  - component: {fileID: 5724704049461460151}
   m_Layer: 0
   m_Name: Bench_Back_0
   m_TagString: Untagged
@@ -138,3 +139,19 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 14.721298, y: 1.9548492}
   m_EdgeRadius: 0
+--- !u!114 &5724704049461460151
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5047493236079025260}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9809bf1345abc5648af68b3a82653f08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: NavMeshPlus::NavMeshPlus.Components.NavMeshModifier
+  m_OverrideArea: 1
+  m_Area: 1
+  m_IgnoreFromBuild: 0
+  m_AffectedAgents: ffffffff

@@ -114,6 +114,10 @@ public class EntityBehaviour : MonoBehaviour
             interruptPerception = new PushPerception(interruptFromAppear, interruptFromChase);
         }
 
+        // Transición pull de escape (escondido o, en el bully, demasiado lejos)
+        machine.CreateTransition("Ramon escapa", chase, disappear,
+            new ConditionPerception(brain.ShouldEscape));
+
         // Transición pull: se comprueba cada frame
         machine.CreateTransition("Ramon en rango", chase, attack,
             new ConditionPerception(brain.PlayerInAttackRange));

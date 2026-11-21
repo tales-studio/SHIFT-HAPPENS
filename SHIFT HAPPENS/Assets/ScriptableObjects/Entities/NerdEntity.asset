@@ -15,15 +15,18 @@ MonoBehaviour:
   archetype: 0
   entityPrefab: {fileID: 4249073993557280935, guid: 5a084d3dd576de64ba175974e2f851c4, type: 3}
   hidesStudent: 1
-  activationRange: 1
-  sneakActivationRange: 2
+  activationRange: 15
+  sneakActivationRange: 5
   reactivationCooldown: 30
   chaseSpeed: 6
-  attackRange: 0.6
+  attackRange: 3
   repathInterval: 0.2
   appearDuration: 0.6
-  attackDuration: 1.5
-  disappearDuration: 0.5
+  attackDuration: 0
+  disappearDuration: 0
   spawnIntervalMin: 40
   spawnIntervalMax: 90
   sneakTimeToVanish: 4
+  escapeRange: 8
+  screamDuration: 1.5
+  shakeForce: 1

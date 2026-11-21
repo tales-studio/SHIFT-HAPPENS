@@ -12,10 +12,12 @@ public class TaskListView : MonoBehaviour
         public readonly List<TaskEntryView> Entries = new List<TaskEntryView>();
     }
 
+    [SerializeField] private PhoneView phone;
     [SerializeField] private TMP_Text headerTemplate;
     [SerializeField] private TaskEntryView entryTemplate;
     [SerializeField] private GameObject emptyMessage;
     [SerializeField] private string unknownLocation = "Elsewhere";
+    [SerializeField] private Color countColor = new Color(0.5f, 0.53f, 0.66f);
     [SerializeField, Min(0f)] private float headerHeight = 44f;
     [SerializeField, Min(0f)] private float entryHeight = 86f;
 
@@ -39,6 +41,7 @@ public class TaskListView : MonoBehaviour
     {
         taskManager = TaskManager.Instance;
         if (taskManager != null) taskManager.OnTaskActivated += AddEntry;
+        if (phone != null) phone.OnOpenChanged += HandlePhoneOpenChanged;
 
         Refresh();
     }
@@ -46,6 +49,18 @@ public class TaskListView : MonoBehaviour
     private void OnDestroy()
     {
         if (taskManager != null) taskManager.OnTaskActivated -= AddEntry;
+        if (phone != null) phone.OnOpenChanged -= HandlePhoneOpenChanged;
+    }
+
+    private void HandlePhoneOpenChanged(bool open)
+    {
+        if (open) return;
+
+        foreach (LocationGroup group in groups)
+        {
+            foreach (TaskEntryView entry in group.Entries)
+                entry.SetNew(false);
+        }
     }
 
     private void AddEntry(TaskLogic task)
@@ -104,8 +119,11 @@ public class TaskListView : MonoBehaviour
     {
         float offset = 0f;
 
+        string countHex = ColorUtility.ToHtmlStringRGB(countColor);
+
         foreach (LocationGroup group in groups)
         {
+            group.Header.text = group.Name + "  <color=#" + countHex + ">" + group.Entries.Count + "</color>";
             group.Header.rectTransform.anchoredPosition = new Vector2(headerX, top - offset);
             offset += headerHeight;
 

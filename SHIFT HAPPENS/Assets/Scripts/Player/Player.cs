@@ -2,12 +2,13 @@ using System;
 using UnityEngine;
 
 // Punto de acceso único al jugador
-[RequireComponent(typeof(PlayerMovement))]
+[RequireComponent(typeof(PlayerMovement), typeof(PlayerTeleporter))]
 public class Player : MonoBehaviour
 {
     public static Player Instance { get; private set; }
 
     public PlayerMovement Movement { get; private set; }
+    public PlayerTeleporter Teleporter { get; private set; }
     public FlashlightLogic Flashlight { get; private set; }
 
     // Percepciones del jugador
@@ -42,6 +43,7 @@ public class Player : MonoBehaviour
         Instance = this;
 
         Movement = GetComponent<PlayerMovement>();
+        Teleporter = GetComponent<PlayerTeleporter>();
         Flashlight = GetComponentInChildren<FlashlightLogic>(true);
     }
 

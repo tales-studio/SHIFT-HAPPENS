@@ -17,8 +17,9 @@ GameObject:
   - component: {fileID: 8943538181895024747}
   - component: {fileID: 4515642130774735186}
   - component: {fileID: 8761248928709413492}
+  - component: {fileID: -5700485178603939429}
   m_Layer: 0
-  m_Name: Nerd
+  m_Name: BullyGirl
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -88,7 +89,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 10
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 8001473604841077134, guid: 38a777581fcc8dc498d4c6e5acbd9359, type: 3}
+  m_Sprite: {fileID: 8001473604841077134, guid: 0d3d939c9efcbb84ea752830960f3d4a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -177,7 +178,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 686f60d3a0185ae449ab9762f75c4318, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::StudentBrain
-  profile: {fileID: 11400000, guid: 01cce5009ae0e8d4d9c23d8a50665f86, type: 2}
+  profile: {fileID: 11400000, guid: 699804deaebbfc0479fcebbd9d45e308, type: 2}
   ownBedroom: {fileID: 0}
   bathroom: {fileID: 11400000, guid: 9381bb5844711124abc34a6d405e0b7d, type: 2}
   kitchen: {fileID: 11400000, guid: bd651538d289c8e4281548f5dcef7272, type: 2}
@@ -211,5 +212,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3bc95b915ed98fd47aca39c7b7756ac2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EntityTrigger
-  config: {fileID: 11400000, guid: 3d744ac503c8e07489a87e02ef80849e, type: 2}
+  config: {fileID: 11400000, guid: d9cf146fe25a4c7419a82ab865dd1825, type: 2}
   checkInterval: 0.2
+--- !u!95 &-5700485178603939429
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6198924082522426097}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 22100000, guid: ef9a8019bf68495cab023c1039d8a194, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

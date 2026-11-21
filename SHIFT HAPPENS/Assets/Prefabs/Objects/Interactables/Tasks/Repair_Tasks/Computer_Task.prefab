@@ -14,20 +14,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1271288528175340167, guid: 7e3a9c5b1d2f48e6a0b4c8d2e6f01357, type: 3}
       propertyPath: task
-      value:
+      value: 
       objectReference: {fileID: 11400000, guid: 6f8b0c2e4a3d47891f3b5d7e9a1c2d46, type: 2}
-    - target: {fileID: 5291837465029183746, guid: 7e3a9c5b1d2f48e6a0b4c8d2e6f01357, type: 3}
-      propertyPath: defaultSprite
-      value:
-      objectReference: {fileID: 21300000, guid: 79906323459e77c40ae95cd44e29f1e2, type: 3}
-    - target: {fileID: 5291837465029183746, guid: 7e3a9c5b1d2f48e6a0b4c8d2e6f01357, type: 3}
-      propertyPath: alternateSprite
-      value:
-      objectReference: {fileID: 21300000, guid: 276e1ccd816e94b438fa232204d7b763, type: 3}
-    - target: {fileID: 7652643802394906203, guid: 7e3a9c5b1d2f48e6a0b4c8d2e6f01357, type: 3}
-      propertyPath: m_Sprite
-      value:
-      objectReference: {fileID: 21300000, guid: 79906323459e77c40ae95cd44e29f1e2, type: 3}
     - target: {fileID: 4414430044123023176, guid: 7e3a9c5b1d2f48e6a0b4c8d2e6f01357, type: 3}
       propertyPath: m_Size.x
       value: 4
@@ -39,6 +27,26 @@ PrefabInstance:
     - target: {fileID: 4414430044123023176, guid: 7e3a9c5b1d2f48e6a0b4c8d2e6f01357, type: 3}
       propertyPath: m_Offset.y
       value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5291837465029183746, guid: 7e3a9c5b1d2f48e6a0b4c8d2e6f01357, type: 3}
+      propertyPath: defaultSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 79906323459e77c40ae95cd44e29f1e2, type: 3}
+    - target: {fileID: 5291837465029183746, guid: 7e3a9c5b1d2f48e6a0b4c8d2e6f01357, type: 3}
+      propertyPath: alternateSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 276e1ccd816e94b438fa232204d7b763, type: 3}
+    - target: {fileID: 7652643802394906203, guid: 7e3a9c5b1d2f48e6a0b4c8d2e6f01357, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 79906323459e77c40ae95cd44e29f1e2, type: 3}
+    - target: {fileID: 7652643802394906203, guid: 7e3a9c5b1d2f48e6a0b4c8d2e6f01357, type: 3}
+      propertyPath: m_SortingOrder
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7652643802394906203, guid: 7e3a9c5b1d2f48e6a0b4c8d2e6f01357, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -92,7 +100,7 @@ BoxCollider2D:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0}
     oldSize: {x: 5.12, y: 5.12}
-    newSize: {x: 5.12, y: 5.12}
+    newSize: {x: 0.025000002, y: 0.027500002}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0

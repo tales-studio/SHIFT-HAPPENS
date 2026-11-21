@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 8304686195504806168}
   - component: {fileID: 8900596062042055051}
   - component: {fileID: -2364000418342359566}
+  - component: {fileID: -2639361623330633947}
   m_Layer: 0
   m_Name: EmoEntity
   m_TagString: Untagged
@@ -94,7 +95,7 @@ SpriteRenderer:
   m_Size: {x: 0.03, y: 0.035}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_SpriteSortPoint: 0
 --- !u!195 &3606074796668266889
 NavMeshAgent:
@@ -198,3 +199,18 @@ MonoBehaviour:
   debugLogs: 0
   screamSound: 809
   impulseSource: {fileID: 0}
+--- !u!114 &-2639361623330633947
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4249073993557280935}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a13847c699ecb740a264ed6957b4021, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::StudentAnimator
+  animator: {fileID: 0}
+  idleThreshold: 0.05
+  directionSmoothing: 10

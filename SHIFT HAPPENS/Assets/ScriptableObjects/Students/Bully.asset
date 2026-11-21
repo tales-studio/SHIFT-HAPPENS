@@ -19,7 +19,7 @@ MonoBehaviour:
   exclusiveActivities:
   - activity: {fileID: 11400000, guid: 3b01233858b00d44eb2e23107e701123, type: 2}
     preference: 0.2
-  - activity: {fileID: 11400000, guid: 1e6002ec463a1684394dd7f3e04fa4be, type: 2}
+  - activity: {fileID: 11400000, guid: d12fc898819610745898154705083ba2, type: 2}
     preference: 0.8
   durationMultiplier: 1.5
   decisionNoise: 0.3

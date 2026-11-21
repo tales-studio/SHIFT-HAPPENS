@@ -17,11 +17,11 @@ MonoBehaviour:
   kitchenPreference: 0.3
   wanderPreference: 0.5
   exclusiveActivities:
-  - activity: {fileID: 11400000, guid: e65298070cd58b04f81777ab8c322fa9, type: 2}
+  - activity: {fileID: 11400000, guid: 3b01233858b00d44eb2e23107e701123, type: 2}
     preference: 0.8
   - activity: {fileID: 11400000, guid: b8724faf6f3a3c44893b770487062c80, type: 2}
     preference: 0.3
-  - activity: {fileID: 11400000, guid: 0c360fdcaf8d7124ea3f391dda025237, type: 2}
+  - activity: {fileID: 11400000, guid: d12fc898819610745898154705083ba2, type: 2}
     preference: 0.7
   durationMultiplier: 1.2
   decisionNoise: 0.3

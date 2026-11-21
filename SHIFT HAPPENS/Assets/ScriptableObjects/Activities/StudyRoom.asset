@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b77c7a036ea4ee5489b085d6f8df7e29, type: 3}
-  m_Name: StudyCommonRoom
+  m_Name: StudyRoom
   m_EditorClassIdentifier: Assembly-CSharp::ActivityData
-  destinationType: 5
+  destinationType: 4
   minDuration: 60
   maxDuration: 120
   timeToFullNeed: 300

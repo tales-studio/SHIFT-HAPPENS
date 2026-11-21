@@ -17,8 +17,9 @@ GameObject:
   - component: {fileID: 8943538181895024747}
   - component: {fileID: 4515642130774735186}
   - component: {fileID: 8761248928709413492}
+  - component: {fileID: -346094228755023223}
   m_Layer: 0
-  m_Name: Emo
+  m_Name: EmoGuy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -88,7 +89,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 10
   m_MaskInteraction: 0
-  m_Sprite: {fileID: -3174320408264164923, guid: 13080480609b7524fb0b1008c850bb53, type: 3}
+  m_Sprite: {fileID: 7505997652728640547, guid: 09cc05ca696b1404fb6a85e77bf1f4ee, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -213,3 +214,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EntityTrigger
   config: {fileID: 11400000, guid: 0975d521fc9be0b4da6d0fa0f54451c4, type: 2}
   checkInterval: 0.2
+--- !u!95 &-346094228755023223
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6198924082522426097}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 22100000, guid: 5ae7071080f5435a9f789c486a23f04f, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

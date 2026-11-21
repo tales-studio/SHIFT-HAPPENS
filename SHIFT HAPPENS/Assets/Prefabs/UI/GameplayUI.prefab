@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6100000000000000012}
   - component: {fileID: 6100000000000000013}
   - component: {fileID: 6100000000000000014}
+  - component: {fileID: 6100000000000000901}
   m_Layer: 5
   m_Name: Dim
   m_TagString: Untagged
@@ -1040,6 +1041,7 @@ GameObject:
   - component: {fileID: 6100000000000000062}
   - component: {fileID: 6100000000000000063}
   - component: {fileID: 6100000000000000064}
+  - component: {fileID: 6100000000000000902}
   m_Layer: 5
   m_Name: Dim
   m_TagString: Untagged
@@ -1795,6 +1797,7 @@ GameObject:
   - component: {fileID: 6100000000000000099}
   - component: {fileID: 6100000000000000100}
   - component: {fileID: 6100000000000000101}
+  - component: {fileID: 6100000000000000903}
   m_Layer: 5
   m_Name: Dim
   m_TagString: Untagged
@@ -5589,3 +5592,42 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &6100000000000000901
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6100000000000000011}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ceff9924cb944f6b57df4d15f6a5b36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FadeInOnEnable
+  duration: 0.25
+--- !u!114 &6100000000000000902
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6100000000000000061}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ceff9924cb944f6b57df4d15f6a5b36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FadeInOnEnable
+  duration: 0.25
+--- !u!114 &6100000000000000903
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6100000000000000098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ceff9924cb944f6b57df4d15f6a5b36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FadeInOnEnable
+  duration: 0.25

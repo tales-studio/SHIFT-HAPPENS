@@ -490,6 +490,7 @@ MonoBehaviour:
   interactableLayers:
     serializedVersion: 2
     m_Bits: 55
+  signFont: {fileID: 11400000, guid: 3289301038f08104f9b59b212961d0f8, type: 2}
   signMaterial: {fileID: 2100000, guid: 0fe3ed4eb3834a8d80195645d6617879, type: 2}
 --- !u!114 &7340192837465019283
 MonoBehaviour:

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb4eccaddd99c394b8070241bec88480, type: 3}
   m_Name: GraffitiWall
   m_EditorClassIdentifier: Assembly-CSharp::TaskData
-  displayName: Pared grafiteada
+  displayName: Graffiti on the wall
   expires: 0
   expirationSeconds: 0
   anxietyOnFail: 0

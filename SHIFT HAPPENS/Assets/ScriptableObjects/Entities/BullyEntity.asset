@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39893d5a845708d42aedd09463390a4e, type: 3}
+  m_Name: BullyEntity
+  m_EditorClassIdentifier: Assembly-CSharp::EntityConfig
+  archetype: 1
+  entityPrefab: {fileID: 4249073993557280935, guid: ce65d27da172f5d419a9bfa6b62b83c5, type: 3}
+  hidesStudent: 1
+  activationRange: 12
+  sneakActivationRange: 5
+  reactivationCooldown: 30
+  chaseSpeed: 4
+  attackRange: 3
+  repathInterval: 0.2
+  appearDuration: 0.5
+  attackDuration: 0
+  disappearDuration: 0
+  spawnIntervalMin: 60
+  spawnIntervalMax: 120
+  sneakTimeToVanish: 5
+  escapeRange: 25
+  screamDuration: 1.5
+  shakeForce: 0.5

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2877578787201741819}
   - component: {fileID: 4442466171689641501}
   - component: {fileID: -4227564283778776895}
+  - component: {fileID: 3407577460337604940}
   m_Layer: 0
   m_Name: Sink_0
   m_TagString: Untagged
@@ -138,3 +139,19 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 5.017639, y: 1.8693094}
   m_EdgeRadius: 0
+--- !u!114 &3407577460337604940
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1847190840864096196}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9809bf1345abc5648af68b3a82653f08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: NavMeshPlus::NavMeshPlus.Components.NavMeshModifier
+  m_OverrideArea: 1
+  m_Area: 1
+  m_IgnoreFromBuild: 0
+  m_AffectedAgents: ffffffff

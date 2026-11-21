@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5104579266783384505}
   - component: {fileID: 97503721135857101}
   - component: {fileID: -4889682199846692613}
+  - component: {fileID: 4326823530316691673}
   m_Layer: 0
   m_Name: SmallTrashCan_Grey
   m_TagString: Untagged
@@ -138,3 +139,19 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 2.7828217, y: 1.2841396}
   m_EdgeRadius: 0
+--- !u!114 &4326823530316691673
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7162079346540157755}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9809bf1345abc5648af68b3a82653f08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: NavMeshPlus::NavMeshPlus.Components.NavMeshModifier
+  m_OverrideArea: 1
+  m_Area: 1
+  m_IgnoreFromBuild: 0
+  m_AffectedAgents: ffffffff

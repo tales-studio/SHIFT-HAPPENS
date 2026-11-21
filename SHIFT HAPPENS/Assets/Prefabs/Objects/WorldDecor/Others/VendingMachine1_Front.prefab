@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8476960326666366371}
   - component: {fileID: 808075498793741451}
   - component: {fileID: 6520229619527280736}
+  - component: {fileID: 9140288638965521662}
   m_Layer: 0
   m_Name: VendingMachine1_Front
   m_TagString: Untagged
@@ -138,3 +139,19 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 4.837967, y: 2.3431644}
   m_EdgeRadius: 0
+--- !u!114 &9140288638965521662
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 887824708844417422}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9809bf1345abc5648af68b3a82653f08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: NavMeshPlus::NavMeshPlus.Components.NavMeshModifier
+  m_OverrideArea: 1
+  m_Area: 1
+  m_IgnoreFromBuild: 0
+  m_AffectedAgents: ffffffff

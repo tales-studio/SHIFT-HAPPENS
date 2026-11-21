@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 // Punto de acceso único al jugador
@@ -13,6 +14,23 @@ public class Player : MonoBehaviour
     public Vector3 Position => transform.position;
     public bool IsSneaking => Movement.IsSneaking;
     public bool IsMoving => Movement.IsMoving;
+
+    // Percepción push "Escondido en la taquilla"
+    public bool IsHidden { get; private set; }
+    public event Action<bool> OnHiddenChanged;
+
+    private object hiddenBy; // la taquilla que lo esconde
+
+    // Solo puede sacarlo la misma taquilla que lo escondió
+    public void SetHidden(bool hidden, object source)
+    {
+        if (!hidden && hiddenBy != source) return;
+        hiddenBy = hidden ? source : null;
+
+        if (IsHidden == hidden) return;
+        IsHidden = hidden;
+        OnHiddenChanged?.Invoke(hidden);
+    }
 
     private void Awake()
     {

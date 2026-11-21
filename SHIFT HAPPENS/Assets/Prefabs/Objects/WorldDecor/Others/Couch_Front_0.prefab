@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2705202468660099363}
   - component: {fileID: 5822197277230911520}
   - component: {fileID: -4905442746995631958}
+  - component: {fileID: 2141830887227834348}
   m_Layer: 0
   m_Name: Couch_Front_0
   m_TagString: Untagged
@@ -138,3 +139,19 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 14.105301, y: 2.7672772}
   m_EdgeRadius: 0
+--- !u!114 &2141830887227834348
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6908055840188431988}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9809bf1345abc5648af68b3a82653f08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: NavMeshPlus::NavMeshPlus.Components.NavMeshModifier
+  m_OverrideArea: 1
+  m_Area: 1
+  m_IgnoreFromBuild: 0
+  m_AffectedAgents: ffffffff

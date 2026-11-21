@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5364624269612767306}
   - component: {fileID: 4676153347420259069}
   - component: {fileID: -5489931779232085111}
+  - component: {fileID: -5244886276650420997}
   m_Layer: 0
   m_Name: BookShelf_0
   m_TagString: Untagged
@@ -138,3 +139,19 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 9.365677, y: 2.1750379}
   m_EdgeRadius: 0
+--- !u!114 &-5244886276650420997
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 228702261144702702}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9809bf1345abc5648af68b3a82653f08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: NavMeshPlus::NavMeshPlus.Components.NavMeshModifier
+  m_OverrideArea: 1
+  m_Area: 1
+  m_IgnoreFromBuild: 0
+  m_AffectedAgents: ffffffff

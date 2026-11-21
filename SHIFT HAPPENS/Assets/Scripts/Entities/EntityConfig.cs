@@ -54,4 +54,15 @@ public class EntityConfig : ScriptableObject
 
     [Tooltip("Segundos que Ramón debe seguir agachado para que el sonámbulo se vaya.")]
     [Min(0f)] public float sneakTimeToVanish = 4f;
+
+    [Header("Bully")]
+    [Tooltip("Si Ramón se aleja más de esta distancia mientras le persigue, la entidad desaparece.")]
+    [Min(0f)] public float escapeRange = 8f;
+
+    [Header("Emo")]
+    [Tooltip("Lo que dura el grito (sustituye a attackDuration).")]
+    [Min(0f)] public float screamDuration = 1.5f;
+
+    [Tooltip("Fuerza del temblor de cámara (Cinemachine Impulse).")]
+    [Min(0f)] public float shakeForce = 1f;
 }

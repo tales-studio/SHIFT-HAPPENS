@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5640072459879000357}
   - component: {fileID: 8737888278222711865}
   - component: {fileID: 5845659648406827862}
+  - component: {fileID: 8831346290958761743}
   m_Layer: 0
   m_Name: Locker_Closed_0
   m_TagString: Untagged
@@ -138,3 +139,19 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 3.3996124, y: 2.5405807}
   m_EdgeRadius: 0
+--- !u!114 &8831346290958761743
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1247441979141090117}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9809bf1345abc5648af68b3a82653f08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: NavMeshPlus::NavMeshPlus.Components.NavMeshModifier
+  m_OverrideArea: 1
+  m_Area: 1
+  m_IgnoreFromBuild: 0
+  m_AffectedAgents: ffffffff

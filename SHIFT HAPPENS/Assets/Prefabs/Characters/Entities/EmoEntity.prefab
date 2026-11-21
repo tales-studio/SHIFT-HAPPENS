@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 2471602597399427727}
   - component: {fileID: 8304686195504806168}
   - component: {fileID: 8900596062042055051}
+  - component: {fileID: -2364000418342359566}
   m_Layer: 0
   m_Name: EmoEntity
   m_TagString: Untagged
@@ -85,12 +86,12 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 3191122964850554743, guid: 30cf688281a88c34ebca88089fdcf4b9, type: 3}
+  m_Sprite: {fileID: -3862904964307631369, guid: 68c76218bb12661408bc37da5f572ad1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.12, y: 0.14}
+  m_Size: {x: 0.03, y: 0.035}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -181,3 +182,19 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 2.056, y: 6.3360004}
   m_Direction: 0
+--- !u!114 &-2364000418342359566
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4249073993557280935}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6571dbfb8219ae488b6466ce50f2dda, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EmoEntity
+  animator: {fileID: 0}
+  debugLogs: 0
+  screamSound: 809
+  impulseSource: {fileID: 0}

@@ -34,6 +34,7 @@ public class Locker : MonoBehaviour
     private void OnDisable()
     {
         door.OpenStateChanged -= ApplyState;
+        if (Player.Instance != null) Player.Instance.SetHidden(false, this);
     }
 
     private void Start()
@@ -50,6 +51,7 @@ public class Locker : MonoBehaviour
 
         if (innerFrontWall != null) innerFrontWall.enabled = playerShutInside;
         if (outerBlocker != null) outerBlocker.enabled = !open && !playerShutInside;
+        if (player != null) player.SetHidden(playerShutInside, this);
     }
 
     private bool IsInside(Player player)

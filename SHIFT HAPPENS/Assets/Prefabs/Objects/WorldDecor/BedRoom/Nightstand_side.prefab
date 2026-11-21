@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4258606139899746084}
   - component: {fileID: 2630515381164159565}
   - component: {fileID: 5119241994402019865}
+  - component: {fileID: 5536576231868628990}
   m_Layer: 0
   m_Name: Nightstand_side
   m_TagString: Untagged
@@ -138,3 +139,19 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 5.3522797, y: 3.289863}
   m_EdgeRadius: 0
+--- !u!114 &5536576231868628990
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5808909343893006287}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9809bf1345abc5648af68b3a82653f08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: NavMeshPlus::NavMeshPlus.Components.NavMeshModifier
+  m_OverrideArea: 1
+  m_Area: 1
+  m_IgnoreFromBuild: 0
+  m_AffectedAgents: ffffffff

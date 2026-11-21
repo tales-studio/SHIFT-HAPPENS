@@ -20,10 +20,28 @@ public class ShiftClockDisplay : MonoBehaviour
         if (clock == null && GameManager.Instance != null) clock = GameManager.Instance.Clock;
         if (clock == null) return;
 
-        clock.OnTimeAdvanced += _ => Refresh();
-        clock.OnHourChanged += _ => pulse = 1f;
+        clock.OnTimeAdvanced += HandleTimeAdvanced;
+        clock.OnHourChanged += HandleHourChanged;
 
         Refresh();
+    }
+
+    private void OnDestroy()
+    {
+        if (clock == null) return;
+
+        clock.OnTimeAdvanced -= HandleTimeAdvanced;
+        clock.OnHourChanged -= HandleHourChanged;
+    }
+
+    private void HandleTimeAdvanced(float minutes)
+    {
+        Refresh();
+    }
+
+    private void HandleHourChanged(int hour)
+    {
+        pulse = 1f;
     }
 
     private void Update()

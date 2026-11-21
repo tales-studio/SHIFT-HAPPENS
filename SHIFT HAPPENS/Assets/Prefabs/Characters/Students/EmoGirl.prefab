@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 3011998768743571106}
   - component: {fileID: 2919895197126115557}
   - component: {fileID: 7617288393619202613}
-  - component: {fileID: 1263296607049829934}
   - component: {fileID: 8943538181895024747}
   - component: {fileID: 4515642130774735186}
   - component: {fileID: 8761248928709413492}
@@ -33,7 +32,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6198924082522426097}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.97, y: -2.68, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -151,21 +150,6 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
---- !u!114 &1263296607049829934
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6198924082522426097}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b773b124f3848014cadb40d606859e77, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::NPCFloorNavigationTest
-  floorNavigator: {fileID: 7617288393619202613}
-  destinationManager: {fileID: 0}
-  useNumpadControls: 0
 --- !u!114 &8943538181895024747
 MonoBehaviour:
   m_ObjectHideFlags: 0

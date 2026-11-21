@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -17,8 +18,23 @@ public class PlayerMovement : MonoBehaviour
 
     private bool isSneaking;
 
-    public bool IsMoving => enabled && movement != Vector2.zero;
+    private readonly HashSet<object> locks = new HashSet<object>();
+
+    public bool IsLocked => locks.Count > 0;
+    public bool IsMoving => enabled && CurrentMovement != Vector2.zero;
     public bool IsSneaking => isSneaking;
+
+    private Vector2 CurrentMovement => IsLocked ? Vector2.zero : movement;
+
+    public void AddLock(object source)
+    {
+        locks.Add(source);
+    }
+
+    public void RemoveLock(object source)
+    {
+        locks.Remove(source);
+    }
 
     private void Awake()
     {
@@ -28,14 +44,14 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        if (movement != Vector2.zero)
+        if (CurrentMovement != Vector2.zero)
         {
-            lastMovement = movement;
+            lastMovement = CurrentMovement;
         }
 
         animator.SetFloat("MoveX", lastMovement.x);
         animator.SetFloat("MoveY", lastMovement.y);
-        animator.SetFloat("Speed", movement.sqrMagnitude);
+        animator.SetFloat("Speed", CurrentMovement.sqrMagnitude);
 
         animator.SetBool("Shift", isSneaking);
 
@@ -49,7 +65,7 @@ public class PlayerMovement : MonoBehaviour
     {
         float currentSpeed = isSneaking ? sneakSpeed : moveSpeed;
 
-        rb.linearVelocity = movement * currentSpeed;
+        rb.linearVelocity = CurrentMovement * currentSpeed;
     }
 
     public void OnMove(InputValue value)

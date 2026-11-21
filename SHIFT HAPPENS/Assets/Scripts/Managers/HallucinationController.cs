@@ -22,6 +22,8 @@ public class HallucinationController : MonoBehaviour
     private readonly Dictionary<EntityBrain, EntityTrigger> activeEntities =
         new Dictionary<EntityBrain, EntityTrigger>();
 
+    private PlayerTeleporter teleporter;
+
     public int ActiveEntityCount => activeEntities.Count;
 
     public bool CanSpawn
@@ -49,14 +51,17 @@ public class HallucinationController : MonoBehaviour
 
     private void Start()
     {
-        if (FadeManager.Instance != null)
-            FadeManager.Instance.OnTransitionStarted += HandlePlayerChangesFloor;
+        if (Player.Instance != null)
+            teleporter = Player.Instance.Teleporter;
+
+        if (teleporter != null)
+            teleporter.OnTeleportStarted += HandlePlayerChangesFloor;
     }
 
     private void OnDestroy()
     {
-        if (FadeManager.Instance != null)
-            FadeManager.Instance.OnTransitionStarted -= HandlePlayerChangesFloor;
+        if (teleporter != null)
+            teleporter.OnTeleportStarted -= HandlePlayerChangesFloor;
         if (Instance == this) Instance = null;
     }
 

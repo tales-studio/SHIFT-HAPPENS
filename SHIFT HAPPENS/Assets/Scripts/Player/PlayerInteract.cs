@@ -14,8 +14,7 @@ public class PlayerInteract : MonoBehaviour
     [SerializeField] private TMP_FontAsset signFont;
     [SerializeField] private float signFontSize = 8f;
     [SerializeField] private Color signColor = Color.white;
-    [SerializeField, Range(0f, 1f)] private float signOutlineWidth = 0.25f;
-    [SerializeField] private Color signOutlineColor = Color.black;
+    [SerializeField] private Material signMaterial;
     [SerializeField] private float signHeightOffset = 0.6f;
     [SerializeField] private int signSortingOrder = 500;
     [SerializeField] private Color signBackgroundColor = new Color(0f, 0f, 0f, 0.75f);
@@ -81,8 +80,7 @@ public class PlayerInteract : MonoBehaviour
         sign.textWrappingMode = TextWrappingModes.NoWrap;
         sign.rectTransform.sizeDelta = new Vector2(2f, 2f);
         sign.rectTransform.pivot = new Vector2(0.5f, 0f);
-        sign.outlineWidth = signOutlineWidth;
-        sign.outlineColor = signOutlineColor;
+        if (signMaterial != null) sign.fontSharedMaterial = signMaterial;
         sign.sortingOrder = signSortingOrder;
         CreateSignBackground();
         signObject.SetActive(false);

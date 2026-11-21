@@ -26,25 +26,26 @@ public class PlayerTeleporter : MonoBehaviour
         StartCoroutine(TeleportRoutine(destination.position));
     }
 
+    public void PlaceAt(Vector2 position)
+    {
+        OnTeleportStarted?.Invoke();
+        body.position = position;
+        body.linearVelocity = Vector2.zero;
+    }
+
     private IEnumerator TeleportRoutine(Vector2 destination)
     {
         IsTeleporting = true;
-        OnTeleportStarted?.Invoke();
-        SetMovementLocked(true);
+        movement.AddLock(this);
 
         IScreenFader fader = SceneServices.Fader;
 
+        OnTeleportStarted?.Invoke();
         yield return fader.FadeOut();
         body.position = destination;
         yield return fader.FadeIn();
 
-        SetMovementLocked(false);
+        movement.RemoveLock(this);
         IsTeleporting = false;
-    }
-
-    private void SetMovementLocked(bool locked)
-    {
-        movement.enabled = !locked;
-        body.linearVelocity = Vector2.zero;
     }
 }

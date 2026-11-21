@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -6,7 +7,7 @@ using UnityEngine.InputSystem;
 public class PhoneView : MonoBehaviour
 {
     [SerializeField] private RectTransform body;
-    [SerializeField] private Vector2 hiddenPosition = new Vector2(-40f, -620f);
+    [SerializeField] private Vector2 hiddenPosition = new Vector2(-40f, -720f);
     [SerializeField] private Vector2 shownPosition = new Vector2(-40f, 40f);
     [SerializeField, Min(0f)] private float slideDuration = 0.25f;
 
@@ -21,6 +22,8 @@ public class PhoneView : MonoBehaviour
     private Coroutine slideRoutine;
 
     public bool IsOpen { get; private set; }
+
+    public event Action<bool> OnOpenChanged;
 
     private void Awake()
     {
@@ -59,6 +62,8 @@ public class PhoneView : MonoBehaviour
 
         if (slideRoutine != null) StopCoroutine(slideRoutine);
         slideRoutine = StartCoroutine(Slide(open ? shownPosition : hiddenPosition));
+
+        OnOpenChanged?.Invoke(open);
     }
 
     private void HandleToggle(InputAction.CallbackContext context)

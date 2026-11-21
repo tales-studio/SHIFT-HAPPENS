@@ -9,7 +9,6 @@ public class ScreenFader : MonoBehaviour, IScreenFader
 
     [SerializeField] private CanvasGroup fadePanel;
     [SerializeField, Min(0f)] private float defaultDuration = 0.4f;
-    [SerializeField] private bool persistAcrossScenes = true;
 
     private int fadeVersion;
 
@@ -23,12 +22,6 @@ public class ScreenFader : MonoBehaviour, IScreenFader
             return;
         }
         instance = this;
-
-        if (persistAcrossScenes)
-        {
-            transform.SetParent(null);
-            DontDestroyOnLoad(gameObject);
-        }
 
         SetAlpha(0f);
         SceneServices.Register(this);

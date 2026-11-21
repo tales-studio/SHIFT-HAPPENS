@@ -26,11 +26,21 @@ public class StudentAnimator : MonoBehaviour
         if (animator == null) animator = GetComponentInChildren<Animator>();
     }
 
+
     private void Update()
     {
-        if (animator == null) return;
+        if (animator == null || !agent.enabled || !agent.isOnNavMesh) return;
 
-        Vector2 velocity = agent.velocity; // En 2D el movimiento va en X/Y
+
+        // NavMeshAgent can retain residual velocity after its path is cleared.
+        // With no active path the NPC should return to Idle immediately.
+        bool hasMovementIntent = !agent.isStopped &&
+                                 agent.hasPath &&
+                                 !agent.pathPending;
+
+        Vector2 velocity = hasMovementIntent
+            ? new Vector2(agent.velocity.x, agent.velocity.y)
+            : Vector2.zero;
         float speed = velocity.magnitude;
 
         // Solo actualizamos la dirección si se mueve: al pararse mantiene

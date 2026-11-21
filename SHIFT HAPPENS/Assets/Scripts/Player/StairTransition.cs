@@ -11,22 +11,16 @@ public class StairTransition : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other != playerStairCollider) return;
+        if (other != playerStairCollider || destination == null) return;
 
-        Rigidbody2D playerBody = playerStairCollider.attachedRigidbody;
+        PlayerTeleporter teleporter = other.GetComponentInParent<PlayerTeleporter>();
 
-        if (playerBody == null || destination == null)
-            return;
-
-        if (FadeManager.Instance == null)
+        if (teleporter == null)
         {
-            Debug.LogError("FadeManager no encontrado.");
+            Debug.LogError("PlayerTeleporter no encontrado.", this);
             return;
         }
 
-        FadeManager.Instance.Transition(
-            playerBody,
-            destination
-        );
+        teleporter.Teleport(destination);
     }
 }

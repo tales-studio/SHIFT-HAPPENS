@@ -33,6 +33,7 @@ public class StudentBrain : MonoBehaviour
     [SerializeField] private Animator animator;
     [SerializeField] private bool debugLogs = false;
 
+
     // ------------------------------------------------------------------
     // Estado público
     // ------------------------------------------------------------------

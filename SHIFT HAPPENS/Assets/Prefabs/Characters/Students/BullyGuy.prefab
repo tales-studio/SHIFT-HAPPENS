@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 4515642130774735186}
   - component: {fileID: 8761248928709413492}
   - component: {fileID: -5700485178603939429}
+  - component: {fileID: 3470309166018366635}
   m_Layer: 0
   m_Name: BullyGuy
   m_TagString: Untagged
@@ -86,7 +87,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 10
+  m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: 7505997652728640547, guid: 6b0203a4a65f3324d99922eb14e3575f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -108,7 +109,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.25
-  m_Speed: 5
+  m_Speed: 6
   m_Acceleration: 8
   avoidancePriority: 40
   m_AngularSpeed: 0
@@ -220,3 +221,18 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &3470309166018366635
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6198924082522426097}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a13847c699ecb740a264ed6957b4021, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::StudentAnimator
+  animator: {fileID: 0}
+  idleThreshold: 0.05
+  directionSmoothing: 10

@@ -17,15 +17,24 @@ public class ButtonFeedback : MonoBehaviour, ISelectHandler, IDeselectHandler
     [SerializeField, Min(0f)] private float popDuration = 0.06f;
     [SerializeField, Min(0f)] private float settleDuration = 0.08f;
 
+    [Header("Target")]
+    [SerializeField] private Transform scaleTarget;
+
     private Outline outline;
     private Coroutine scaleRoutine;
 
+    private Transform Target => scaleTarget != null ? scaleTarget : transform;
+
     private void Awake()
     {
+        if (scaleTarget == null && GetComponent<Selectable>() is Slider slider && slider.handleRect != null)
+            scaleTarget = slider.handleRect;
+
         if (!showOutline) return;
 
-        outline = GetComponent<Outline>();
-        if (outline == null) outline = gameObject.AddComponent<Outline>();
+        GameObject outlineHost = Target.gameObject;
+        outline = outlineHost.GetComponent<Outline>();
+        if (outline == null) outline = outlineHost.AddComponent<Outline>();
 
         outline.effectColor = outlineColor;
         outline.effectDistance = new Vector2(outlineSize, -outlineSize);
@@ -35,7 +44,7 @@ public class ButtonFeedback : MonoBehaviour, ISelectHandler, IDeselectHandler
     private void OnDisable()
     {
         scaleRoutine = null;
-        transform.localScale = Vector3.one;
+        Target.localScale = Vector3.one;
         SetOutline(false);
     }
 
@@ -72,17 +81,17 @@ public class ButtonFeedback : MonoBehaviour, ISelectHandler, IDeselectHandler
 
     private IEnumerator ScaleTo(float target, float duration)
     {
-        float start = transform.localScale.x;
+        float start = Target.localScale.x;
         float elapsed = 0f;
 
         while (elapsed < duration)
         {
             elapsed += Time.unscaledDeltaTime;
             float progress = Mathf.SmoothStep(0f, 1f, Mathf.Clamp01(elapsed / duration));
-            transform.localScale = Vector3.one * Mathf.Lerp(start, target, progress);
+            Target.localScale = Vector3.one * Mathf.Lerp(start, target, progress);
             yield return null;
         }
 
-        transform.localScale = Vector3.one * target;
+        Target.localScale = Vector3.one * target;
     }
 }

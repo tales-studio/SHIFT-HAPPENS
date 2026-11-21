@@ -257,6 +257,7 @@ GameObject:
   - component: {fileID: 6001527583351373628}
   - component: {fileID: 7340192837465019283}
   - component: {fileID: 4416281937502846400}
+  - component: {fileID: 4416281937502846401}
   - component: {fileID: 6194254994279942972}
   m_Layer: 0
   m_Name: Player
@@ -526,6 +527,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb35e381147f44769b5a383473d508f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerTeleporter
+--- !u!114 &4416281937502846401
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5369124962322799454}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62396cf7462e45dd8ad2204b8e912f32, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerInputGate
 --- !u!1 &8812345678901234201
 GameObject:
   m_ObjectHideFlags: 0

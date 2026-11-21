@@ -227,4 +227,4 @@ MonoBehaviour:
   maxPoolSize: 32
   listener: {fileID: 0}
   matchListenerDepth: 1
-  persistAcrossScenes: 1
+  persistAcrossScenes: 0

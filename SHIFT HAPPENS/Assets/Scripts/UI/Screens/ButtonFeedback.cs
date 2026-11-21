@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class ButtonFeedback : MonoBehaviour, ISelectHandler, IDeselectHandler
 {
     [Header("Outline")]
+    [SerializeField] private bool showOutline = true;
     [SerializeField] private Color outlineColor = new Color(0.85f, 0.85f, 1f, 1f);
     [SerializeField, Min(0f)] private float outlineSize = 2f;
 
@@ -21,6 +22,8 @@ public class ButtonFeedback : MonoBehaviour, ISelectHandler, IDeselectHandler
 
     private void Awake()
     {
+        if (!showOutline) return;
+
         outline = GetComponent<Outline>();
         if (outline == null) outline = gameObject.AddComponent<Outline>();
 
@@ -33,19 +36,24 @@ public class ButtonFeedback : MonoBehaviour, ISelectHandler, IDeselectHandler
     {
         scaleRoutine = null;
         transform.localScale = Vector3.one;
-        outline.enabled = false;
+        SetOutline(false);
     }
 
     public void OnSelect(BaseEventData eventData)
     {
-        outline.enabled = true;
+        SetOutline(true);
         Animate(Pop());
     }
 
     public void OnDeselect(BaseEventData eventData)
     {
-        outline.enabled = false;
+        SetOutline(false);
         Animate(ScaleTo(1f, settleDuration));
+    }
+
+    private void SetOutline(bool visible)
+    {
+        if (outline != null) outline.enabled = visible;
     }
 
     private void Animate(IEnumerator animation)

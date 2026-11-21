@@ -6,10 +6,17 @@ using UnityEngine;
 public class CreditsData : ScriptableObject
 {
     [Serializable]
+    public class Member
+    {
+        public string name;
+        public List<string> tasks = new List<string>();
+    }
+
+    [Serializable]
     public class Entry
     {
         public string role;
-        public List<string> names = new List<string>();
+        public List<Member> members = new List<Member>();
     }
 
     [Serializable]
@@ -21,4 +28,5 @@ public class CreditsData : ScriptableObject
 
     public List<Section> sections = new List<Section>();
     [TextArea(1, 4)] public string closingMessage = "Thanks for playing!";
+    public Sprite studioLogo;
 }

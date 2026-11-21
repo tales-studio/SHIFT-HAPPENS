@@ -16,26 +16,37 @@ MonoBehaviour:
   - heading: Development Team
     entries:
     - role: Programming
-      names:
-      - Name
+      members:
+      - name: Name
+        tasks:
+        - Task
+        - Task
     - role: Art
-      names:
-      - Name
+      members:
+      - name: Name
+        tasks:
+        - Task
     - role: Design
-      names:
-      - Name
+      members:
+      - name: Name
+        tasks:
+        - Task
     - role: Audio
-      names:
-      - Name
+      members:
+      - name: Name
+        tasks:
+        - Task
   - heading: Third-Party Assets
     entries:
     - role: Asset Name
-      names:
-      - Author
-      - License
+      members:
+      - name: Author
+        tasks:
+        - License
   - heading: Special Thanks
     entries:
     - role: 
-      names:
-      - Name
+      members:
+      - name: Name
+        tasks: []
   closingMessage: Thanks for playing!

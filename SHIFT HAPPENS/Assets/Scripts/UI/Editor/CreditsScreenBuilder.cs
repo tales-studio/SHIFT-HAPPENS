@@ -15,6 +15,9 @@ public static class CreditsScreenBuilder
     private const string ContentName = "Content";
     private const float ScrollSensitivity = 20f;
     private const string ScrollbarName = "Scrollbar";
+    private const string LogoName = "LogoTemplate";
+    private const float LogoSize = 200f;
+    private static readonly Color LogoPlaceholderColor = new Color(0.3f, 0.3f, 0.35f, 0.8f);
     private const float ScrollbarWidth = 14f;
     private const float ScrollbarGap = 30f;
     private static readonly Color ScrollbarTrackColor = new Color(0.16f, 0.16f, 0.2f, 0.6f);
@@ -30,6 +33,7 @@ public static class CreditsScreenBuilder
     private static readonly Color HeadingColor = new Color(0.65f, 0.12f, 0.11f, 1f);
     private static readonly Color RoleColor = new Color(0.6f, 0.6f, 0.75f, 1f);
     private static readonly Color NamesColor = Color.white;
+    private static readonly Color TasksColor = new Color(0.75f, 0.75f, 0.8f, 1f);
     private static readonly Color ClosingColor = Color.white;
 
     [MenuItem("Shift Happens/UI/Build Credits Screen")]
@@ -55,8 +59,11 @@ public static class CreditsScreenBuilder
 
         TMP_Text heading = FindOrCreateTemplate(content, "HeadingTemplate", "SECTION HEADING", font, 56f, HeadingColor, FontStyles.Bold);
         TMP_Text role = FindOrCreateTemplate(content, "RoleTemplate", "Role", font, 30f, RoleColor, FontStyles.Normal);
-        TMP_Text names = FindOrCreateTemplate(content, "NamesTemplate", "Name One\nName Two", font, 40f, NamesColor, FontStyles.Normal);
+        TMP_Text names = FindOrCreateTemplate(content, "NamesTemplate", "Name", font, 40f, NamesColor, FontStyles.Normal);
+        TMP_Text tasks = FindOrCreateTemplate(content, "TasksTemplate", "Task · Task", font, 26f, TasksColor, FontStyles.Italic);
+        tasks.transform.SetSiblingIndex(names.transform.GetSiblingIndex() + 1);
         TMP_Text closing = FindOrCreateTemplate(content, "ClosingTemplate", "Thanks for playing!", font, 64f, ClosingColor, FontStyles.Bold);
+        Image logo = FindOrCreateLogoTemplate(content, font);
 
         ScrollRect scrollRect = EnsureScrollRect(viewport, content);
 
@@ -78,7 +85,9 @@ public static class CreditsScreenBuilder
         so.FindProperty("headingTemplate").objectReferenceValue = heading;
         so.FindProperty("roleTemplate").objectReferenceValue = role;
         so.FindProperty("namesTemplate").objectReferenceValue = names;
+        so.FindProperty("tasksTemplate").objectReferenceValue = tasks;
         so.FindProperty("closingTemplate").objectReferenceValue = closing;
+        so.FindProperty("logoTemplate").objectReferenceValue = logo;
         so.FindProperty("fastForwardAction").objectReferenceValue = module != null && module.submit != null ? module.submit : FindAction("Submit");
         so.FindProperty("scrollRect").objectReferenceValue = scrollRect;
         so.FindProperty("scrollAction").objectReferenceValue = module != null && module.move != null ? module.move : FindAction("Navigate");
@@ -164,14 +173,14 @@ public static class CreditsScreenBuilder
         data.sections = new List<CreditsData.Section>
         {
             Section("Development Team",
-                Entry("Programming", "Name"),
-                Entry("Art", "Name"),
-                Entry("Design", "Name"),
-                Entry("Audio", "Name")),
+                Entry("Programming", Member("Name", "Task", "Task")),
+                Entry("Art", Member("Name", "Task")),
+                Entry("Design", Member("Name", "Task")),
+                Entry("Audio", Member("Name", "Task"))),
             Section("Third-Party Assets",
-                Entry("Asset Name", "Author", "License")),
+                Entry("Asset Name", Member("Author", "License"))),
             Section("Special Thanks",
-                Entry("", "Name"))
+                Entry("", Member("Name")))
         };
 
         AssetDatabase.CreateAsset(data, DataPath);
@@ -184,9 +193,14 @@ public static class CreditsScreenBuilder
         return new CreditsData.Section { heading = heading, entries = new List<CreditsData.Entry>(entries) };
     }
 
-    private static CreditsData.Entry Entry(string role, params string[] names)
+    private static CreditsData.Entry Entry(string role, params CreditsData.Member[] members)
     {
-        return new CreditsData.Entry { role = role, names = new List<string>(names) };
+        return new CreditsData.Entry { role = role, members = new List<CreditsData.Member>(members) };
+    }
+
+    private static CreditsData.Member Member(string name, params string[] tasks)
+    {
+        return new CreditsData.Member { name = name, tasks = new List<string>(tasks) };
     }
 
     private static Scrollbar CreateScrollbar(Transform screen, RectTransform viewport)
@@ -245,6 +259,36 @@ public static class CreditsScreenBuilder
         if (existing != null && existing.TryGetComponent(out TMP_Text found)) return found;
 
         return Register(CreateTemplate(content, name, text, font, size, color, style));
+    }
+
+    private static Image FindOrCreateLogoTemplate(RectTransform content, TMP_FontAsset font)
+    {
+        Transform existing = content.Find(LogoName);
+        if (existing != null && existing.TryGetComponent(out Image found)) return found;
+
+        GameObject go = new GameObject(LogoName, typeof(RectTransform), typeof(CanvasRenderer), typeof(Image), typeof(LayoutElement));
+        go.layer = content.gameObject.layer;
+        go.transform.SetParent(content, false);
+
+        Image image = go.GetComponent<Image>();
+        image.sprite = AssetDatabase.GetBuiltinExtraResource<Sprite>("UI/Skin/UISprite.psd");
+        image.type = Image.Type.Sliced;
+        image.color = LogoPlaceholderColor;
+        image.preserveAspect = true;
+        image.raycastTarget = false;
+
+        LayoutElement element = go.GetComponent<LayoutElement>();
+        element.preferredWidth = LogoSize;
+        element.preferredHeight = LogoSize;
+
+        TMP_Text label = CreateTemplate(go.transform, "PlaceholderLabel", "STUDIO LOGO", font, 28f, Color.white, FontStyles.Bold);
+        RectTransform labelRect = label.rectTransform;
+        labelRect.anchorMin = Vector2.zero;
+        labelRect.anchorMax = Vector2.one;
+        labelRect.sizeDelta = Vector2.zero;
+        labelRect.anchoredPosition = Vector2.zero;
+
+        return Register(image);
     }
 
     private static ScrollRect EnsureScrollRect(RectTransform viewport, RectTransform content)

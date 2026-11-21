@@ -1,6 +1,5 @@
 using System;
 using UnityEngine;
-using UnityEngine.Events;
 
 public enum GamePhase
 {
@@ -20,10 +19,15 @@ public class GameManager : MonoBehaviour
 
     public GamePhase CurrentPhase { get; private set; } = GamePhase.Menu;
     public bool isPlaying => CurrentPhase == GamePhase.Normal || CurrentPhase == GamePhase.Blackout || CurrentPhase == GamePhase.Outbreak;
+    public bool IsPaused { get; private set; }
+    public ShiftResult Result { get; private set; }
     public ShiftClock Clock => clock;
 
     public event Action<GamePhase> OnPhaseChanged;
     public event Action OnBlackout;
+    public event Action<ShiftResult> OnShiftEnded;
+    public event Action OnPaused;
+    public event Action OnResumed;
 
 
     private void Awake()
@@ -66,6 +70,8 @@ public class GameManager : MonoBehaviour
 
     public void StartShift()
     {
+        if (!CanChangeTo(GamePhase.Normal)) return;
+
         Time.timeScale = 1f;
         if (TaskManager.Instance != null) TaskManager.Instance.ClearTasks();
         clock.ResetClock();
@@ -81,11 +87,13 @@ public class GameManager : MonoBehaviour
 
     private void HandleShiftEnded()
     {
-        SetPhase(GamePhase.Ended);
+        EndShift(ShiftResult.Survived);
     }
 
     private void TriggerBlackout()
     {
+        if (!CanChangeTo(GamePhase.Blackout)) return;
+
         //clock.StopClock();
         SetPhase(GamePhase.Blackout);
         OnBlackout?.Invoke();
@@ -93,20 +101,69 @@ public class GameManager : MonoBehaviour
 
     public void StartOutbreak()
     {
-        if (CurrentPhase != GamePhase.Blackout) return;
+        if (!CanChangeTo(GamePhase.Outbreak)) return;
 
         SetPhase(GamePhase.Outbreak);
         //clock.ResumeClock();
     }
+
+    public void EndShift(ShiftResult result)
+    {
+        if (!CanChangeTo(GamePhase.Ended)) return;
+
+        Resume();
+        clock.StopClock();
+        Result = result;
+        SetPhase(GamePhase.Ended);
+        OnShiftEnded?.Invoke(result);
+    }
+
+    public void Pause()
+    {
+        if (IsPaused || !isPlaying) return;
+
+        IsPaused = true;
+        Time.timeScale = 0f;
+        OnPaused?.Invoke();
+    }
+
+    public void Resume()
+    {
+        if (!IsPaused) return;
+
+        IsPaused = false;
+        Time.timeScale = 1f;
+        OnResumed?.Invoke();
+    }
+
     private void SetPhase(GamePhase newPhase)
     {
         CurrentPhase = newPhase;
         OnPhaseChanged?.Invoke(newPhase);
     }
 
-    private void Update()
+    private bool CanChangeTo(GamePhase newPhase)
     {
-        //if (Input.GetKeyDown(KeyCode.B) && CurrentPhase == GamePhase.Normal)
-            //TriggerBlackout();
+        if (IsValidTransition(CurrentPhase, newPhase)) return true;
+
+        Debug.LogWarning("GameManager: can't go from " + CurrentPhase + " to " + newPhase + ".", this);
+        return false;
+    }
+
+    private static bool IsValidTransition(GamePhase from, GamePhase to)
+    {
+        switch (from)
+        {
+            case GamePhase.Menu:
+                return to == GamePhase.Normal;
+            case GamePhase.Normal:
+                return to == GamePhase.Blackout || to == GamePhase.Ended;
+            case GamePhase.Blackout:
+                return to == GamePhase.Outbreak || to == GamePhase.Ended;
+            case GamePhase.Outbreak:
+                return to == GamePhase.Ended;
+            default:
+                return false;
+        }
     }
 }

@@ -8,12 +8,14 @@ using UnityEngine.InputSystem.UI;
 public class MenuNavigator : MonoBehaviour
 {
     [SerializeField] private UIScreen firstScreen;
+    [SerializeField] private bool backOnCancel = true;
 
     private readonly Stack<UIScreen> stack = new Stack<UIScreen>();
     private InputSystemUIInputModule module;
     private bool usingPointer;
 
     public UIScreen Current => stack.Count > 0 ? stack.Peek() : null;
+    public int Depth => stack.Count;
 
     private void Start()
     {
@@ -45,12 +47,19 @@ public class MenuNavigator : MonoBehaviour
         screen.Show(!usingPointer);
     }
 
-    public void Pop()
+    public bool Pop()
     {
-        if (stack.Count <= 1) return;
+        if (stack.Count <= 1) return false;
 
         stack.Pop().Hide();
         Current.Show(!usingPointer);
+        return true;
+    }
+
+    public void CloseAll()
+    {
+        if (Current != null) Current.Hide();
+        stack.Clear();
     }
 
     private void SubscribeToInput()
@@ -62,7 +71,7 @@ public class MenuNavigator : MonoBehaviour
 
         Subscribe(module.point, HandlePoint);
         Subscribe(module.move, HandleMove);
-        Subscribe(module.cancel, HandleCancel);
+        if (backOnCancel) Subscribe(module.cancel, HandleCancel);
     }
 
     private void HandlePoint(InputAction.CallbackContext context)

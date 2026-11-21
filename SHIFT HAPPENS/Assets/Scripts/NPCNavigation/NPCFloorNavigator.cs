@@ -13,6 +13,7 @@ public class NPCFloorNavigator : MonoBehaviour
 
         public Transform EntryPoint;
         public Transform ExitPoint;
+        public float ArrivalRadius;
     }
 
     [Header("Current Floor")]
@@ -179,7 +180,8 @@ public class NPCFloorNavigator : MonoBehaviour
             followingFloorRoute = true;
 
             movementStarted = navigation.MoveTo(
-                activeRoute[0].EntryPoint.position
+                activeRoute[0].EntryPoint.position,
+                activeRoute[0].ArrivalRadius
             );
 
             if (!movementStarted)
@@ -303,7 +305,8 @@ public class NPCFloorNavigator : MonoBehaviour
                 FromFloor = previous,
                 ToFloor = cursor,
                 EntryPoint = entry,
-                ExitPoint = exit
+                ExitPoint = exit,
+                ArrivalRadius = connection.ArrivalRadius
             };
 
             route.Insert(0, step);
@@ -406,7 +409,9 @@ public class NPCFloorNavigator : MonoBehaviour
         {
             FloorRouteStep nextStep = activeRoute[activeStepIndex];
 
-            if (!navigation.MoveTo(nextStep.EntryPoint.position))
+            if (!navigation.MoveTo(
+                nextStep.EntryPoint.position,
+                nextStep.ArrivalRadius))
             {
                 Debug.LogError(
                     name + ": No puede llegar a la siguiente escalera."

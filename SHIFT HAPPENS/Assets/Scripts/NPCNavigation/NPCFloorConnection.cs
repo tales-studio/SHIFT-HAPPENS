@@ -13,6 +13,7 @@ public class NPCFloorConnection : MonoBehaviour
 
     [Header("Settings")]
     [SerializeField] private bool bidirectional = true;
+    [SerializeField, Min(0.1f)] private float arrivalRadius = 0.65f;
 
     public BuildingFloor FloorA => floorA;
     public BuildingFloor FloorB => floorB;
@@ -21,6 +22,7 @@ public class NPCFloorConnection : MonoBehaviour
     public Transform PointB => pointB;
 
     public bool Bidirectional => bidirectional;
+    public float ArrivalRadius => arrivalRadius;
 
     // Obtiene los puntos de entrada y salida
     // según la planta de origen y destino.
@@ -63,8 +65,8 @@ public class NPCFloorConnection : MonoBehaviour
 
         Gizmos.color = Color.green;
 
-        Gizmos.DrawWireSphere(pointA.position, 0.35f);
-        Gizmos.DrawWireSphere(pointB.position, 0.35f);
+        Gizmos.DrawWireSphere(pointA.position, arrivalRadius);
+        Gizmos.DrawWireSphere(pointB.position, arrivalRadius);
 
         Gizmos.DrawLine(pointA.position, pointB.position);
     }

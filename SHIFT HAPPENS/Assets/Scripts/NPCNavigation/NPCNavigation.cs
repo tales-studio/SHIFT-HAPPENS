@@ -12,6 +12,10 @@ public class NPCNavigation : MonoBehaviour
 
     private NavMeshAgent agent;
     private bool hasDestination;
+    private float stoppingDistanceBeforeOverride;
+    private float arrivalRadiusForCurrentMove;
+    private Vector3 arrivalPointForCurrentMove;
+    private bool hasStoppingDistanceOverride;
 
     public bool IsMoving => hasDestination && agent != null;
 
@@ -56,6 +60,7 @@ public class NPCNavigation : MonoBehaviour
         if (agent.pathStatus != NavMeshPathStatus.PathComplete)
         {
             hasDestination = false;
+            RestoreStoppingDistance();
             Debug.LogWarning("La ruta de " + name + " ha dejado de ser válida.");
             return;
         }
@@ -65,11 +70,18 @@ public class NPCNavigation : MonoBehaviour
             0.05f
         );
 
-        if (agent.remainingDistance <= stoppingThreshold &&
-            agent.velocity.sqrMagnitude < 0.01f)
+        float arrivalRadiusWithTolerance = arrivalRadiusForCurrentMove + 0.05f;
+        bool insideArrivalRadius = hasStoppingDistanceOverride &&
+            (agent.nextPosition - arrivalPointForCurrentMove).sqrMagnitude <=
+            arrivalRadiusWithTolerance * arrivalRadiusWithTolerance;
+
+        if (insideArrivalRadius ||
+            (agent.remainingDistance <= stoppingThreshold &&
+             agent.velocity.sqrMagnitude < 0.01f))
         {
             hasDestination = false;
             agent.ResetPath();
+            RestoreStoppingDistance();
 
             OnDestinationReached?.Invoke();
         }
@@ -112,8 +124,10 @@ public class NPCNavigation : MonoBehaviour
     }
 
     // Calcula y comienza el desplazamiento.
-    public bool MoveTo(Vector3 destination)
+    public bool MoveTo(Vector3 destination, float stoppingDistanceOverride = -1f)
     {
+        RestoreStoppingDistance();
+
         if (!TryCalculateCompletePath(destination, out NavMeshPath path))
         {
             Debug.LogWarning(
@@ -124,12 +138,25 @@ public class NPCNavigation : MonoBehaviour
             return false;
         }
 
+        if (stoppingDistanceOverride >= 0f)
+        {
+            stoppingDistanceBeforeOverride = agent.stoppingDistance;
+            arrivalPointForCurrentMove = destination;
+            arrivalRadiusForCurrentMove = stoppingDistanceOverride;
+            agent.stoppingDistance = Mathf.Max(
+                agent.stoppingDistance,
+                stoppingDistanceOverride
+            );
+            hasStoppingDistanceOverride = true;
+        }
+
         agent.isStopped = false;
 
         hasDestination = agent.SetPath(path);
 
         if (!hasDestination)
         {
+            RestoreStoppingDistance();
             Debug.LogWarning(
                 "No se ha podido asignar la ruta a " + name
             );
@@ -140,6 +167,8 @@ public class NPCNavigation : MonoBehaviour
 
     public void StopMoving()
     {
+        RestoreStoppingDistance();
+
         if (agent == null || !agent.isOnNavMesh)
             return;
 
@@ -152,6 +181,8 @@ public class NPCNavigation : MonoBehaviour
     // Teletransporta al NPC a otra zona del NavMesh.
     public bool WarpTo(Vector3 destination)
     {
+        RestoreStoppingDistance();
+
         if (agent == null || !agent.isOnNavMesh)
         {
             Debug.LogWarning(name + ": El agente no está sobre el NavMesh.");
@@ -190,6 +221,18 @@ public class NPCNavigation : MonoBehaviour
         }
 
         return true;
+    }
+
+    private void RestoreStoppingDistance()
+    {
+        if (!hasStoppingDistanceOverride)
+            return;
+
+        if (agent != null)
+            agent.stoppingDistance = stoppingDistanceBeforeOverride;
+
+        hasStoppingDistanceOverride = false;
+        arrivalRadiusForCurrentMove = 0f;
     }
 
 

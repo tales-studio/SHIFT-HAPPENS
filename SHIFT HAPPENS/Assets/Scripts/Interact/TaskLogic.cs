@@ -82,6 +82,7 @@ public class TaskLogic : MonoBehaviour
 
         interactable.SetCanInteract(false);
         SetActiveState(false);
+        AudioServices.Sfx.PlayAt(task.completeSound, transform.position);
         TaskManager.Instance.ReportCompleted(this);
     }
 

@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -20,10 +21,22 @@ public class PhoneView : MonoBehaviour
 
     private GameManager gameManager;
     private Coroutine slideRoutine;
+    private readonly HashSet<object> locks = new HashSet<object>();
 
     public bool IsOpen { get; private set; }
+    public bool IsLocked => locks.Count > 0;
 
     public event Action<bool> OnOpenChanged;
+
+    public void AddLock(object source)
+    {
+        locks.Add(source);
+    }
+
+    public void RemoveLock(object source)
+    {
+        locks.Remove(source);
+    }
 
     private void Awake()
     {
@@ -68,6 +81,7 @@ public class PhoneView : MonoBehaviour
 
     private void HandleToggle(InputAction.CallbackContext context)
     {
+        if (IsLocked) return;
         if (gameManager != null && (!gameManager.isPlaying || gameManager.IsPaused)) return;
 
         SetOpen(!IsOpen);

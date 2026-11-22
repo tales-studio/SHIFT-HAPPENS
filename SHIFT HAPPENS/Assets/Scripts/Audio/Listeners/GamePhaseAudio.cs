@@ -23,6 +23,12 @@ public class GamePhaseAudio : MonoBehaviour
         },
         new PhaseAudio
         {
+            phase = GamePhase.Tutorial,
+            music = SoundId.MusicNormal,
+            ambience = new[] { SoundId.AmbienceWind, SoundId.AmbienceRain, SoundId.AmbienceDistantConversations }
+        },
+        new PhaseAudio
+        {
             phase = GamePhase.Normal,
             music = SoundId.MusicNormal,
             stingers = new[] { SoundId.StingerShiftStart },

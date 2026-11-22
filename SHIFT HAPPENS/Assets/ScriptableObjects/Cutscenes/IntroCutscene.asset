@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3143d48e4de41c190bc00e8b76a1b0e, type: 3}
   m_Name: IntroCutscene
   m_EditorClassIdentifier: Assembly-CSharp::Cutscene
+  id: intro
   clip: {fileID: 0}
   skippable: 1
   skipHoldDuration: 1

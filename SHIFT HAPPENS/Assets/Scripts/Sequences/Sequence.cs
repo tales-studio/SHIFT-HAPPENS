@@ -23,6 +23,30 @@ public class Sequence : MonoBehaviour
         Next();
     }
 
+    public void FastForward(Action finished = null)
+    {
+        int start;
+
+        if (IsPlaying)
+        {
+            start = Mathf.Max(index, 0);
+            ReleaseCurrent(true);
+        }
+        else
+        {
+            CollectSteps();
+            start = 0;
+            onFinished = finished;
+        }
+
+        for (int i = start; i < steps.Count; i++)
+        {
+            steps[i].FastForward();
+        }
+
+        Finish();
+    }
+
     public void Stop()
     {
         if (!IsPlaying) return;

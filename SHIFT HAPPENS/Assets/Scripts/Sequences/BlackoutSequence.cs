@@ -19,6 +19,7 @@ public class BlackoutSequence : MonoBehaviour
     [SerializeField, Min(0f)] private float fadeOutDuration = 0.3f;
     [SerializeField, Min(0f)] private float holdDuration = 2.5f;
     [SerializeField, Min(0f)] private float fadeInDuration = 3f;
+    [SerializeField] private SoundId darknessSound = SoundId.NPCStudentsScream;
 
     [Header("Wake up")]
     [SerializeField] private Transform wakeUpPoint;
@@ -62,6 +63,7 @@ public class BlackoutSequence : MonoBehaviour
 
         yield return Flicker();
         SetLights(darkIntensity, hostileColor);
+        AudioServices.Sfx.Play(darknessSound);
 
         IScreenFader fader = SceneServices.Fader;
 

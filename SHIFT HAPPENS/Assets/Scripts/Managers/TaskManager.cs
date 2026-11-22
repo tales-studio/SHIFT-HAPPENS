@@ -55,7 +55,7 @@ public class TaskManager : MonoBehaviour
 
     private void Update()
     {
-        if (GameManager.Instance == null || !GameManager.Instance.isPlaying) return;
+        if (GameManager.Instance == null || !GameManager.Instance.IsShiftRunning) return;
 
         spawnTimer -= Time.deltaTime;
         if (spawnTimer > 0f) return;
@@ -100,7 +100,7 @@ public class TaskManager : MonoBehaviour
     public bool TryActivate(TaskLogic task, bool force = false)
     {
         if (task == null || task.Data == null || task.isActive) return false;
-        if (GameManager.Instance != null && !GameManager.Instance.isPlaying) return false;
+        if (GameManager.Instance != null && !GameManager.Instance.IsShiftRunning) return false;
         if (!force && UnityEngine.Random.value > task.Data.spawnChance) return false;
 
         ActivateTask(task);

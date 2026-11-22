@@ -1,22 +1,49 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+
+public enum HudElement
+{
+    None,
+    Phone,
+    Clock
+}
 
 [DisallowMultipleComponent]
 [RequireComponent(typeof(CanvasGroup))]
 public class HudGroup : MonoBehaviour
 {
+    private static readonly List<HudGroup> registered = new List<HudGroup>();
+
+    [SerializeField] private HudElement element;
     [SerializeField, Min(0f)] private float fadeDuration = 0.4f;
     [SerializeField] private bool startHidden;
 
     private CanvasGroup group;
     private Coroutine fadeRoutine;
 
+    public HudElement Element => element;
     public bool IsVisible { get; private set; } = true;
+
+    public static HudGroup Find(HudElement target)
+    {
+        foreach (HudGroup hudGroup in registered)
+        {
+            if (hudGroup.element == target) return hudGroup;
+        }
+        return null;
+    }
 
     private void Awake()
     {
         group = GetComponent<CanvasGroup>();
         SetVisible(!startHidden, true);
+        registered.Add(this);
+    }
+
+    private void OnDestroy()
+    {
+        registered.Remove(this);
     }
 
     private void OnDisable()

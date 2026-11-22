@@ -355,6 +355,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33a88cdc7ff6bc343a6631574cb11dbe, type: 3}
   m_Name:
   m_EditorClassIdentifier: Assembly-CSharp::HudGroup
+  element: 2
   fadeDuration: 0.4
   startHidden: 0
 --- !u!1 &4920076857896229690

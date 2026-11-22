@@ -7,7 +7,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 [DisallowMultipleComponent]
-public class DialogueBox : MonoBehaviour, IPointerClickHandler
+public class DialogueBox : MonoBehaviour, IDialoguePresenter, IPointerClickHandler
 {
     private const int AllCharacters = 99999;
 
@@ -37,6 +37,12 @@ public class DialogueBox : MonoBehaviour, IPointerClickHandler
     private void Awake()
     {
         box.SetActive(false);
+        DialogueServices.Register(this);
+    }
+
+    private void OnDestroy()
+    {
+        DialogueServices.Unregister(this);
     }
 
     private void OnEnable()

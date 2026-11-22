@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: IntroCutscene
   m_EditorClassIdentifier: Assembly-CSharp::Cutscene
   id: intro
-  clip: {fileID: 0}
+  clip: {fileID: 32900000, guid: bbd521fd0c18452a9d296aff30f6455f, type: 3}
   skippable: 1
   skipHoldDuration: 1

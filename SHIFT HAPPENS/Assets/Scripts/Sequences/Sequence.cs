@@ -12,6 +12,9 @@ public class Sequence : MonoBehaviour
 
     public bool IsPlaying { get; private set; }
 
+    public event Action Started;
+    public event Action Ended;
+
     public void Play(Action finished = null)
     {
         if (IsPlaying) return;
@@ -20,6 +23,7 @@ public class Sequence : MonoBehaviour
         onFinished = finished;
         IsPlaying = true;
         index = -1;
+        Started?.Invoke();
         Next();
     }
 
@@ -54,6 +58,7 @@ public class Sequence : MonoBehaviour
         IsPlaying = false;
         onFinished = null;
         ReleaseCurrent(true);
+        Ended?.Invoke();
     }
 
     private void CollectSteps()
@@ -103,6 +108,7 @@ public class Sequence : MonoBehaviour
 
         Action finished = onFinished;
         onFinished = null;
+        Ended?.Invoke();
         finished?.Invoke();
     }
 }

@@ -10,6 +10,7 @@ public class Player : MonoBehaviour
     public PlayerMovement Movement { get; private set; }
     public PlayerTeleporter Teleporter { get; private set; }
     public FlashlightLogic Flashlight { get; private set; }
+    public PlayerInteract Interaction { get; private set; }
 
     // Percepciones del jugador
     public Vector3 Position => transform.position;
@@ -45,6 +46,7 @@ public class Player : MonoBehaviour
         Movement = GetComponent<PlayerMovement>();
         Teleporter = GetComponent<PlayerTeleporter>();
         Flashlight = GetComponentInChildren<FlashlightLogic>(true);
+        Interaction = GetComponentInChildren<PlayerInteract>(true);
     }
 
     private void OnDestroy()

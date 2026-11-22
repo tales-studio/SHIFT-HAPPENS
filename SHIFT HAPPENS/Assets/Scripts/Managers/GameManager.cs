@@ -57,7 +57,11 @@ public class GameManager : MonoBehaviour
         clock.OnHourChanged += HandleHourChanged;
         clock.OnShiftEnded += HandleShiftEnded;
 
-        if (startOnPlay) StartShift();
+        if (!startOnPlay) return;
+
+        TutorialDirector tutorial = FindFirstObjectByType<TutorialDirector>();
+        if (tutorial != null) tutorial.Begin();
+        else StartShift();
     }
 
     private void OnDestroy()

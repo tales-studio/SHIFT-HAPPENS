@@ -14,10 +14,10 @@ GameObject:
   - component: {fileID: 2471602597399427727}
   - component: {fileID: 8304686195504806168}
   - component: {fileID: 8900596062042055051}
-  - component: {fileID: -2364000418342359566}
-  - component: {fileID: -2639361623330633947}
+  - component: {fileID: -8257115956458920083}
+  - component: {fileID: -3458793298671036017}
   m_Layer: 0
-  m_Name: EmoEntity
+  m_Name: NerdGirlEntity
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -87,12 +87,12 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: -3862904964307631369, guid: 68c76218bb12661408bc37da5f572ad1, type: 3}
+  m_Sprite: {fileID: -855298285791758126, guid: 6afe3d9d426eaf140b82f071e7e890f7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.03, y: 0.035}
+  m_Size: {x: 2.4822223, y: 7.597778}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 0
@@ -183,23 +183,7 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 2.056, y: 6.3360004}
   m_Direction: 0
---- !u!114 &-2364000418342359566
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4249073993557280935}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e6571dbfb8219ae488b6466ce50f2dda, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EmoEntity
-  animator: {fileID: 0}
-  debugLogs: 0
-  screamSound: 809
-  impulseSource: {fileID: 0}
---- !u!114 &-2639361623330633947
+--- !u!114 &-8257115956458920083
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -214,3 +198,25 @@ MonoBehaviour:
   animator: {fileID: 0}
   idleThreshold: 0.05
   directionSmoothing: 10
+--- !u!95 &-3458793298671036017
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4249073993557280935}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 22100000, guid: 3033dea6255aa354398e6704206a6ac7, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

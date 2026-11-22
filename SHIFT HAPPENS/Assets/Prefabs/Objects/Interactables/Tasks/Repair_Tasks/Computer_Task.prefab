@@ -42,7 +42,11 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: 79906323459e77c40ae95cd44e29f1e2, type: 3}
     - target: {fileID: 7652643802394906203, guid: 7e3a9c5b1d2f48e6a0b4c8d2e6f01357, type: 3}
       propertyPath: m_SortingOrder
-      value: 5
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7652643802394906203, guid: 7e3a9c5b1d2f48e6a0b4c8d2e6f01357, type: 3}
+      propertyPath: m_SpriteSortPoint
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7652643802394906203, guid: 7e3a9c5b1d2f48e6a0b4c8d2e6f01357, type: 3}
       propertyPath: m_WasSpriteAssigned
@@ -98,7 +102,7 @@ BoxCollider2D:
   m_Offset: {x: 0.169487, y: 1.3378772}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0}
+    pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 5.12, y: 5.12}
     newSize: {x: 0.025000002, y: 0.027500002}
     adaptiveTilingThreshold: 0.5

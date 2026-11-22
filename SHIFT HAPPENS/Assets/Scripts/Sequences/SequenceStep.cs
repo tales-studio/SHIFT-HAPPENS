@@ -23,9 +23,16 @@ public abstract class SequenceStep : MonoBehaviour
         OnExit();
     }
 
+    public void FastForward()
+    {
+        OnFastForward();
+    }
+
     protected abstract void OnEnter();
 
     protected virtual void OnExit() { }
+
+    protected virtual void OnFastForward() { }
 
     protected void Complete()
     {

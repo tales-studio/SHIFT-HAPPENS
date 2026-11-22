@@ -164,6 +164,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::StudentBrain
   profile: {fileID: 11400000, guid: 01cce5009ae0e8d4d9c23d8a50665f86, type: 2}
+  gender: 2
   ownBedroom: {fileID: 0}
   bathroom: {fileID: 11400000, guid: 9381bb5844711124abc34a6d405e0b7d, type: 2}
   kitchen: {fileID: 11400000, guid: bd651538d289c8e4281548f5dcef7272, type: 2}

@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EntityConfig
   archetype: 2
   entityPrefab: {fileID: 4249073993557280935, guid: b60736fa2e9a6b8448bd8cc6fad57aa4, type: 3}
+  femaleEntityPrefab: {fileID: 4249073993557280935, guid: 6c3a0aa5f8ea4d94aa1708bbe3758c0b, type: 3}
   hidesStudent: 1
   activationRange: 10
   sneakActivationRange: 10

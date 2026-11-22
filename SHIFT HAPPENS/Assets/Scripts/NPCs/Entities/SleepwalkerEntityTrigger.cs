@@ -55,8 +55,10 @@ public class SleepwalkerEntityTrigger : EntityTrigger
         if (cam == null || player == null) return false;
 
         NavMeshQueryFilter filter = new NavMeshQueryFilter { areaMask = NavMesh.AllAreas };
-        NavMeshAgent prefabAgent = Config.entityPrefab != null
-            ? Config.entityPrefab.GetComponent<NavMeshAgent>()
+        GameObject entityPrefab = Config.GetEntityPrefab(
+            Student != null ? Student.Gender : StudentGender.Unspecified);
+        NavMeshAgent prefabAgent = entityPrefab != null
+            ? entityPrefab.GetComponent<NavMeshAgent>()
             : null;
         if (prefabAgent != null)
         {

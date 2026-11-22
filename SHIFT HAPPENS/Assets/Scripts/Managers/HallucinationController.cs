@@ -71,7 +71,8 @@ public class HallucinationController : MonoBehaviour
         if (!CanSpawn || trigger == null || trigger.Config == null || trigger.IsEntityActive)
             return false;
 
-        GameObject prefab = trigger.Config.entityPrefab;
+        GameObject prefab = trigger.Config.GetEntityPrefab(
+            trigger.Student != null ? trigger.Student.Gender : StudentGender.Unspecified);
         if (prefab == null)
         {
             Debug.LogWarning("EntityConfig " + trigger.Config.name + " no tiene prefab.", trigger);

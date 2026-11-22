@@ -4,6 +4,13 @@ using System.Collections.Generic;
 using BehaviourAPI.Core;
 using UnityEngine;
 
+public enum StudentGender
+{
+    Unspecified,
+    Male,
+    Female
+}
+
 // Funciones propias del estudiante. StudentBehaviour monta el Utility System
 // y el BT con la librería, pero todo lo que hacen es llamar a estos métodos.
 //
@@ -20,6 +27,9 @@ public class StudentBrain : MonoBehaviour
 
     [Header("Configuración")]
     [SerializeField] private StudentProfile profile;
+
+    [Tooltip("Variante visual del estudiante; el comportamiento se comparte por arquetipo.")]
+    [SerializeField] private StudentGender gender = StudentGender.Unspecified;
 
     [Tooltip("Habitación propia. Las actividades con destino Bedroom van aquí.")]
     [SerializeField] private NPCDestination ownBedroom;
@@ -38,6 +48,7 @@ public class StudentBrain : MonoBehaviour
     // Estado público
     // ------------------------------------------------------------------
     public StudentProfile Profile => profile;
+    public StudentGender Gender => gender;
     public IReadOnlyList<ActivityEntry> Activities => activities;
 
     public ActivityData CurrentActivity { get; private set; }   // null = decidiendo

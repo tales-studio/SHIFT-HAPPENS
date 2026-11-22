@@ -15,8 +15,18 @@ public class EntityConfig : ScriptableObject
 {
     public EntityArchetype archetype;
 
-    [Tooltip("Prefab de la entidad (subclase de EntityBrain + EntityBehaviour + NavMeshAgent).")]
+    [Tooltip("Prefab por defecto (masculino en los arquetipos con variantes). Debe incluir EntityBrain y NavMeshAgent.")]
     public GameObject entityPrefab;
+
+    [Tooltip("Variante femenina opcional. Si se deja vacía se usa el prefab por defecto.")]
+    public GameObject femaleEntityPrefab;
+
+    public GameObject GetEntityPrefab(StudentGender gender)
+    {
+        return gender == StudentGender.Female && femaleEntityPrefab != null
+            ? femaleEntityPrefab
+            : entityPrefab;
+    }
 
     [Tooltip("Ocultar al estudiante mientras su entidad está en escena.")]
     public bool hidesStudent = true;

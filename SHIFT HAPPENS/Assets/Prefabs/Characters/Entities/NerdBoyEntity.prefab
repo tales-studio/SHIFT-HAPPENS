@@ -14,10 +14,10 @@ GameObject:
   - component: {fileID: 2471602597399427727}
   - component: {fileID: 8304686195504806168}
   - component: {fileID: 8900596062042055051}
-  - component: {fileID: -1736144058445222521}
-  - component: {fileID: 1275943669545311492}
+  - component: {fileID: -8257115956458920083}
+  - component: {fileID: -326868028696671214}
   m_Layer: 0
-  m_Name: BullyEntity
+  m_Name: NerdBoyEntity
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -87,12 +87,12 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 4120901811166270815, guid: 26cbe0f1e7204b2468f04a33d297582c, type: 3}
+  m_Sprite: {fileID: -855298285791758126, guid: 6afe3d9d426eaf140b82f071e7e890f7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 2.7422223, y: 6.5644445}
+  m_Size: {x: 2.4822223, y: 7.597778}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 0
@@ -183,21 +183,7 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 2.056, y: 6.3360004}
   m_Direction: 0
---- !u!114 &-1736144058445222521
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4249073993557280935}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5d077adce306dd42a3de506679592bf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::BullyEntity
-  animator: {fileID: 0}
-  debugLogs: 0
---- !u!114 &1275943669545311492
+--- !u!114 &-8257115956458920083
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -212,3 +198,25 @@ MonoBehaviour:
   animator: {fileID: 0}
   idleThreshold: 0.05
   directionSmoothing: 10
+--- !u!95 &-326868028696671214
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4249073993557280935}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 22100000, guid: adb1e969c9dcf794e9e5cf7cfe78f237, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

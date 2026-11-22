@@ -242,6 +242,8 @@ GameObject:
   - component: {fileID: 5527390148261937503}
   - component: {fileID: 5527390148261937504}
   - component: {fileID: 5527390148261937505}
+  - component: {fileID: 5527390148261937506}
+  - component: {fileID: 5527390148261937507}
   m_Layer: 0
   m_Name: CutscenePlayer
   m_TagString: Untagged
@@ -693,3 +695,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 330e917313b94bc9937cab963613b7d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HoldToSkip
+--- !u!114 &5527390148261937506
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5527390148261937500}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05420c7bd2a84ac292ea04e4d926be31, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CutsceneVolume
+  audioSource: {fileID: 5527390148261937504}
+--- !u!114 &5527390148261937507
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5527390148261937500}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7de9de6a87974b94b97c13873ea11827, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CutsceneMenuBlocker

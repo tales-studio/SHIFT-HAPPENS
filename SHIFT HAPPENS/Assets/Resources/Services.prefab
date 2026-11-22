@@ -211,7 +211,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6dc21d49f8da2b842a26749cc02184ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SoundManager
-  library: {fileID: 0}
+  library: {fileID: 11400000, guid: 4b2acfdcf0f50e612266c866f2ac90b2, type: 2}
   volume:
     masterVolume: 1
     musicEnabled: 1

@@ -15,4 +15,4 @@ MonoBehaviour:
   speakerName: Encarni
   portrait: {fileID: 8001473604841077134, guid: 85365c847ce778f4da0641f923f0c863, type: 3}
   lines:
-  - "Basement: the laundry room. The machines are old, so treat them gently."
+  - "*Basement*: the *laundry room*. The machines are old, so treat them gently."

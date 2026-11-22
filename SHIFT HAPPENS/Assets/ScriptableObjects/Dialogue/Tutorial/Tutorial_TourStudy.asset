@@ -15,4 +15,4 @@ MonoBehaviour:
   speakerName: Encarni
   portrait: {fileID: 8001473604841077134, guid: 85365c847ce778f4da0641f923f0c863, type: 3}
   lines:
-  - "Study room. During exams they basically live in there."
+  - "*Study room*. During exams they basically live in there."

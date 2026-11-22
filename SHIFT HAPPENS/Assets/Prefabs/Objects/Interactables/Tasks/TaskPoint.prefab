@@ -47,6 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d996ad2380f7864b8d809a99546bcb4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InteractableObject
+  canInteract: 1
   onInteract:
     m_PersistentCalls:
       m_Calls: []

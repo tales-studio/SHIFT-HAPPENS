@@ -32,6 +32,29 @@ public abstract class EntityBrain : MonoBehaviour
     private float repathTimer;
     private bool caughtPlayer;
     private bool finishNotified;
+    private bool frozen;
+    private bool stoppedBeforeFreeze;
+
+    public void SetFrozen(bool value)
+    {
+        if (frozen == value) return;
+        frozen = value;
+
+        if (agent != null && agent.isOnNavMesh)
+        {
+            if (frozen)
+            {
+                stoppedBeforeFreeze = agent.isStopped;
+                agent.isStopped = true;
+            }
+            else
+            {
+                agent.isStopped = stoppedBeforeFreeze;
+            }
+        }
+
+        if (animator != null) animator.speed = frozen ? 0f : 1f;
+    }
 
     protected virtual void Awake()
     {

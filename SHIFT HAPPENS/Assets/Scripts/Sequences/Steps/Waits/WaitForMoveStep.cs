@@ -3,6 +3,7 @@ using UnityEngine;
 public class WaitForMoveStep : PromptedStep
 {
     [SerializeField, Min(0f)] private float distance = 3f;
+    [SerializeField] private bool requireSneak;
 
     private Vector2 lastPosition;
     private float travelled;
@@ -18,7 +19,7 @@ public class WaitForMoveStep : PromptedStep
         if (!IsRunning || Player.Instance == null) return;
 
         Vector2 position = Player.Instance.Position;
-        travelled += Vector2.Distance(position, lastPosition);
+        if (!requireSneak || Player.Instance.IsSneaking) travelled += Vector2.Distance(position, lastPosition);
         lastPosition = position;
 
         if (travelled >= distance) Complete();

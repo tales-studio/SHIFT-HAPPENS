@@ -15,4 +15,4 @@ MonoBehaviour:
   speakerName: Encarni
   portrait: {fileID: 8001473604841077134, guid: 85365c847ce778f4da0641f923f0c863, type: 3}
   lines:
-  - "Last thing: walk up to things and press *E* to use them. Sign the *shift sheet* and you're on."
+  - "Last thing: walk up to things and press *E* to use them. Sign in on the *computer* and you're on."

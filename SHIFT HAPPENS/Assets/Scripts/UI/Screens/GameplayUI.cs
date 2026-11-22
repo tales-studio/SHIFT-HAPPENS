@@ -10,6 +10,7 @@ public class GameplayUI : MonoBehaviour
     [SerializeField] private UIScreen pauseScreen;
     [SerializeField] private UIScreen survivedScreen;
     [SerializeField] private UIScreen failedScreen;
+    [SerializeField] private GameObject survivedBackdrop;
 
     [Header("Input")]
     [SerializeField] private InputAction pauseAction = new InputAction("Pause", InputActionType.Button, "<Keyboard>/escape");
@@ -56,15 +57,17 @@ public class GameplayUI : MonoBehaviour
     {
         if (gameManager == null) return;
 
-        if (!gameManager.IsPaused) gameManager.Pause();
+        if (gameManager.CurrentPhase == GamePhase.Ended) navigator.Pop();
+        else if (!gameManager.IsPaused) gameManager.Pause();
         else GoBack();
     }
 
     private void HandleBackInput(InputAction.CallbackContext context)
     {
-        if (gameManager == null || !gameManager.IsPaused) return;
+        if (gameManager == null) return;
 
-        GoBack();
+        if (gameManager.CurrentPhase == GamePhase.Ended) navigator.Pop();
+        else if (gameManager.IsPaused) GoBack();
     }
 
     private void GoBack()
@@ -86,6 +89,9 @@ public class GameplayUI : MonoBehaviour
     private void HandleShiftEnded(ShiftResult result)
     {
         navigator.CloseAll();
-        navigator.Push(result == ShiftResult.Survived ? survivedScreen : failedScreen);
+
+        bool survived = result == ShiftResult.Survived;
+        if (survivedBackdrop != null) survivedBackdrop.SetActive(survived);
+        navigator.Push(survived ? survivedScreen : failedScreen);
     }
 }

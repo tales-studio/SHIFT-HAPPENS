@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour
 
     public GamePhase CurrentPhase { get; private set; } = GamePhase.Menu;
     public bool isPlaying => CurrentPhase == GamePhase.Tutorial || CurrentPhase == GamePhase.Normal || CurrentPhase == GamePhase.Blackout || CurrentPhase == GamePhase.Outbreak;
+    public bool IsShiftRunning => CurrentPhase == GamePhase.Normal || CurrentPhase == GamePhase.Blackout || CurrentPhase == GamePhase.Outbreak;
     public bool IsPaused { get; private set; }
     public ShiftResult Result { get; private set; }
     public ShiftClock Clock => clock;

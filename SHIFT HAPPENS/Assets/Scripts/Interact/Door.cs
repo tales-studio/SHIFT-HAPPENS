@@ -12,6 +12,10 @@ public class Door : MonoBehaviour
     [Tooltip("A locked door can't be opened until Unlock() is called.")]
     [SerializeField] private bool startsLocked;
 
+    [Header("Sounds")]
+    [SerializeField] private SoundId openSound = SoundId.DoorOpen;
+    [SerializeField] private SoundId closeSound = SoundId.DoorClose;
+
     private InteractableObject interactable;
     private TwoStateVisual visual;
 
@@ -95,6 +99,7 @@ public class Door : MonoBehaviour
 
         IsOpen = open;
         ApplyState();
+        AudioServices.Sfx.PlayAt(open ? openSound : closeSound, transform.position);
         OpenStateChanged?.Invoke(open);
     }
 

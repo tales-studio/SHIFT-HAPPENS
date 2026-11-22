@@ -12560,6 +12560,7 @@ MonoBehaviour:
   lineText: {fileID: 6600000000000000043}
   continueIndicator: {fileID: 6600000000000000050}
   charactersPerSecond: 40
+  highlightColor: {r: 0.45, g: 0.85, b: 1, a: 1}
   previewDialogue: {fileID: 11400000, guid: b5edd3f3d2a14dcd95c48f200f9bef9a, type: 2}
   advanceAction:
     m_Name: AdvanceDialogue

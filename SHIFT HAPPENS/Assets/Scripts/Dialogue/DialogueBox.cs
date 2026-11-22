@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Text.RegularExpressions;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -10,6 +11,7 @@ using UnityEngine.UI;
 public class DialogueBox : MonoBehaviour, IDialoguePresenter, IPointerClickHandler
 {
     private const int AllCharacters = 99999;
+    private static readonly Regex HighlightPattern = new Regex(@"\*(.+?)\*");
 
     [SerializeField] private GameObject box;
     [SerializeField] private Image portrait;
@@ -17,6 +19,7 @@ public class DialogueBox : MonoBehaviour, IDialoguePresenter, IPointerClickHandl
     [SerializeField] private TMP_Text lineText;
     [SerializeField] private GameObject continueIndicator;
     [SerializeField, Min(1f)] private float charactersPerSecond = 40f;
+    [SerializeField] private Color highlightColor = new Color(0.45f, 0.85f, 1f, 1f);
     [SerializeField] private DialogueData previewDialogue;
 
     [Header("Input")]
@@ -136,11 +139,17 @@ public class DialogueBox : MonoBehaviour, IDialoguePresenter, IPointerClickHandl
 
     private void ShowLine()
     {
-        lineText.text = current.lines[lineIndex];
+        lineText.text = ApplyHighlights(current.lines[lineIndex]);
         lineText.maxVisibleCharacters = 0;
         continueIndicator.SetActive(false);
         isTyping = true;
         typeRoutine = StartCoroutine(TypeLine());
+    }
+
+    private string ApplyHighlights(string line)
+    {
+        string hex = ColorUtility.ToHtmlStringRGBA(highlightColor);
+        return HighlightPattern.Replace(line, "<color=#" + hex + ">$1</color>");
     }
 
     private IEnumerator TypeLine()

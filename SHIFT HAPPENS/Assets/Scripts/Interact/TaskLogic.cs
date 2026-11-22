@@ -58,7 +58,7 @@ public class TaskLogic : MonoBehaviour
     private void Update()
     {
         if (!isActive || task.expirationSeconds <= 0f) return;
-        if (GameManager.Instance == null || !GameManager.Instance.isPlaying) return;
+        if (GameManager.Instance == null || !GameManager.Instance.IsShiftRunning) return;
 
         remainingTime -= Time.deltaTime;
 

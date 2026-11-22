@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public enum GamePhase
@@ -20,7 +21,8 @@ public class GameManager : MonoBehaviour
 
     public GamePhase CurrentPhase { get; private set; } = GamePhase.Menu;
     public bool isPlaying => CurrentPhase == GamePhase.Tutorial || CurrentPhase == GamePhase.Normal || CurrentPhase == GamePhase.Blackout || CurrentPhase == GamePhase.Outbreak;
-    public bool IsShiftRunning => CurrentPhase == GamePhase.Normal || CurrentPhase == GamePhase.Blackout || CurrentPhase == GamePhase.Outbreak;
+    public bool IsShiftRunning => !IsShiftHeld && (CurrentPhase == GamePhase.Normal || CurrentPhase == GamePhase.Blackout || CurrentPhase == GamePhase.Outbreak);
+    public bool IsShiftHeld => shiftHolds.Count > 0;
     public bool IsPaused { get; private set; }
     public ShiftResult Result { get; private set; }
     public ShiftClock Clock => clock;
@@ -31,6 +33,17 @@ public class GameManager : MonoBehaviour
     public event Action OnPaused;
     public event Action OnResumed;
 
+    private readonly HashSet<object> shiftHolds = new HashSet<object>();
+
+    public void AddShiftHold(object source)
+    {
+        shiftHolds.Add(source);
+    }
+
+    public void RemoveShiftHold(object source)
+    {
+        shiftHolds.Remove(source);
+    }
 
     private void Awake()
     {

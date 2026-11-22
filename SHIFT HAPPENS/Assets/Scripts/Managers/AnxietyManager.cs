@@ -79,10 +79,7 @@ public class AnxietyManager : MonoBehaviour
 
     private bool IsAnxietyActive()
     {
-        if (GameManager.Instance == null) return false;
-
-        GamePhase phase = GameManager.Instance.CurrentPhase;
-        return phase == GamePhase.Normal || phase == GamePhase.Blackout || phase == GamePhase.Outbreak;
+        return GameManager.Instance != null && GameManager.Instance.IsShiftRunning;
     }
 
     private void HandlePhaseChanged(GamePhase phase)

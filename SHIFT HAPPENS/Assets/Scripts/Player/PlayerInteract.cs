@@ -21,8 +21,21 @@ public class PlayerInteract : MonoBehaviour
     [SerializeField] private Vector2 signBackgroundPadding = new Vector2(0.3f, 0.18f);
 
     private readonly List<Collider2D> overlaps = new List<Collider2D>();
+    private readonly HashSet<object> locks = new HashSet<object>();
     private ContactFilter2D filter;
     private TextMeshPro sign;
+
+    public bool IsLocked => locks.Count > 0;
+
+    public void AddLock(object source)
+    {
+        locks.Add(source);
+    }
+
+    public void RemoveLock(object source)
+    {
+        locks.Remove(source);
+    }
 
     private void Awake()
     {
@@ -45,7 +58,7 @@ public class PlayerInteract : MonoBehaviour
 
     private void LateUpdate()
     {
-        IInteractable closest = GetClosestInteractable();
+        IInteractable closest = IsLocked ? null : GetClosestInteractable();
 
         if (closest == null)
         {
@@ -59,6 +72,8 @@ public class PlayerInteract : MonoBehaviour
 
     public void OnInteract()
     {
+        if (IsLocked) return;
+
         IInteractable closest = GetClosestInteractable();
 
         if (closest != null)

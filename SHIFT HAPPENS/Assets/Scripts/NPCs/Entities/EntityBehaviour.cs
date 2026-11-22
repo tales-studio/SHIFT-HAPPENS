@@ -39,6 +39,10 @@ public class EntityBehaviour : MonoBehaviour
     {
         if (fsm == null || finished) return;
 
+        bool held = GameManager.Instance != null && GameManager.Instance.IsShiftHeld;
+        brain.SetFrozen(held);
+        if (held) return;
+
         fsm.Update();
 
         // La transición de salida (desde Desaparecer) termina la FSM

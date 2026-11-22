@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public enum GamePhase
@@ -6,8 +7,9 @@ public enum GamePhase
     Menu,
     Normal,
     Blackout,
-    Outbreak, 
-    Ended
+    Outbreak,
+    Ended,
+    Tutorial
 }
 public class GameManager : MonoBehaviour
 {
@@ -18,7 +20,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] private bool startOnPlay = true;
 
     public GamePhase CurrentPhase { get; private set; } = GamePhase.Menu;
-    public bool isPlaying => CurrentPhase == GamePhase.Normal || CurrentPhase == GamePhase.Blackout || CurrentPhase == GamePhase.Outbreak;
+    public bool isPlaying => CurrentPhase == GamePhase.Tutorial || CurrentPhase == GamePhase.Normal || CurrentPhase == GamePhase.Blackout || CurrentPhase == GamePhase.Outbreak;
+    public bool IsShiftRunning => !IsShiftHeld && (CurrentPhase == GamePhase.Normal || CurrentPhase == GamePhase.Blackout || CurrentPhase == GamePhase.Outbreak);
+    public bool IsShiftHeld => shiftHolds.Count > 0;
     public bool IsPaused { get; private set; }
     public ShiftResult Result { get; private set; }
     public ShiftClock Clock => clock;
@@ -29,6 +33,17 @@ public class GameManager : MonoBehaviour
     public event Action OnPaused;
     public event Action OnResumed;
 
+    private readonly HashSet<object> shiftHolds = new HashSet<object>();
+
+    public void AddShiftHold(object source)
+    {
+        shiftHolds.Add(source);
+    }
+
+    public void RemoveShiftHold(object source)
+    {
+        shiftHolds.Remove(source);
+    }
 
     private void Awake()
     {
@@ -55,7 +70,11 @@ public class GameManager : MonoBehaviour
         clock.OnHourChanged += HandleHourChanged;
         clock.OnShiftEnded += HandleShiftEnded;
 
-        if (startOnPlay) StartShift();
+        if (!startOnPlay) return;
+
+        TutorialDirector tutorial = FindFirstObjectByType<TutorialDirector>();
+        if (tutorial != null) tutorial.Begin();
+        else StartShift();
     }
 
     private void OnDestroy()
@@ -66,6 +85,16 @@ public class GameManager : MonoBehaviour
             clock.OnShiftEnded -= HandleShiftEnded;
         }
         if (Instance == this) Instance = null;
+    }
+
+    public void StartTutorial()
+    {
+        if (!CanChangeTo(GamePhase.Tutorial)) return;
+
+        Time.timeScale = 1f;
+        if (TaskManager.Instance != null) TaskManager.Instance.ClearTasks();
+        clock.ResetClock();
+        SetPhase(GamePhase.Tutorial);
     }
 
     public void StartShift()
@@ -155,6 +184,8 @@ public class GameManager : MonoBehaviour
         switch (from)
         {
             case GamePhase.Menu:
+                return to == GamePhase.Normal || to == GamePhase.Tutorial;
+            case GamePhase.Tutorial:
                 return to == GamePhase.Normal;
             case GamePhase.Normal:
                 return to == GamePhase.Blackout || to == GamePhase.Ended;

@@ -256,6 +256,8 @@ GameObject:
   - component: {fileID: 3448903195761034080}
   - component: {fileID: 8027190828151265856}
   - component: {fileID: 619017273321058911}
+  - component: {fileID: 2843479521685793729}
+  - component: {fileID: 2843479521685793730}
   m_Layer: 5
   m_Name: ClockCanvas
   m_TagString: Untagged
@@ -329,6 +331,33 @@ MonoBehaviour:
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
   m_PresetInfoIsWorld: 0
+--- !u!225 &2843479521685793729
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2843479521685793728}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
+--- !u!114 &2843479521685793730
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2843479521685793728}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33a88cdc7ff6bc343a6631574cb11dbe, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: Assembly-CSharp::HudGroup
+  element: 2
+  fadeDuration: 0.4
+  startHidden: 0
 --- !u!1 &4920076857896229690
 GameObject:
   m_ObjectHideFlags: 0

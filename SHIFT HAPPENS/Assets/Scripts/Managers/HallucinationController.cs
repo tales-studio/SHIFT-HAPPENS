@@ -31,7 +31,7 @@ public class HallucinationController : MonoBehaviour
         get
         {
             if (Player.Instance == null) return false;
-            if (GameManager.Instance != null && !GameManager.Instance.isPlaying) return false;
+            if (GameManager.Instance != null && !GameManager.Instance.IsShiftRunning) return false;
             if (onlyDuringOutbreak &&
                 (GameManager.Instance == null || GameManager.Instance.CurrentPhase != GamePhase.Outbreak))
                 return false;

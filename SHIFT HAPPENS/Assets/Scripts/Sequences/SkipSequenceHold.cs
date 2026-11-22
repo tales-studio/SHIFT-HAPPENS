@@ -1,56 +1,49 @@
 using UnityEngine;
-using UnityEngine.UI;
 
 [DisallowMultipleComponent]
-public class SkipSequenceButton : MonoBehaviour
+public class SkipSequenceHold : MonoBehaviour
 {
     [SerializeField] private Sequence sequence;
-    [SerializeField] private Button button;
-
-    private void Awake()
-    {
-        SetVisible(false);
-    }
+    [SerializeField] private HoldToSkip hold;
+    [SerializeField, Min(0f)] private float holdDuration = 1f;
 
     private void OnEnable()
     {
-        if (button != null) button.onClick.AddListener(Skip);
         if (sequence == null) return;
 
         sequence.Started += HandleStarted;
         sequence.Ended += HandleEnded;
-        SetVisible(sequence.IsPlaying);
+        if (sequence.IsPlaying) HandleStarted();
     }
 
     private void OnDisable()
     {
-        if (button != null) button.onClick.RemoveListener(Skip);
         if (sequence == null) return;
 
         sequence.Started -= HandleStarted;
         sequence.Ended -= HandleEnded;
+        if (hold != null) hold.Hide();
     }
 
     public void Skip()
     {
         if (sequence == null || !sequence.IsPlaying) return;
-        if (GameManager.Instance != null && GameManager.Instance.IsPaused) return;
 
         sequence.FastForward();
     }
 
     private void HandleStarted()
     {
-        SetVisible(true);
+        hold.Show(holdDuration, Skip, IsPaused);
     }
 
     private void HandleEnded()
     {
-        SetVisible(false);
+        hold.Hide();
     }
 
-    private void SetVisible(bool visible)
+    private static bool IsPaused()
     {
-        if (button != null) button.gameObject.SetActive(visible);
+        return GameManager.Instance != null && GameManager.Instance.IsPaused;
     }
 }

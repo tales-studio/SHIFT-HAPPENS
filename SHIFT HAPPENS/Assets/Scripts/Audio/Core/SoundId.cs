@@ -71,6 +71,7 @@ public enum SoundId
     NPCStudyingStressed = 707,
     NPCAskHelp = 708,
     EncarniVoice = 709,
+    NPCStudentsScream = 710,
 
     EntityBreathing = 800,
     EntityGrowl = 801,

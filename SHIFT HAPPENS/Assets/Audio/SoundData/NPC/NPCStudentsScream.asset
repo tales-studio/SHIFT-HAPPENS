@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f00babb23b3c0e741a079e213880ba46, type: 3}
+  m_Name: NPCStudentsScream
+  m_EditorClassIdentifier: Assembly-CSharp::SoundData
+  category: 5
+  clips:
+  - {fileID: 8300000, guid: 0892ba005fca44692acb9b501175dcf2, type: 3}
+  distortedClips: []
+  distortDuringOutbreak: 1
+  volume: 1
+  loop: 0
+  randomizePitch: 1
+  minPitch: 1
+  maxPitch: 1
+  spatialBlend: 0
+  minDistance: 1
+  maxDistance: 15
+  cooldown: 0
+  maxSimultaneous: 1
+  avoidImmediateRepeat: 1

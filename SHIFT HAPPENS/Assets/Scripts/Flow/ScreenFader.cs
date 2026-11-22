@@ -41,6 +41,13 @@ public class ScreenFader : MonoBehaviour, IScreenFader
     private IEnumerator FadeTo(float target, float duration)
     {
         int version = ++fadeVersion;
+
+        if (Mathf.Approximately(fadePanel.alpha, target))
+        {
+            SetAlpha(target);
+            yield break;
+        }
+
         float time = duration < 0f ? defaultDuration : duration;
         float start = fadePanel.alpha;
         float elapsed = 0f;

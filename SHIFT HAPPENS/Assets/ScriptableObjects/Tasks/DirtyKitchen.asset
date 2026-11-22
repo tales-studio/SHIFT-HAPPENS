@@ -18,3 +18,4 @@ MonoBehaviour:
   anxietyOnFail: 0
   reliefOnComplete: 30
   spawnChance: 0.2
+  completeSound: 306

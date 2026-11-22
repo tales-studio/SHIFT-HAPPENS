@@ -10,6 +10,15 @@ public class BlackoutSequence : MonoBehaviour
     [SerializeField, Range(0f, 1f)] private float darkIntensity = 0.25f;
     [SerializeField] private Color hostileColor = new Color(0.7f, 0.75f, 1f);
 
+    [Header("Global light")]
+    [Tooltip("Global Light 2D de la escena. Tras el apagón toma estos valores exactos.")]
+    [SerializeField] private Light2D globalLight;
+    [SerializeField, Min(0f)] private float blackoutGlobalIntensity = 0.2f;
+
+    [Header("After blackout")]
+    [Tooltip("Objetos que se activan tras el apagón (p.ej. las luces locales de Ramón).")]
+    [SerializeField] private GameObject[] enableAfterBlackout;
+
     [Header("Flicker")]
     [SerializeField, Min(0)] private int flickerCount = 4;
     [SerializeField, Min(0f)] private float flickerInterval = 0.12f;
@@ -63,6 +72,7 @@ public class BlackoutSequence : MonoBehaviour
 
         yield return Flicker();
         SetLights(darkIntensity, hostileColor);
+        ApplyBlackoutLighting();
         AudioServices.Sfx.Play(darknessSound);
 
         IScreenFader fader = SceneServices.Fader;
@@ -90,6 +100,19 @@ public class BlackoutSequence : MonoBehaviour
 
             SetLights(1f, null);
             yield return new WaitForSeconds(flickerInterval * Random.Range(0.5f, 1.5f));
+        }
+    }
+
+    private void ApplyBlackoutLighting()
+    {
+        if (globalLight != null)
+        {
+            globalLight.intensity = blackoutGlobalIntensity;
+        }
+
+        foreach (GameObject target in enableAfterBlackout)
+        {
+            if (target != null) target.SetActive(true);
         }
     }
 

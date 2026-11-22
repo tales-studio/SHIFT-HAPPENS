@@ -35,8 +35,7 @@ public class StudentAnimator : MonoBehaviour
         // NavMeshAgent can retain residual velocity after its path is cleared.
         // With no active path the NPC should return to Idle immediately.
         bool hasMovementIntent = !agent.isStopped &&
-                                 agent.hasPath &&
-                                 !agent.pathPending;
+                         (agent.hasPath || agent.pathPending);
 
         Vector2 velocity = hasMovementIntent
             ? new Vector2(agent.velocity.x, agent.velocity.y)

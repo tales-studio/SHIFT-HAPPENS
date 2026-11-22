@@ -19,3 +19,4 @@ MonoBehaviour:
   reliefOnComplete: 30
   spawnChance: 0.2
   minutesGainedOnComplete: 15
+  completeSound: 0

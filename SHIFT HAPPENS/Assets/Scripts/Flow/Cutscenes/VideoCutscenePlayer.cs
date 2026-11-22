@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.Video;
 
 [DisallowMultipleComponent]
@@ -9,8 +10,11 @@ public class VideoCutscenePlayer : MonoBehaviour, ICutscenePlayer
     [SerializeField] private VideoPlayer video;
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private GameObject screen;
+    [SerializeField] private RawImage display;
+    [SerializeField] private AspectRatioFitter fitter;
 
     private Cutscene current;
+    private RenderTexture texture;
     private bool finished;
 
     public bool IsPlaying { get; private set; }
@@ -22,6 +26,7 @@ public class VideoCutscenePlayer : MonoBehaviour, ICutscenePlayer
     {
         video.playOnAwake = false;
         video.isLooping = false;
+        video.renderMode = VideoRenderMode.RenderTexture;
         video.timeUpdateMode = VideoTimeUpdateMode.UnscaledGameTime;
         video.audioOutputMode = VideoAudioOutputMode.AudioSource;
         video.SetTargetAudioSource(0, audioSource);
@@ -69,6 +74,7 @@ public class VideoCutscenePlayer : MonoBehaviour, ICutscenePlayer
         current = cutscene;
         finished = false;
 
+        CreateTexture(cutscene.Clip);
         video.clip = cutscene.Clip;
         video.Prepare();
         while (!video.isPrepared && !finished) yield return null;
@@ -88,10 +94,33 @@ public class VideoCutscenePlayer : MonoBehaviour, ICutscenePlayer
 
         video.Stop();
         screen.SetActive(false);
+        ReleaseTexture();
 
         current = null;
         IsPlaying = false;
         Finished?.Invoke(cutscene);
+    }
+
+    private void CreateTexture(VideoClip clip)
+    {
+        int width = Mathf.Max(1, (int)clip.width);
+        int height = Mathf.Max(1, (int)clip.height);
+
+        texture = new RenderTexture(width, height, 0);
+        video.targetTexture = texture;
+        display.texture = texture;
+        fitter.aspectRatio = (float)width / height;
+    }
+
+    private void ReleaseTexture()
+    {
+        video.targetTexture = null;
+        display.texture = null;
+
+        if (texture == null) return;
+        texture.Release();
+        Destroy(texture);
+        texture = null;
     }
 
     private void HandleVideoEnded(VideoPlayer source)

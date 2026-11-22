@@ -17,4 +17,12 @@ public sealed class PlayerPrefsTutorialProgress : ITutorialProgress
         PlayerPrefs.DeleteKey(SeenKey);
         PlayerPrefs.Save();
     }
+
+#if UNITY_EDITOR
+    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+    private static void ResetForEditorPlay()
+    {
+        PlayerPrefs.DeleteKey(SeenKey);
+    }
+#endif
 }

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Tutorial_Intro
   m_EditorClassIdentifier: Assembly-CSharp::DialogueData
   speakerName: Encarni
-  portrait: {fileID: 0}
+  portrait: {fileID: 8001473604841077134, guid: 85365c847ce778f4da0641f923f0c863, type: 3}
   lines:
   - "So you're the new night caretaker. Ramón, right? I'm Encarni, the manager."
   - "Your job is simple: keep the building running and help the residents with whatever they need."

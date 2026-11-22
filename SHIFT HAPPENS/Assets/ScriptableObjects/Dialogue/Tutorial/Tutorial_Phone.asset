@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Tutorial_Phone
   m_EditorClassIdentifier: Assembly-CSharp::DialogueData
   speakerName: Encarni
-  portrait: {fileID: 0}
+  portrait: {fileID: 8001473604841077134, guid: 85365c847ce778f4da0641f923f0c863, type: 3}
   lines:
   - "Take this. Residents send their requests straight to your phone. Press TAB."

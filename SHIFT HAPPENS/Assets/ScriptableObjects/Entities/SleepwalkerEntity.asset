@@ -14,13 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EntityConfig
   archetype: 3
   entityPrefab: {fileID: 4249073993557280935, guid: f0bc7245bb14c3c409b059b9fd3250ac, type: 3}
+  femaleEntityPrefab: {fileID: 0}
   hidesStudent: 1
   activationRange: 100
   sneakActivationRange: 10
   reactivationCooldown: 30
-  chaseSpeed: 10
-  attackRange: 3
-  repathInterval: 0.2
+  chaseSpeed: 20
+  attackRange: 2
+  repathInterval: 0.1
   appearDuration: 0.6
   attackDuration: 0
   disappearDuration: 0

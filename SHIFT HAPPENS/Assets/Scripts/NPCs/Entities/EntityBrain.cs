@@ -110,18 +110,27 @@ public abstract class EntityBrain : MonoBehaviour
         IsChasing = true;
         repathTimer = 0f;
         agent.speed = Config.chaseSpeed;
+        agent.autoBraking = false;
         if (agent.isOnNavMesh) agent.isStopped = false;
     }
 
+    private Vector3 lastTargetPosition;
+
     public virtual Status UpdateChase()
     {
+        if (TargetPlayer == null || !agent.isOnNavMesh) return Status.Running;
+
         repathTimer -= Time.deltaTime;
-        if (repathTimer <= 0f && TargetPlayer != null && agent.isOnNavMesh)
+        Vector3 target = TargetPlayer.Position;
+
+        // Recalcula si toca por tiempo o si Ramón se ha movido más de medio metro
+        if (repathTimer <= 0f || (target - lastTargetPosition).sqrMagnitude > 0.25f)
         {
             repathTimer = Config.repathInterval;
-            agent.SetDestination(TargetPlayer.Position);
+            lastTargetPosition = target;
+            agent.SetDestination(target);
         }
-        return Status.Running; // Sale por transición (rango de ataque o interrupción)
+        return Status.Running;
     }
 
     public virtual void StopChase()

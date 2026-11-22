@@ -19,9 +19,9 @@ MonoBehaviour:
   activationRange: 15
   sneakActivationRange: 5
   reactivationCooldown: 30
-  chaseSpeed: 6
-  attackRange: 3
-  repathInterval: 0.2
+  chaseSpeed: 12
+  attackRange: 2
+  repathInterval: 0.1
   appearDuration: 0.6
   attackDuration: 0
   disappearDuration: 0

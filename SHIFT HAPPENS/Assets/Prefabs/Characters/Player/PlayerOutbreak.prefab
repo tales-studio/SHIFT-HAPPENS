@@ -309,6 +309,7 @@ GameObject:
   - component: {fileID: 6231692065395842029}
   - component: {fileID: 5550381707414048225}
   - component: {fileID: 8871130252101467147}
+  - component: {fileID: 157209101613172881}
   m_Layer: 0
   m_Name: PlayerOutbreak
   m_TagString: Player
@@ -543,8 +544,15 @@ MonoBehaviour:
   interactableLayers:
     serializedVersion: 2
     m_Bits: 55
+  signText: E
   signFont: {fileID: 11400000, guid: 3289301038f08104f9b59b212961d0f8, type: 2}
+  signFontSize: 8
+  signColor: {r: 1, g: 1, b: 1, a: 1}
   signMaterial: {fileID: 2100000, guid: 0fe3ed4eb3834a8d80195645d6617879, type: 2}
+  signHeightOffset: 0.6
+  signSortingOrder: 500
+  signBackgroundColor: {r: 0, g: 0, b: 0, a: 0.75}
+  signBackgroundPadding: {x: 0.3, y: 0.18}
 --- !u!114 &5550381707414048225
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -570,6 +578,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2893d5eb98e34384898fb6e048d3ca7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player
+--- !u!114 &157209101613172881
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2348464780611269936}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb35e381147f44769b5a383473d508f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerTeleporter
 --- !u!1 &2549400904768532172
 GameObject:
   m_ObjectHideFlags: 0
@@ -653,7 +673,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::HighlightSensor
   highlightableLayers:
     serializedVersion: 2
-    m_Bits: 4294967167
+    m_Bits: 55
 --- !u!1 &5449852650661905175
 GameObject:
   m_ObjectHideFlags: 0

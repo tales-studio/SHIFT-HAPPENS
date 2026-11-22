@@ -109,7 +109,7 @@ NavMeshAgent:
   m_AgentTypeID: 0
   m_Radius: 1.028
   m_Speed: 3.5
-  m_Acceleration: 8
+  m_Acceleration: 40
   avoidancePriority: 50
   m_AngularSpeed: 120
   m_StoppingDistance: 0
@@ -281,6 +281,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SleepwalkerEntity
   animator: {fileID: 0}
   debugLogs: 0
+  appearSound: 801
   screamClip: {fileID: 0}
   vanishClip: {fileID: 0}
 --- !u!114 &-8604830874791214109

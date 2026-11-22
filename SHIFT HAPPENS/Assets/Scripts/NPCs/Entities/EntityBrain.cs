@@ -21,6 +21,9 @@ public abstract class EntityBrain : MonoBehaviour
     [SerializeField] protected Animator animator;
     [SerializeField] protected bool debugLogs = false;
 
+    [Header("Sonidos")]
+    [SerializeField] protected SoundId appearSound = SoundId.EntityGrowl;
+
     // Estructuras de datos de la especificación
     public EntityConfig Config { get; private set; }
     public StudentBrain AssociatedStudent { get; private set; }
@@ -87,6 +90,7 @@ public abstract class EntityBrain : MonoBehaviour
         timer = 0f;
         StopMovement();
         SetTrigger("Appear");
+        AudioServices.Sfx.PlayAt(appearSound, transform.position);
     }
 
     public Status UpdateAppear() => Wait(Config.appearDuration);

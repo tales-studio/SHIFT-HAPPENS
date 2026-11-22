@@ -25,6 +25,11 @@ public class WaitForInteractStep : PromptedStep
         if (disableAfter) target.SetCanInteract(false);
     }
 
+    protected override void OnFastForward()
+    {
+        if (target != null && disableAfter) target.SetCanInteract(false);
+    }
+
     private void HandleInteract()
     {
         Complete();

@@ -8,8 +8,18 @@ public class HudStep : SequenceStep
 
     protected override void OnEnter()
     {
-        HudGroup hudGroup = HudGroup.Find(element);
-        if (hudGroup != null) hudGroup.SetVisible(visible, instant);
+        Apply(instant);
         Complete();
+    }
+
+    protected override void OnFastForward()
+    {
+        Apply(true);
+    }
+
+    private void Apply(bool now)
+    {
+        HudGroup hudGroup = HudGroup.Find(element);
+        if (hudGroup != null) hudGroup.SetVisible(visible, now);
     }
 }

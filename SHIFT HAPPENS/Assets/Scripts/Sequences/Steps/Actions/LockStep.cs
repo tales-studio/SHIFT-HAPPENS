@@ -39,8 +39,18 @@ public class LockStep : SequenceStep
 
     protected override void OnEnter()
     {
+        ApplyOwn();
+        Complete();
+    }
+
+    protected override void OnFastForward()
+    {
+        ApplyOwn();
+    }
+
+    private void ApplyOwn()
+    {
         Sequence owner = GetComponentInParent<Sequence>();
         Apply(target, locked, owner != null ? owner : (object)this);
-        Complete();
     }
 }

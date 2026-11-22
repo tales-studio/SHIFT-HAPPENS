@@ -1,5 +1,4 @@
 using System;
-using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -9,8 +8,6 @@ using UnityEngine.UI;
 public class HoldToSkip : MonoBehaviour
 {
     [SerializeField] private Image fill;
-    [SerializeField] private TMP_Text label;
-    [SerializeField] private string labelFormat = "Hold {0} to skip";
     [SerializeField] private InputAction skipAction = new InputAction("Skip", InputActionType.Button);
 
     private CanvasGroup group;
@@ -52,8 +49,7 @@ public class HoldToSkip : MonoBehaviour
         held = 0f;
         active = true;
 
-        label.text = string.Format(labelFormat, skipAction.GetBindingDisplayString(0));
-        fill.fillAmount = 0f;
+        SetProgress(0f);
         group.alpha = 1f;
         skipAction.Enable();
     }
@@ -67,7 +63,7 @@ public class HoldToSkip : MonoBehaviour
         held = 0f;
 
         skipAction.Disable();
-        fill.fillAmount = 0f;
+        SetProgress(0f);
         group.alpha = 0f;
         group.blocksRaycasts = false;
         group.interactable = false;
@@ -80,17 +76,33 @@ public class HoldToSkip : MonoBehaviour
         if (isBlocked != null && isBlocked())
         {
             held = 0f;
-            fill.fillAmount = 0f;
+            SetProgress(0f);
             return;
         }
 
-        held = skipAction.IsPressed() ? held + Time.unscaledDeltaTime : 0f;
-        fill.fillAmount = holdDuration > 0f ? Mathf.Clamp01(held / holdDuration) : 0f;
+        bool pressed = skipAction.IsPressed() || IsPointerHeld();
 
-        if (!skipAction.IsPressed() || held < holdDuration) return;
+        held = pressed ? held + Time.unscaledDeltaTime : 0f;
+        SetProgress(holdDuration > 0f ? Mathf.Clamp01(held / holdDuration) : 0f);
+
+        if (!pressed || held < holdDuration) return;
 
         Action skip = onSkip;
         Hide();
         skip?.Invoke();
+    }
+
+    private bool IsPointerHeld()
+    {
+        Mouse mouse = Mouse.current;
+        if (mouse == null || !mouse.leftButton.isPressed) return false;
+
+        return RectTransformUtility.RectangleContainsScreenPoint((RectTransform)transform, mouse.position.ReadValue(), null);
+    }
+
+    private void SetProgress(float progress)
+    {
+        RectTransform rect = fill.rectTransform;
+        rect.anchorMax = new Vector2(progress, rect.anchorMax.y);
     }
 }

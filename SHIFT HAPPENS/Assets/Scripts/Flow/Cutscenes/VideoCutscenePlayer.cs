@@ -54,7 +54,13 @@ public class VideoCutscenePlayer : MonoBehaviour, ICutscenePlayer
 
     public IEnumerator Play(Cutscene cutscene)
     {
-        if (IsPlaying || cutscene == null || cutscene.Clip == null) yield break;
+        if (IsPlaying || cutscene == null) yield break;
+
+        if (!cutscene.HasVideo)
+        {
+            Debug.LogWarning("VideoCutscenePlayer: " + cutscene.name + " has no video file.", cutscene);
+            yield break;
+        }
 
         IsPlaying = true;
         StartCoroutine(PlayRoutine(cutscene));
@@ -74,13 +80,14 @@ public class VideoCutscenePlayer : MonoBehaviour, ICutscenePlayer
         current = cutscene;
         finished = false;
 
-        CreateTexture(cutscene.Clip);
-        video.clip = cutscene.Clip;
+        video.source = VideoSource.Url;
+        video.url = cutscene.Url;
         video.Prepare();
         while (!video.isPrepared && !finished) yield return null;
 
         if (!finished)
         {
+            CreateTexture((int)video.width, (int)video.height);
             screen.SetActive(true);
             video.Play();
             Started?.Invoke(cutscene);
@@ -101,10 +108,10 @@ public class VideoCutscenePlayer : MonoBehaviour, ICutscenePlayer
         Finished?.Invoke(cutscene);
     }
 
-    private void CreateTexture(VideoClip clip)
+    private void CreateTexture(int videoWidth, int videoHeight)
     {
-        int width = Mathf.Max(1, (int)clip.width);
-        int height = Mathf.Max(1, (int)clip.height);
+        int width = Mathf.Max(1, videoWidth);
+        int height = Mathf.Max(1, videoHeight);
 
         texture = new RenderTexture(width, height, 0);
         video.targetTexture = texture;

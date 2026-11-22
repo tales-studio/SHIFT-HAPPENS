@@ -5217,9 +5217,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 800000057}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cd520f8e69ab461cbd824c407920ca69, type: 3}
+  m_Script: {fileID: 11500000, guid: 30736c1faa664b7eb87ea43f71742452, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::LoadSceneButton
+  m_EditorClassIdentifier: Assembly-CSharp::StartGameButton
+  intro: {fileID: 11400000, guid: caf2c462df3840d9b72c8f9791357d10, type: 2}
   scene: 1
 --- !u!1 &800000064
 GameObject:

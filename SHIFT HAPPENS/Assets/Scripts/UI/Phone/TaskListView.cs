@@ -13,7 +13,8 @@ public class TaskListView : MonoBehaviour
         public BuildingFloor Floor;
         public string Name;
         public TMP_Text Header;
-        public RectTransform Divider;
+        public RectTransform LeftDivider;
+        public RectTransform RightDivider;
         public readonly List<RoomGroup> Rooms = new List<RoomGroup>();
     }
 
@@ -202,7 +203,8 @@ public class TaskListView : MonoBehaviour
             Name = hasFloor ? FloorName(floorValue) : unknownLocation,
             Header = CreateFloorHeader()
         };
-        floor.Divider = CreateDivider(floor.Header.rectTransform);
+        floor.LeftDivider = CreateDivider(floor.Header.rectTransform, 0f, 0.5f);
+        floor.RightDivider = CreateDivider(floor.Header.rectTransform, 0.5f, 1f);
 
         int index = floors.FindIndex(f => !f.HasFloor || (hasFloor && f.Floor > floorValue));
         if (index < 0) floors.Add(floor);
@@ -246,18 +248,19 @@ public class TaskListView : MonoBehaviour
         header.enableAutoSizing = false;
         header.fontSize = floorHeaderFontSize;
         header.characterSpacing = floorHeaderSpacing;
+        header.horizontalAlignment = HorizontalAlignmentOptions.Center;
         return header;
     }
 
-    private RectTransform CreateDivider(RectTransform parent)
+    private RectTransform CreateDivider(RectTransform parent, float anchorMinX, float anchorMaxX)
     {
         GameObject divider = new GameObject("Divider", typeof(RectTransform), typeof(CanvasRenderer), typeof(Image));
 
         RectTransform rect = (RectTransform)divider.transform;
         rect.SetParent(parent, false);
-        rect.anchorMin = new Vector2(0f, 0.5f);
-        rect.anchorMax = new Vector2(1f, 0.5f);
-        rect.pivot = new Vector2(0f, 0.5f);
+        rect.anchorMin = new Vector2(anchorMinX, 0.5f);
+        rect.anchorMax = new Vector2(anchorMaxX, 0.5f);
+        rect.pivot = new Vector2(0.5f, 0.5f);
 
         Image image = divider.GetComponent<Image>();
         image.color = dividerColor;
@@ -266,11 +269,16 @@ public class TaskListView : MonoBehaviour
         return rect;
     }
 
-    private void PlaceDivider(FloorGroup floor)
+    private void PlaceDividers(FloorGroup floor)
     {
-        float start = floor.Header.preferredWidth + dividerSpacing;
-        floor.Divider.offsetMin = new Vector2(start, -dividerThickness * 0.5f);
-        floor.Divider.offsetMax = new Vector2(0f, dividerThickness * 0.5f);
+        float halfGap = floor.Header.preferredWidth * 0.5f + dividerSpacing;
+        float halfThickness = dividerThickness * 0.5f;
+
+        floor.LeftDivider.offsetMin = new Vector2(0f, -halfThickness);
+        floor.LeftDivider.offsetMax = new Vector2(-halfGap, halfThickness);
+
+        floor.RightDivider.offsetMin = new Vector2(halfGap, -halfThickness);
+        floor.RightDivider.offsetMax = new Vector2(0f, halfThickness);
     }
 
     private void Refresh()
@@ -281,7 +289,7 @@ public class TaskListView : MonoBehaviour
         foreach (FloorGroup floor in floors)
         {
             floor.Header.text = floor.Name;
-            PlaceDivider(floor);
+            PlaceDividers(floor);
             rows.Add(new Row { Rect = floor.Header.rectTransform, Height = floorHeaderHeight, X = headerX, Gap = floorGap });
 
             foreach (RoomGroup room in floor.Rooms)

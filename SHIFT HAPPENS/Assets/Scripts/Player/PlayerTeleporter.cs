@@ -46,6 +46,7 @@ public class PlayerTeleporter : MonoBehaviour
         OnTeleportStarted?.Invoke();
         yield return fader.FadeOut();
         body.position = destination;
+        movement.Face(Vector2.down);
         OnTeleported?.Invoke();
         yield return SceneServices.TransitionCard.Play(origin, destination);
         yield return fader.FadeIn();

@@ -112,10 +112,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::FloorBannerView
   titleText: {fileID: 4813027719350261014}
   floorCatalog: {fileID: 11400000, guid: 8e7845cf250a4b619ec9b49908af13df, type: 2}
-  fadeInDuration: 0.25
-  holdDuration: 0.8
-  fadeOutDuration: 0.25
-  skippableAfter: 0.3
+  fadeInDuration: 0.2
+  holdDuration: 0.5
+  fadeOutDuration: 0.4
 --- !u!1 &4813027719350261011
 GameObject:
   m_ObjectHideFlags: 0

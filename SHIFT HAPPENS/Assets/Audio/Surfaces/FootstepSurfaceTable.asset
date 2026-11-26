@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d8b5f586ed2439f9e15a46bee7b8619, type: 3}
+  m_Name: FootstepSurfaceTable
+  m_EditorClassIdentifier: Assembly-CSharp::FootstepSurfaceTable
+  defaultSurface: {fileID: 11400000, guid: 9aef745a75ff45d19be9ba422f03fdad, type: 2}
+  entries:
+  - surface: {fileID: 11400000, guid: 9aef745a75ff45d19be9ba422f03fdad, type: 2}
+    tiles:
+    - {fileID: 11400000, guid: 17d8bd88f28b8924fb70e58efcf5ade0, type: 2}
+    - {fileID: 11400000, guid: 511bc993450bc404ab73d498d129d561, type: 2}
+  - surface: {fileID: 11400000, guid: 1d9f6fb5e3ba4166aff99f9c479a27b4, type: 2}
+    tiles:
+    - {fileID: 11400000, guid: 63ea1b2f8b61788479274b0ca944a830, type: 2}
+    - {fileID: 11400000, guid: efb5ecfc5289eea47bc78673ec2a50c1, type: 2}
+    - {fileID: 11400000, guid: 307eebab17ad3bd4aabbdd822939c562, type: 2}
+    - {fileID: 11400000, guid: 0bcbc478e56e62744a4d0719a0eb6911, type: 2}
+    - {fileID: 11400000, guid: 849a3b40dae5c9348b3a38413fcb2908, type: 2}
+    - {fileID: 11400000, guid: c4d53643e262de1498a00e883571248d, type: 2}

@@ -50,9 +50,27 @@ public abstract class FootstepEmitter : MonoBehaviour
         StepSettings settings = GetSettings(mode);
         timer = settings.interval;
 
-        AudioServices.Sfx.PlayAt(settings.sound, transform.position).SetVolume(settings.volume);
+        Vector3 position = transform.position;
+        FootstepSurface surface = FootstepSurfaces.Provider.GetSurfaceAt(position);
 
-        if (emitsNoise && settings.noiseRadius > 0f)
-            NoiseEvents.Emit(transform.position, settings.noiseRadius, gameObject);
+        float volume = settings.volume;
+        float noiseRadius = settings.noiseRadius;
+        if (surface != null)
+        {
+            volume *= surface.Volume;
+            noiseRadius *= surface.NoiseMultiplier;
+        }
+
+        PlayStep(surface, settings.sound, position).SetVolume(volume);
+
+        if (emitsNoise && noiseRadius > 0f)
+            NoiseEvents.Emit(position, noiseRadius, gameObject);
+    }
+
+    private static SoundHandle PlayStep(FootstepSurface surface, SoundId fallback, Vector3 position)
+    {
+        if (surface != null && surface.Steps != null)
+            return AudioServices.Sfx.PlayAt(surface.Steps, position);
+        return AudioServices.Sfx.PlayAt(fallback, position);
     }
 }

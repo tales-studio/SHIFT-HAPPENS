@@ -8,6 +8,8 @@ public class PlayerLocationTracker : MonoBehaviour
 
     [SerializeField, Min(0.02f)] private float checkInterval = 0.15f;
 
+    private Rigidbody2D body;
+    private PlayerTeleporter teleporter;
     private float nextCheckTime;
     private Vector2 lastCheckedPosition;
     private bool hasChecked;
@@ -16,17 +18,32 @@ public class PlayerLocationTracker : MonoBehaviour
 
     public event Action<LocationInfo> LocationChanged;
 
+    private Vector2 Position => body != null ? body.position : (Vector2)transform.position;
+
+    private void Awake()
+    {
+        body = GetComponent<Rigidbody2D>();
+        teleporter = GetComponent<PlayerTeleporter>();
+    }
+
     private void OnEnable()
     {
         nextCheckTime = 0f;
         hasChecked = false;
+
+        if (teleporter != null) teleporter.OnTeleported += Refresh;
+    }
+
+    private void OnDisable()
+    {
+        if (teleporter != null) teleporter.OnTeleported -= Refresh;
     }
 
     private void Update()
     {
         if (Time.unscaledTime < nextCheckTime) return;
 
-        if (hasChecked && ((Vector2)transform.position - lastCheckedPosition).sqrMagnitude < MovementThresholdSqr)
+        if (hasChecked && (Position - lastCheckedPosition).sqrMagnitude < MovementThresholdSqr)
         {
             nextCheckTime = Time.unscaledTime + checkInterval;
             return;
@@ -38,7 +55,7 @@ public class PlayerLocationTracker : MonoBehaviour
     public void Refresh()
     {
         nextCheckTime = Time.unscaledTime + checkInterval;
-        lastCheckedPosition = transform.position;
+        lastCheckedPosition = Position;
         hasChecked = true;
 
         LocationInfo location = Current.HasArea

@@ -4,7 +4,7 @@ using UnityEngine.AI;
 [RequireComponent(typeof(NavMeshAgent))]
 public class NPCFootsteps : FootstepEmitter
 {
-    [SerializeField] private StepSettings walk = new StepSettings(SoundId.NPCFootstep, 0.45f, 0f);
+    [SerializeField] private StepSettings walk = new StepSettings(SoundId.NPCFootstep, 0.45f, 0f, 1f);
     [SerializeField, Min(0f)] private float minSpeed = 0.1f;
 
     private NavMeshAgent agent;

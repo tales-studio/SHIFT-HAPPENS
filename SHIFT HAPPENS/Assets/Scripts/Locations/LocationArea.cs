@@ -7,9 +7,11 @@ public class LocationArea : MonoBehaviour
     private static readonly List<LocationArea> areas = new List<LocationArea>();
 
     [SerializeField] private string displayName;
+    [SerializeField] private BuildingFloor floor;
     [SerializeField] private Vector2 size = new Vector2(10f, 10f);
 
     public string DisplayName => displayName;
+    public BuildingFloor Floor => floor;
     public Rect Bounds => new Rect((Vector2)transform.position - size * 0.5f, size);
 
     private void OnEnable()
@@ -23,6 +25,12 @@ public class LocationArea : MonoBehaviour
     }
 
     public static string NameAt(Vector2 point, string fallback)
+    {
+        LocationArea area = At(point);
+        return area != null && !string.IsNullOrEmpty(area.displayName) ? area.displayName : fallback;
+    }
+
+    public static LocationArea At(Vector2 point)
     {
         LocationArea best = null;
         float bestSize = float.MaxValue;
@@ -40,7 +48,7 @@ public class LocationArea : MonoBehaviour
             }
         }
 
-        return best != null && !string.IsNullOrEmpty(best.displayName) ? best.displayName : fallback;
+        return best;
     }
 
     private void OnDrawGizmos()

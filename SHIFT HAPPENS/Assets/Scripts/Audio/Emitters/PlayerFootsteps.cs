@@ -3,9 +3,9 @@ using UnityEngine;
 [RequireComponent(typeof(PlayerMovement))]
 public class PlayerFootsteps : FootstepEmitter
 {
-    [SerializeField] private StepSettings sneak = new StepSettings(SoundId.PlayerFootstepSneak, 0.6f, 0.5f);
-    [SerializeField] private StepSettings walk = new StepSettings(SoundId.PlayerFootstepWalk, 0.4f, 4f);
-    [SerializeField] private StepSettings run = new StepSettings(SoundId.PlayerFootstepRun, 0.28f, 8f);
+    [SerializeField] private StepSettings sneak = new StepSettings(SoundId.PlayerFootstepSneak, 0.6f, 0.5f, 0.45f);
+    [SerializeField] private StepSettings walk = new StepSettings(SoundId.PlayerFootstepWalk, 0.4f, 4f, 1f);
+    [SerializeField] private StepSettings run = new StepSettings(SoundId.PlayerFootstepRun, 0.28f, 8f, 1f);
 
     [SerializeField, Min(0f)] private float runSpeedThreshold = 6f;
 

@@ -12,9 +12,11 @@ public class ShiftClockDisplay : MonoBehaviour
     private float pulse;
     private float darken;
     private Color baseColor;
+    private Vector3 baseScale = Vector3.one;
 
     private void Start()
     {
+        baseScale = transform.localScale;
         if (timeText != null) baseColor = timeText.color;
 
         if (clock == null && GameManager.Instance != null) clock = GameManager.Instance.Clock;
@@ -50,7 +52,7 @@ public class ShiftClockDisplay : MonoBehaviour
 
         if (pulse <= 0f) return;
         pulse = Mathf.MoveTowards(pulse, 0f, Time.deltaTime * 3f);
-        transform.localScale = Vector3.one * (1f + pulse * hourPulse);
+        transform.localScale = baseScale * (1f + pulse * hourPulse);
     }
 
     private void UpdateDarken()

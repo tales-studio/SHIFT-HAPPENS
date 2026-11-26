@@ -17,12 +17,14 @@ public abstract class FootstepEmitter : MonoBehaviour
         public SoundId sound;
         [Min(0.05f)] public float interval;
         [Min(0f)] public float noiseRadius;
+        [Range(0f, 1f)] public float volume;
 
-        public StepSettings(SoundId sound, float interval, float noiseRadius)
+        public StepSettings(SoundId sound, float interval, float noiseRadius, float volume)
         {
             this.sound = sound;
             this.interval = interval;
             this.noiseRadius = noiseRadius;
+            this.volume = volume;
         }
     }
 
@@ -48,7 +50,7 @@ public abstract class FootstepEmitter : MonoBehaviour
         StepSettings settings = GetSettings(mode);
         timer = settings.interval;
 
-        AudioServices.Sfx.PlayAt(settings.sound, transform.position);
+        AudioServices.Sfx.PlayAt(settings.sound, transform.position).SetVolume(settings.volume);
 
         if (emitsNoise && settings.noiseRadius > 0f)
             NoiseEvents.Emit(transform.position, settings.noiseRadius, gameObject);

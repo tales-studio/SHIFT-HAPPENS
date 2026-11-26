@@ -8,6 +8,7 @@ public class LocationHudView : MonoBehaviour
     [SerializeField] private GameObject background;
     [SerializeField] private FloorCatalog floorCatalog;
     [SerializeField, Min(1f)] private float floorSizePercent = 130f;
+    [SerializeField, Min(1f)] private float roomSizePercent = 85f;
     [SerializeField, Min(0f)] private float changeFadeDuration = 0.25f;
 
     private PlayerLocationTracker tracker;
@@ -72,10 +73,15 @@ public class LocationHudView : MonoBehaviour
 
         string floorName = floorCatalog != null ? floorCatalog.GetName(location.Floor) : location.Floor.ToString();
         string roomName = location.RoomName;
-        string floorLine = $"<size={floorSizePercent.ToString("0.##", CultureInfo.InvariantCulture)}%>{floorName}</size>";
+        string floorLine = Sized($"{floorName}", floorSizePercent);
 
         if (string.IsNullOrEmpty(roomName) || roomName == floorName) return floorLine;
 
-        return floorLine + "\n- " + roomName + " -";
+        return floorLine + "\n" + Sized($"- {roomName} -", roomSizePercent);
+    }
+
+    private static string Sized(string text, float percent)
+    {
+        return $"<size={percent.ToString("0.##", CultureInfo.InvariantCulture)}%>{text}</size>";
     }
 }

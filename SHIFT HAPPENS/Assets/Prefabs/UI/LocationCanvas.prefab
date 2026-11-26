@@ -252,7 +252,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "<size=130%>Ground Floor</size>\n- Lobby -"
+  m_text: "<size=130%>Ground Floor</size>\n<size=85%>- Lobby -</size>"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 3289301038f08104f9b59b212961d0f8, type: 2}
   m_sharedMaterial: {fileID: 8894113426808912446, guid: 3289301038f08104f9b59b212961d0f8, type: 2}
@@ -340,4 +340,5 @@ MonoBehaviour:
   background: {fileID: 3249495444018797601}
   floorCatalog: {fileID: 11400000, guid: 8e7845cf250a4b619ec9b49908af13df, type: 2}
   floorSizePercent: 130
+  roomSizePercent: 85
   changeFadeDuration: 0.25

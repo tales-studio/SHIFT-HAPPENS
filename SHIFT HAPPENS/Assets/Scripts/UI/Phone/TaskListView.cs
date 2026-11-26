@@ -39,12 +39,12 @@ public class TaskListView : MonoBehaviour
     [SerializeField] private GameObject emptyMessage;
     [SerializeField] private FloorCatalog floorCatalog;
     [SerializeField] private string unknownLocation = "Elsewhere";
-    [SerializeField] private Color countColor = new Color(0.5f, 0.53f, 0.66f);
-    [SerializeField] private Color roomHeaderColor = new Color(0.93f, 0.94f, 0.98f);
-    [SerializeField] private Color floorHeaderColor = new Color(0.66f, 0.69f, 0.86f);
+    [SerializeField] private Color countColor = new Color(0.85f, 0.87f, 0.97f);
+    [SerializeField] private Color roomHeaderColor = new Color(1f, 1f, 1f);
+    [SerializeField] private Color floorHeaderColor = new Color(0.9f, 0.92f, 1f);
     [SerializeField, Min(1f)] private float floorHeaderFontSize = 23f;
     [SerializeField] private float floorHeaderSpacing = 10f;
-    [SerializeField] private Color dividerColor = new Color(0.55f, 0.58f, 0.72f, 0.3f);
+    [SerializeField] private Color dividerColor = new Color(0.9f, 0.92f, 1f, 0.55f);
     [SerializeField, Min(1f)] private float dividerThickness = 2f;
     [SerializeField, Min(0f)] private float dividerSpacing = 14f;
     [SerializeField, Min(0f)] private float floorHeaderHeight = 46f;

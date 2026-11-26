@@ -52926,6 +52926,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   displayName: Basement
+  floor: 0
   size: {x: 146.2, y: 122.6}
 --- !u!1 &900100020
 GameObject:
@@ -52979,6 +52980,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   displayName: Ground Floor
+  floor: 1
   size: {x: 258, y: 122}
 --- !u!1 &900100030
 GameObject:
@@ -53028,6 +53030,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   displayName: First Floor
+  floor: 2
   size: {x: 258, y: 122}
 --- !u!1 &900100040
 GameObject:
@@ -53077,6 +53080,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   displayName: Second Floor
+  floor: 3
   size: {x: 258, y: 122}
 --- !u!1001 &900100050
 PrefabInstance:
@@ -53349,6 +53353,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   displayName: Study Room
+  floor: 1
   size: {x: 75, y: 73}
 --- !u!1 &900100106
 GameObject:
@@ -53395,6 +53400,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   displayName: Lobby
+  floor: 1
   size: {x: 86, y: 55}
 --- !u!1 &900100109
 GameObject:
@@ -53441,6 +53447,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   displayName: Common Room
+  floor: 1
   size: {x: 87, y: 67}
 --- !u!1 &900100112
 GameObject:
@@ -53487,6 +53494,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   displayName: Kitchen
+  floor: 1
   size: {x: 82, y: 67}
 --- !u!1 &900100115
 GameObject:
@@ -53533,6 +53541,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   displayName: Janitor's Office
+  floor: 1
   size: {x: 30.8, y: 37}
 --- !u!1 &900100118
 GameObject:
@@ -53579,6 +53588,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   displayName: Storage Room
+  floor: 1
   size: {x: 25.2, y: 37}
 --- !u!1 &900100121
 GameObject:
@@ -53625,6 +53635,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   displayName: Staff Bathroom
+  floor: 1
   size: {x: 41, y: 37}
 --- !u!1 &900100124
 GameObject:
@@ -53671,6 +53682,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   displayName: Laundry Room
+  floor: 0
   size: {x: 57, y: 74}
 --- !u!1 &900100127
 GameObject:
@@ -53717,6 +53729,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   displayName: Bedrooms 1F
+  floor: 2
   size: {x: 260, y: 57}
 --- !u!1 &900100130
 GameObject:
@@ -53763,6 +53776,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   displayName: Men's Bathroom 1F
+  floor: 2
   size: {x: 72, y: 47}
 --- !u!1 &900100133
 GameObject:
@@ -53809,6 +53823,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   displayName: Women's Bathroom 1F
+  floor: 2
   size: {x: 73, y: 47}
 --- !u!1 &900100136
 GameObject:
@@ -53855,6 +53870,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   displayName: Bedrooms 2F
+  floor: 3
   size: {x: 260, y: 57}
 --- !u!1 &900100139
 GameObject:
@@ -53901,6 +53917,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   displayName: Men's Bathroom 2F
+  floor: 3
   size: {x: 72, y: 47}
 --- !u!1 &900100142
 GameObject:
@@ -53947,6 +53964,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   displayName: Women's Bathroom 2F
+  floor: 3
   size: {x: 73, y: 47}
 --- !u!1001 &903782732
 PrefabInstance:

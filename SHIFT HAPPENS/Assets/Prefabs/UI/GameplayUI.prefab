@@ -14792,6 +14792,7 @@ MonoBehaviour:
   headerTemplate: {fileID: 6200000000000000104}
   entryTemplate: {fileID: 6200000000000000009}
   emptyMessage: {fileID: 6200000000000000034}
+  floorCatalog: {fileID: 11400000, guid: 8e7845cf250a4b619ec9b49908af13df, type: 2}
   unknownLocation: Elsewhere
   countColor: {r: 0.5, g: 0.53, b: 0.66, a: 1}
   headerHeight: 56
@@ -15127,7 +15128,7 @@ MonoBehaviour:
   m_fontSizeMin: 0
   m_fontSizeMax: 0
   m_fontStyle: 1
-  m_HorizontalAlignment: 1
+  m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0

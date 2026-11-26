@@ -1,11 +1,13 @@
+using System.Globalization;
 using TMPro;
 using UnityEngine;
 
 public class LocationHudView : MonoBehaviour
 {
     [SerializeField] private TMP_Text locationText;
+    [SerializeField] private GameObject background;
     [SerializeField] private FloorCatalog floorCatalog;
-    [SerializeField] private string separator = " - ";
+    [SerializeField, Min(1f)] private float floorSizePercent = 130f;
     [SerializeField, Min(0f)] private float changeFadeDuration = 0.25f;
 
     private PlayerLocationTracker tracker;
@@ -49,7 +51,9 @@ public class LocationHudView : MonoBehaviour
     {
         if (locationText == null) return;
 
-        locationText.text = Format(location);
+        string text = Format(location);
+        locationText.text = text;
+        if (background != null) background.SetActive(!string.IsNullOrEmpty(text));
 
         if (animate && changeFadeDuration > 0f)
         {
@@ -68,9 +72,10 @@ public class LocationHudView : MonoBehaviour
 
         string floorName = floorCatalog != null ? floorCatalog.GetName(location.Floor) : location.Floor.ToString();
         string roomName = location.RoomName;
+        string floorLine = $"<size={floorSizePercent.ToString("0.##", CultureInfo.InvariantCulture)}%>{floorName}</size>";
 
-        if (string.IsNullOrEmpty(roomName) || roomName == floorName) return floorName;
+        if (string.IsNullOrEmpty(roomName) || roomName == floorName) return floorLine;
 
-        return floorName + separator + roomName;
+        return floorLine + "\n- " + roomName + " -";
     }
 }

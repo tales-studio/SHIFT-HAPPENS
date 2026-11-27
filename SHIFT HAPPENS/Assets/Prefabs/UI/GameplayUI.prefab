@@ -12077,6 +12077,7 @@ GameObject:
   - component: {fileID: 6100000000000000005}
   - component: {fileID: 6100000000000000006}
   - component: {fileID: 6100000000000000007}
+  - component: {fileID: 6100000000000000900}
   m_Layer: 5
   m_Name: GameplayUI
   m_TagString: Untagged
@@ -12206,6 +12207,18 @@ MonoBehaviour:
   survivedBackdrop: {fileID: 6100000000000000058}
   pauseAction: {fileID: 2837265099270423165, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   backAction: {fileID: 8273400945198953526, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+--- !u!114 &6100000000000000900
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6100000000000000001}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89521cef50d340278237fff72e54a7b5, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: Assembly-CSharp::AutoPause
 --- !u!1 &6100000000000000008
 GameObject:
   m_ObjectHideFlags: 0

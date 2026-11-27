@@ -24,7 +24,9 @@ public class PlayerInteract : MonoBehaviour, ILockable
     private readonly LockSet locks = new LockSet();
     private ContactFilter2D filter;
     private TextMeshPro sign;
+    private Transform signBackground;
     private PlayerInputReader input;
+    private InputPrompts prompts;
 
     public LockTarget LockTarget => LockTarget.Interaction;
     public bool IsLocked => locks.IsLocked;
@@ -54,12 +56,17 @@ public class PlayerInteract : MonoBehaviour, ILockable
     {
         input.Interacted += HandleInteract;
         Lockables.Register(this);
+
+        prompts = InputPrompts.Instance;
+        if (prompts != null) prompts.Changed += RefreshSignText;
+        RefreshSignText();
     }
 
     private void OnDisable()
     {
         input.Interacted -= HandleInteract;
         Lockables.Unregister(this);
+        if (prompts != null) prompts.Changed -= RefreshSignText;
         if (sign != null) sign.gameObject.SetActive(false);
     }
 
@@ -128,10 +135,26 @@ public class PlayerInteract : MonoBehaviour, ILockable
         backgroundRenderer.color = new Color(signBackgroundColor.r, signBackgroundColor.g, signBackgroundColor.b, Mathf.Min(signBackgroundColor.a, 0.9f));
         backgroundRenderer.sortingOrder = signSortingOrder - 1;
 
-        sign.ForceMeshUpdate();
+        signBackground = background.transform;
+        FitSignBackground();
+    }
+
+    private void RefreshSignText()
+    {
+        if (sign == null) return;
+
+        sign.text = prompts != null ? prompts.GetLabel(input.InteractAction) : signText;
+        FitSignBackground();
+    }
+
+    private void FitSignBackground()
+    {
+        if (signBackground == null) return;
+
+        sign.ForceMeshUpdate(true);
         Bounds textBounds = sign.textBounds;
-        background.transform.localPosition = new Vector3(textBounds.center.x, textBounds.center.y, 0f);
-        background.transform.localScale = new Vector3(
+        signBackground.localPosition = new Vector3(textBounds.center.x, textBounds.center.y, 0f);
+        signBackground.localScale = new Vector3(
             textBounds.size.x + signBackgroundPadding.x * 2f,
             textBounds.size.y + signBackgroundPadding.y * 2f,
             1f);

@@ -25,6 +25,7 @@ public class PlayerInputReader : MonoBehaviour
     public Vector2 AimScreenPosition => aim.ReadValue<Vector2>();
     public Vector2 AimStick => aimStick.ReadValue<Vector2>();
     public bool IsAimActive => aim.enabled;
+    public InputAction InteractAction => interact;
 
     public bool UsingGamepad
     {

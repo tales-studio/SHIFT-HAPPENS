@@ -22,16 +22,12 @@ public class GameplayUI : MonoBehaviour
     {
         pauseAction.action.performed += HandlePauseInput;
         backAction.action.performed += HandleBackInput;
-        pauseAction.action.Enable();
-        backAction.action.Enable();
     }
 
     private void OnDisable()
     {
         pauseAction.action.performed -= HandlePauseInput;
         backAction.action.performed -= HandleBackInput;
-        pauseAction.action.Disable();
-        backAction.action.Disable();
     }
 
     private void Start()

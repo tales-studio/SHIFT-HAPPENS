@@ -12,7 +12,6 @@ public class HoldToSkip : MonoBehaviour
 
     private CanvasGroup group;
     private Action onSkip;
-    private Func<bool> isBlocked;
     private float holdDuration;
     private float held;
     private bool active;
@@ -29,18 +28,16 @@ public class HoldToSkip : MonoBehaviour
         group = GetComponent<CanvasGroup>();
     }
 
-    public void Show(float duration, Action skip, Func<bool> blocked = null)
+    public void Show(float duration, Action skip)
     {
         EnsureReady();
         holdDuration = Mathf.Max(0f, duration);
         onSkip = skip;
-        isBlocked = blocked;
         held = 0f;
         active = true;
 
         SetProgress(0f);
         group.alpha = 1f;
-        skipAction.action.Enable();
     }
 
     public void Hide()
@@ -48,7 +45,6 @@ public class HoldToSkip : MonoBehaviour
         EnsureReady();
         active = false;
         onSkip = null;
-        isBlocked = null;
         held = 0f;
 
         SetProgress(0f);
@@ -61,14 +57,7 @@ public class HoldToSkip : MonoBehaviour
     {
         if (!active) return;
 
-        if (isBlocked != null && isBlocked())
-        {
-            held = 0f;
-            SetProgress(0f);
-            return;
-        }
-
-        bool pressed = skipAction.action.IsPressed() || IsPointerHeld();
+        bool pressed = skipAction.action.enabled && (skipAction.action.IsPressed() || IsPointerHeld());
 
         held = pressed ? held + Time.unscaledDeltaTime : 0f;
         SetProgress(holdDuration > 0f ? Mathf.Clamp01(held / holdDuration) : 0f);

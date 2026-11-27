@@ -46,13 +46,11 @@ public class PhoneView : MonoBehaviour
     private void OnEnable()
     {
         toggleAction.action.performed += HandleToggle;
-        toggleAction.action.Enable();
     }
 
     private void OnDisable()
     {
         toggleAction.action.performed -= HandleToggle;
-        toggleAction.action.Disable();
     }
 
     private void Start()
@@ -82,7 +80,6 @@ public class PhoneView : MonoBehaviour
     private void HandleToggle(InputAction.CallbackContext context)
     {
         if (IsLocked) return;
-        if (gameManager != null && (!gameManager.isPlaying || gameManager.IsPaused)) return;
 
         SetOpen(!IsOpen);
     }

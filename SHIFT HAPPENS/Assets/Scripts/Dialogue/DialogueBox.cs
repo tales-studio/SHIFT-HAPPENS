@@ -51,13 +51,11 @@ public class DialogueBox : MonoBehaviour, IDialoguePresenter, IPointerClickHandl
     private void OnEnable()
     {
         advanceAction.action.performed += HandleAdvance;
-        advanceAction.action.Enable();
     }
 
     private void OnDisable()
     {
         advanceAction.action.performed -= HandleAdvance;
-        advanceAction.action.Disable();
 
         typeRoutine = null;
         isTyping = false;
@@ -116,7 +114,6 @@ public class DialogueBox : MonoBehaviour, IDialoguePresenter, IPointerClickHandl
     private void Advance()
     {
         if (current == null || isHolding) return;
-        if (GameManager.Instance != null && GameManager.Instance.IsPaused) return;
 
         if (isTyping)
         {

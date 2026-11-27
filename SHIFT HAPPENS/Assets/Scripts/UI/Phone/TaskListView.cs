@@ -83,13 +83,11 @@ public class TaskListView : MonoBehaviour
     private void OnEnable()
     {
         scrollAction.action.performed += HandleScroll;
-        scrollAction.action.Enable();
     }
 
     private void OnDisable()
     {
         scrollAction.action.performed -= HandleScroll;
-        scrollAction.action.Disable();
     }
 
     private void Start()

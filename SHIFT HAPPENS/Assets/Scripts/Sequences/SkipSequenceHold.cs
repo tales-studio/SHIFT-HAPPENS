@@ -34,16 +34,11 @@ public class SkipSequenceHold : MonoBehaviour
 
     private void HandleStarted()
     {
-        hold.Show(holdDuration, Skip, IsPaused);
+        hold.Show(holdDuration, Skip);
     }
 
     private void HandleEnded()
     {
         hold.Hide();
-    }
-
-    private static bool IsPaused()
-    {
-        return GameManager.Instance != null && GameManager.Instance.IsPaused;
     }
 }

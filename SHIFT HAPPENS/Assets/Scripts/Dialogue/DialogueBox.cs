@@ -12,6 +12,7 @@ public class DialogueBox : MonoBehaviour, IDialoguePresenter, IPointerClickHandl
 {
     private const int AllCharacters = 99999;
     private static readonly Regex HighlightPattern = new Regex(@"\*(.+?)\*");
+    private static readonly Regex TokenPattern = new Regex(@"\{(\w+)\}");
 
     [SerializeField] private GameObject box;
     [SerializeField] private Image portrait;
@@ -32,6 +33,8 @@ public class DialogueBox : MonoBehaviour, IDialoguePresenter, IPointerClickHandl
     private bool isHolding;
     private Action onFinished;
     private Coroutine typeRoutine;
+    private InputPrompts prompts;
+    private bool promptsChanged;
 
     public bool IsShowing => current != null;
 
@@ -51,11 +54,15 @@ public class DialogueBox : MonoBehaviour, IDialoguePresenter, IPointerClickHandl
     private void OnEnable()
     {
         advanceAction.action.performed += HandleAdvance;
+
+        prompts = InputPrompts.Instance;
+        if (prompts != null) prompts.Changed += HandlePromptsChanged;
     }
 
     private void OnDisable()
     {
         advanceAction.action.performed -= HandleAdvance;
+        if (prompts != null) prompts.Changed -= HandlePromptsChanged;
 
         typeRoutine = null;
         isTyping = false;
@@ -136,11 +143,38 @@ public class DialogueBox : MonoBehaviour, IDialoguePresenter, IPointerClickHandl
 
     private void ShowLine()
     {
-        lineText.text = ApplyHighlights(current.Lines[lineIndex]);
+        lineText.text = FormatLine(current.Lines[lineIndex]);
+        promptsChanged = false;
         lineText.maxVisibleCharacters = 0;
         continueIndicator.SetActive(false);
         isTyping = true;
         typeRoutine = StartCoroutine(TypeLine());
+    }
+
+    private string FormatLine(string line)
+    {
+        return ApplyHighlights(ApplyTokens(line));
+    }
+
+    private string ApplyTokens(string line)
+    {
+        if (prompts == null) return line;
+
+        return TokenPattern.Replace(line, match =>
+            prompts.TryGetLabel(match.Groups[1].Value, out string label) ? "*" + label + "*" : match.Value);
+    }
+
+    private void HandlePromptsChanged()
+    {
+        if (current == null) return;
+
+        if (isTyping)
+        {
+            promptsChanged = true;
+            return;
+        }
+
+        lineText.text = FormatLine(current.Lines[lineIndex]);
     }
 
     private string ApplyHighlights(string line)
@@ -180,6 +214,12 @@ public class DialogueBox : MonoBehaviour, IDialoguePresenter, IPointerClickHandl
         lineText.maxVisibleCharacters = AllCharacters;
 
         if (current == null) return;
+
+        if (promptsChanged)
+        {
+            promptsChanged = false;
+            lineText.text = FormatLine(current.Lines[lineIndex]);
+        }
 
         if (holdLastLine && IsLastLine)
         {

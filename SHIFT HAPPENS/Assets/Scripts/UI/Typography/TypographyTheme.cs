@@ -20,6 +20,15 @@ public class TypographyTheme : ScriptableObject
 
     private static TypographyTheme cachedDefault;
 
+    public static event Action Changed;
+
+#if UNITY_EDITOR
+    private void OnValidate()
+    {
+        UnityEditor.EditorApplication.delayCall += () => Changed?.Invoke();
+    }
+#endif
+
     public static TypographyTheme Default
     {
         get

@@ -10,9 +10,17 @@ public class TextStyle : MonoBehaviour
 
     private TypographyTheme Theme => theme != null ? theme : TypographyTheme.Default;
 
-    private void OnEnable() => Apply();
+    private void OnEnable()
+    {
+        TypographyTheme.Changed += Apply;
+        Apply();
+    }
+
+    private void OnDisable() => TypographyTheme.Changed -= Apply;
 
 #if UNITY_EDITOR
+    private void Reset() => Apply();
+
     private void OnValidate()
     {
         UnityEditor.EditorApplication.delayCall += () =>

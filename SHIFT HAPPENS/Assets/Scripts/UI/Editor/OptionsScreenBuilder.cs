@@ -9,7 +9,6 @@ public static class OptionsScreenBuilder
 {
     private const string ScreenName = "OptionsScreen";
     private const string ContainerName = "VolumeRows";
-    private const string FontGuid = "3289301038f08104f9b59b212961d0f8";
     private const string GameplayUIPath = "Assets/Prefabs/UI/GameplayUI.prefab";
     private const string PauseScreenName = "PauseScreen";
     private const string OptionsButtonName = "OptionsButton";
@@ -81,8 +80,7 @@ public static class OptionsScreenBuilder
             bool buttonExisted = oldButton != null;
             if (buttonExisted) Object.DestroyImmediate(oldButton.gameObject);
 
-            TMP_FontAsset font = LoadFont();
-            UIScreen optionsScreen = CreatePauseOptionsScreen(parent, pauseRoot, font);
+            UIScreen optionsScreen = CreatePauseOptionsScreen(parent, pauseRoot);
             CreatePauseOptionsButton(pauseRoot, optionsScreen, !buttonExisted);
 
             PrefabUtility.SaveAsPrefabAsset(root, GameplayUIPath);
@@ -96,15 +94,14 @@ public static class OptionsScreenBuilder
 
     private static RectTransform BuildVolumeRows(Transform screen)
     {
-        TMP_FontAsset font = LoadFont();
         DefaultControls.Resources resources = LoadResources();
 
         RectTransform container = CreateContainer(screen);
 
-        Slider master = BuildRow(container, "MASTER", VolumeSetting.Channel.Master, font, resources, out Toggle masterToggle);
-        Slider music = BuildRow(container, "MUSIC", VolumeSetting.Channel.Music, font, resources, out Toggle musicToggle);
-        Slider sfx = BuildRow(container, "SFX", VolumeSetting.Channel.Sfx, font, resources, out Toggle sfxToggle);
-        Slider ui = BuildRow(container, "UI", VolumeSetting.Channel.UI, font, resources, out Toggle uiToggle);
+        Slider master = BuildRow(container, "MASTER", VolumeSetting.Channel.Master, resources, out Toggle masterToggle);
+        Slider music = BuildRow(container, "MUSIC", VolumeSetting.Channel.Music, resources, out Toggle musicToggle);
+        Slider sfx = BuildRow(container, "SFX", VolumeSetting.Channel.Sfx, resources, out Toggle sfxToggle);
+        Slider ui = BuildRow(container, "UI", VolumeSetting.Channel.UI, resources, out Toggle uiToggle);
 
         Button back = FindBackButton(screen);
 
@@ -123,12 +120,7 @@ public static class OptionsScreenBuilder
         return container;
     }
 
-    private static TMP_FontAsset LoadFont()
-    {
-        return AssetDatabase.LoadAssetAtPath<TMP_FontAsset>(AssetDatabase.GUIDToAssetPath(FontGuid));
-    }
-
-    private static UIScreen CreatePauseOptionsScreen(Transform parent, Transform pauseRoot, TMP_FontAsset font)
+    private static UIScreen CreatePauseOptionsScreen(Transform parent, Transform pauseRoot)
     {
         GameObject go = new GameObject(ScreenName, typeof(RectTransform), typeof(UIScreen));
         go.layer = pauseRoot.gameObject.layer;
@@ -144,21 +136,21 @@ public static class OptionsScreenBuilder
             dim.name = "Dim";
         }
 
-        TMP_Text title = CreateText(rect, "Title", "OPTIONS", font, 96f, HorizontalAlignmentOptions.Center, 1200f);
+        TMP_Text title = CreateText(rect, "Title", "OPTIONS", TextRole.Title, 96f, HorizontalAlignmentOptions.Center, 1200f);
         Object.DestroyImmediate(title.GetComponent<LayoutElement>());
         RectTransform titleRect = title.rectTransform;
         titleRect.anchorMin = titleRect.anchorMax = new Vector2(0.5f, 0.5f);
         titleRect.anchoredPosition = new Vector2(0f, 300f);
         titleRect.sizeDelta = new Vector2(1200f, 160f);
 
-        CreateBackButton(rect, font);
+        CreateBackButton(rect);
         BuildVolumeRows(rect);
 
         go.SetActive(false);
         return go.GetComponent<UIScreen>();
     }
 
-    private static void CreateBackButton(Transform screen, TMP_FontAsset font)
+    private static void CreateBackButton(Transform screen)
     {
         GameObject go = new GameObject("BackButton", typeof(RectTransform), typeof(CanvasRenderer), typeof(Image), typeof(Button));
         go.layer = screen.gameObject.layer;
@@ -175,7 +167,7 @@ public static class OptionsScreenBuilder
         button.targetGraphic = image;
         button.colors = MenuColors();
 
-        TMP_Text label = CreateText(rect, "Text", "Back", font, 40f, HorizontalAlignmentOptions.Center, 420f);
+        TMP_Text label = CreateText(rect, "Text", "Back", TextRole.Title, 40f, HorizontalAlignmentOptions.Center, 420f);
         Object.DestroyImmediate(label.GetComponent<LayoutElement>());
         Stretch(label.rectTransform, Vector2.zero);
 
@@ -295,7 +287,7 @@ public static class OptionsScreenBuilder
         return rect;
     }
 
-    private static Slider BuildRow(RectTransform container, string label, VolumeSetting.Channel channel, TMP_FontAsset font, DefaultControls.Resources resources, out Toggle toggle)
+    private static Slider BuildRow(RectTransform container, string label, VolumeSetting.Channel channel, DefaultControls.Resources resources, out Toggle toggle)
     {
         GameObject row = new GameObject(Capitalize(label) + "Row", typeof(RectTransform), typeof(HorizontalLayoutGroup), typeof(LayoutElement));
         row.layer = container.gameObject.layer;
@@ -310,12 +302,12 @@ public static class OptionsScreenBuilder
         layout.childForceExpandWidth = false;
         layout.childForceExpandHeight = false;
 
-        CreateText(row.transform, "Label", label, font, 40f, HorizontalAlignmentOptions.Right, LabelWidth);
+        CreateText(row.transform, "Label", label, TextRole.Body, 40f, HorizontalAlignmentOptions.Right, LabelWidth);
 
         toggle = CreateToggle(row.transform, resources);
 
         Slider slider = CreateSlider(row.transform, resources);
-        TMP_Text value = CreateText(row.transform, "Value", "100%", font, 36f, HorizontalAlignmentOptions.Right, ValueWidth);
+        TMP_Text value = CreateText(row.transform, "Value", "100%", TextRole.Body, 36f, HorizontalAlignmentOptions.Right, ValueWidth);
 
         VolumeSetting setting = row.AddComponent<VolumeSetting>();
         SerializedObject so = new SerializedObject(setting);
@@ -328,14 +320,14 @@ public static class OptionsScreenBuilder
         return slider;
     }
 
-    private static TMP_Text CreateText(Transform parent, string name, string text, TMP_FontAsset font, float size, HorizontalAlignmentOptions alignment, float width)
+    private static TMP_Text CreateText(Transform parent, string name, string text, TextRole role, float size, HorizontalAlignmentOptions alignment, float width)
     {
-        GameObject go = new GameObject(name, typeof(RectTransform), typeof(CanvasRenderer), typeof(TextMeshProUGUI), typeof(LayoutElement));
+        GameObject go = new GameObject(name, typeof(RectTransform), typeof(CanvasRenderer), typeof(TextMeshProUGUI), typeof(LayoutElement), typeof(TextStyle));
         go.layer = parent.gameObject.layer;
         go.transform.SetParent(parent, false);
+        go.GetComponent<TextStyle>().SetRole(role);
 
         TextMeshProUGUI tmp = go.GetComponent<TextMeshProUGUI>();
-        if (font != null) tmp.font = font;
         tmp.text = text;
         tmp.fontSize = size;
         tmp.color = Color.white;

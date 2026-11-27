@@ -6926,10 +6926,10 @@ MonoBehaviour:
   startDelay: 0.5
   scrollSpeed: 30
   fastForwardMultiplier: 4
-  fastForwardAction: {fileID: 392368643174621059, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  fastForwardAction: {fileID: 392368643174621059, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   closingHoldSeconds: 3
   scrollRect: {fileID: 417766819}
-  scrollAction: {fileID: -8784545083839296357, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  scrollAction: {fileID: -8784545083839296357, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   manualScrollSpeed: 600
   onFinished:
     m_PersistentCalls:

@@ -190,6 +190,7 @@ GameObject:
   - component: {fileID: 6105000000000000121}
   - component: {fileID: 6105000000000000122}
   - component: {fileID: 6105000000000000123}
+  - component: {fileID: 1992967138281760139}
   m_Layer: 5
   m_Name: Label
   m_TagString: Untagged
@@ -246,8 +247,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Hold to skip
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 3289301038f08104f9b59b212961d0f8, type: 2}
-  m_sharedMaterial: {fileID: 8894113426808912446, guid: 3289301038f08104f9b59b212961d0f8, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: b347d10c68ca6694d8ecffe7d5c98cc2, type: 2}
+  m_sharedMaterial: {fileID: -3372486125142541716, guid: b347d10c68ca6694d8ecffe7d5c98cc2, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -316,3 +317,17 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &1992967138281760139
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6105000000000000120}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41d52464256b7044e9e6c6ef4f27533b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TextStyle
+  role: 1
+  theme: {fileID: 0}

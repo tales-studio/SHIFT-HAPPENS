@@ -16,4 +16,4 @@ MonoBehaviour:
   - role: 0
     font: {fileID: 11400000, guid: 3289301038f08104f9b59b212961d0f8, type: 2}
   - role: 1
-    font: {fileID: 11400000, guid: b347d10c68ca6694d8ecffe7d5c98cc2, type: 2}
+    font: {fileID: 11400000, guid: 3289301038f08104f9b59b212961d0f8, type: 2}

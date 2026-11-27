@@ -24,6 +24,7 @@ public class PlayerInteract : MonoBehaviour
     private readonly HashSet<object> locks = new HashSet<object>();
     private ContactFilter2D filter;
     private TextMeshPro sign;
+    private PlayerInputReader input;
 
     public bool IsLocked => locks.Count > 0;
 
@@ -43,11 +44,19 @@ public class PlayerInteract : MonoBehaviour
         filter.SetLayerMask(interactableLayers);
         filter.useTriggers = true;
 
+        input = GetComponent<PlayerInputReader>();
+
         CreateSign();
+    }
+
+    private void OnEnable()
+    {
+        input.Interacted += HandleInteract;
     }
 
     private void OnDisable()
     {
+        input.Interacted -= HandleInteract;
         if (sign != null) sign.gameObject.SetActive(false);
     }
 
@@ -70,7 +79,7 @@ public class PlayerInteract : MonoBehaviour
         sign.gameObject.SetActive(true);
     }
 
-    public void OnInteract()
+    private void HandleInteract()
     {
         if (IsLocked) return;
 

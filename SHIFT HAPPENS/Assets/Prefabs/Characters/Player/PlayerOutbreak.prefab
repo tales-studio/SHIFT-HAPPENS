@@ -236,7 +236,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FlashlightMovement
   cam: {fileID: 9098716435254669330}
-  playerInput: {fileID: 6940792458611382055}
   isOn: 1
 --- !u!60 &6359021279443685507
 PolygonCollider2D:
@@ -305,6 +304,7 @@ GameObject:
   - component: {fileID: 2665883498300402224}
   - component: {fileID: 6250078601765909699}
   - component: {fileID: 6940792458611382055}
+  - component: {fileID: 7314159265358979302}
   - component: {fileID: 2907310341617815166}
   - component: {fileID: 6231692065395842029}
   - component: {fileID: 5550381707414048225}
@@ -495,7 +495,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Unity.InputSystem::UnityEngine.InputSystem.PlayerInput
   m_Actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
-  m_NotificationBehavior: 0
+  m_NotificationBehavior: 3
   m_UIInputModule: {fileID: 0}
   m_DeviceLostEvent:
     m_PersistentCalls:
@@ -512,6 +512,23 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &7314159265358979302
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2348464780611269936}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09d49ca8e8074c9197692ed083862f29, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerInputReader
+  moveAction: {fileID: -1680190386980627800, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+  sneakAction: {fileID: -675335286695609979, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+  interactAction: {fileID: 1781555164194001046, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+  aimAction: {fileID: 6622782550101256587, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+  aimStickAction: {fileID: 6930486049756334322, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
 --- !u!114 &2907310341617815166
 MonoBehaviour:
   m_ObjectHideFlags: 0

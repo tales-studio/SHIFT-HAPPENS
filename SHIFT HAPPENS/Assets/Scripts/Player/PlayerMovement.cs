@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -12,6 +11,7 @@ public class PlayerMovement : MonoBehaviour
 
     private Rigidbody2D rb;
     private Animator animator;
+    private PlayerInputReader input;
 
     private Vector2 movement;
     private Vector2 lastMovement = Vector2.down;
@@ -47,10 +47,14 @@ public class PlayerMovement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        input = GetComponent<PlayerInputReader>();
     }
 
     private void Update()
     {
+        movement = input.Move.normalized;
+        isSneaking = input.IsSneakHeld;
+
         if (CurrentMovement != Vector2.zero)
         {
             lastMovement = CurrentMovement;
@@ -73,15 +77,5 @@ public class PlayerMovement : MonoBehaviour
         float currentSpeed = isSneaking ? sneakSpeed : moveSpeed;
 
         rb.linearVelocity = CurrentMovement * currentSpeed;
-    }
-
-    public void OnMove(InputValue value)
-    {
-        movement = value.Get<Vector2>().normalized;
-    }
-
-    public void OnSneak(InputValue value)
-    {
-        isSneaking = value.isPressed;
     }
 }

@@ -625,6 +625,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BullyGirl (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 6198924082522426097, guid: b4f51592b73a711468cba030b70871df, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7250137536671164240, guid: b4f51592b73a711468cba030b70871df, type: 3}
       propertyPath: m_LocalPosition.x
       value: -118.966064
@@ -6541,6 +6545,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BullyGuy
       objectReference: {fileID: 0}
+    - target: {fileID: 6198924082522426097, guid: 2e053230d3ed0f747b9b01782457bbe7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7250137536671164240, guid: 2e053230d3ed0f747b9b01782457bbe7, type: 3}
       propertyPath: m_LocalPosition.x
       value: -54.56606
@@ -11379,6 +11387,10 @@ PrefabInstance:
     - target: {fileID: 6198924082522426097, guid: bd55e50adc11052428b28aeea24d8202, type: 3}
       propertyPath: m_Name
       value: NerdGirl (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6198924082522426097, guid: bd55e50adc11052428b28aeea24d8202, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7250137536671164240, guid: bd55e50adc11052428b28aeea24d8202, type: 3}
       propertyPath: m_LocalPosition.x
@@ -36958,6 +36970,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BullyGirl
       objectReference: {fileID: 0}
+    - target: {fileID: 6198924082522426097, guid: b4f51592b73a711468cba030b70871df, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7250137536671164240, guid: b4f51592b73a711468cba030b70871df, type: 3}
       propertyPath: m_LocalPosition.x
       value: -119.38
@@ -42410,6 +42426,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: NerdGuy
       objectReference: {fileID: 0}
+    - target: {fileID: 6198924082522426097, guid: 5f1513c2f9452a84a83a238a370a9d33, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7250137536671164240, guid: 5f1513c2f9452a84a83a238a370a9d33, type: 3}
       propertyPath: m_LocalPosition.x
       value: 71.933945
@@ -44406,6 +44426,10 @@ PrefabInstance:
     - target: {fileID: 6198924082522426097, guid: e7dad12061e562e42a012c396b2dadfd, type: 3}
       propertyPath: m_Name
       value: EmoGirl (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6198924082522426097, guid: e7dad12061e562e42a012c396b2dadfd, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7250137536671164240, guid: e7dad12061e562e42a012c396b2dadfd, type: 3}
       propertyPath: m_LocalPosition.x
@@ -48883,6 +48907,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: EmoGuy (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 6198924082522426097, guid: e52bdf5fb57e6df4681d616ecccc8c0c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7250137536671164240, guid: e52bdf5fb57e6df4681d616ecccc8c0c, type: 3}
       propertyPath: m_LocalPosition.x
       value: -32.67606
@@ -52187,6 +52215,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BullyGuy (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 6198924082522426097, guid: 2e053230d3ed0f747b9b01782457bbe7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7250137536671164240, guid: 2e053230d3ed0f747b9b01782457bbe7, type: 3}
       propertyPath: m_LocalPosition.x
       value: -54.56606
@@ -53082,28 +53114,6 @@ MonoBehaviour:
   displayName: Second Floor
   floor: 3
   size: {x: 258, y: 122}
---- !u!1001 &900100150
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 895425881}
-    m_Modifications:
-    - target: {fileID: 3249495444018797568, guid: 800a85f081fe4dc898fbd758ab313a40, type: 3}
-      propertyPath: m_Name
-      value: LocationCanvas
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 800a85f081fe4dc898fbd758ab313a40, type: 3}
---- !u!224 &900100151 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 7819030740232337408, guid: 800a85f081fe4dc898fbd758ab313a40, type: 3}
-  m_PrefabInstance: {fileID: 900100150}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &900100060
 GameObject:
   m_ObjectHideFlags: 0
@@ -53886,6 +53896,28 @@ MonoBehaviour:
   displayName: Women's Bathroom 2F
   floor: 3
   size: {x: 73, y: 47}
+--- !u!1001 &900100150
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 895425881}
+    m_Modifications:
+    - target: {fileID: 3249495444018797568, guid: 800a85f081fe4dc898fbd758ab313a40, type: 3}
+      propertyPath: m_Name
+      value: LocationCanvas
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 800a85f081fe4dc898fbd758ab313a40, type: 3}
+--- !u!224 &900100151 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 7819030740232337408, guid: 800a85f081fe4dc898fbd758ab313a40, type: 3}
+  m_PrefabInstance: {fileID: 900100150}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &903782732
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -56651,6 +56683,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: EmoGirl
       objectReference: {fileID: 0}
+    - target: {fileID: 6198924082522426097, guid: e7dad12061e562e42a012c396b2dadfd, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7250137536671164240, guid: e7dad12061e562e42a012c396b2dadfd, type: 3}
       propertyPath: m_LocalPosition.x
       value: -96.89606
@@ -58421,6 +58457,10 @@ PrefabInstance:
     - target: {fileID: 6198924082522426097, guid: e52bdf5fb57e6df4681d616ecccc8c0c, type: 3}
       propertyPath: m_Name
       value: EmoGuy
+      objectReference: {fileID: 0}
+    - target: {fileID: 6198924082522426097, guid: e52bdf5fb57e6df4681d616ecccc8c0c, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7250137536671164240, guid: e52bdf5fb57e6df4681d616ecccc8c0c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -146654,6 +146694,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: NerdGuy (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 6198924082522426097, guid: 5f1513c2f9452a84a83a238a370a9d33, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7250137536671164240, guid: 5f1513c2f9452a84a83a238a370a9d33, type: 3}
       propertyPath: m_LocalPosition.x
       value: 71.933945
@@ -152698,6 +152742,10 @@ PrefabInstance:
     - target: {fileID: 2380765420145597850, guid: 115bc0cc3abffb54c85213491d493792, type: 3}
       propertyPath: m_Name
       value: Sleepwalker
+      objectReference: {fileID: 0}
+    - target: {fileID: 2380765420145597850, guid: 115bc0cc3abffb54c85213491d493792, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5034094958897965771, guid: 115bc0cc3abffb54c85213491d493792, type: 3}
       propertyPath: m_LocalPosition.x
@@ -172601,6 +172649,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: NerdGirl
       objectReference: {fileID: 0}
+    - target: {fileID: 6198924082522426097, guid: bd55e50adc11052428b28aeea24d8202, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7250137536671164240, guid: bd55e50adc11052428b28aeea24d8202, type: 3}
       propertyPath: m_LocalPosition.x
       value: 9.033939
@@ -174400,7 +174452,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 296625135250687586, guid: 4370d0fdb1014ad45bd96b687d359127, type: 3}
       propertyPath: m_fontColor32.rgba
-      value: 4293310642
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 296625135250687586, guid: 4370d0fdb1014ad45bd96b687d359127, type: 3}
       propertyPath: m_TextStyleHashCode
@@ -174420,7 +174472,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 296625135250687608, guid: 4370d0fdb1014ad45bd96b687d359127, type: 3}
       propertyPath: m_fontColor32.rgba
-      value: 4293310642
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 296625135250687608, guid: 4370d0fdb1014ad45bd96b687d359127, type: 3}
       propertyPath: m_TextStyleHashCode

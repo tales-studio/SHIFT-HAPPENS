@@ -1,11 +1,10 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 [DisallowMultipleComponent]
-public class PhoneView : MonoBehaviour
+public class PhoneView : MonoBehaviour, ILockable
 {
     [SerializeField] private RectTransform body;
     [SerializeField] private Vector2 hiddenPosition = new Vector2(-40f, -720f);
@@ -17,14 +16,15 @@ public class PhoneView : MonoBehaviour
     [SerializeField] private SoundId closeSound = SoundId.PhoneClose;
 
     [Header("Input")]
-    [SerializeField] private InputAction toggleAction = new InputAction("Phone", InputActionType.Button, "<Keyboard>/tab");
+    [SerializeField] private InputActionReference toggleAction;
 
     private GameManager gameManager;
     private Coroutine slideRoutine;
-    private readonly HashSet<object> locks = new HashSet<object>();
+    private readonly LockSet locks = new LockSet();
 
     public bool IsOpen { get; private set; }
-    public bool IsLocked => locks.Count > 0;
+    public LockTarget LockTarget => LockTarget.Phone;
+    public bool IsLocked => locks.IsLocked;
 
     public event Action<bool> OnOpenChanged;
 
@@ -45,14 +45,14 @@ public class PhoneView : MonoBehaviour
 
     private void OnEnable()
     {
-        toggleAction.performed += HandleToggle;
-        toggleAction.Enable();
+        toggleAction.action.performed += HandleToggle;
+        Lockables.Register(this);
     }
 
     private void OnDisable()
     {
-        toggleAction.performed -= HandleToggle;
-        toggleAction.Disable();
+        toggleAction.action.performed -= HandleToggle;
+        Lockables.Unregister(this);
     }
 
     private void Start()
@@ -82,7 +82,6 @@ public class PhoneView : MonoBehaviour
     private void HandleToggle(InputAction.CallbackContext context)
     {
         if (IsLocked) return;
-        if (gameManager != null && (!gameManager.isPlaying || gameManager.IsPaused)) return;
 
         SetOpen(!IsOpen);
     }

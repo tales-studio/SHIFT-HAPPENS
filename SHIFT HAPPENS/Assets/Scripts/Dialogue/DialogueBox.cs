@@ -12,6 +12,7 @@ public class DialogueBox : MonoBehaviour, IDialoguePresenter, IPointerClickHandl
 {
     private const int AllCharacters = 99999;
     private static readonly Regex HighlightPattern = new Regex(@"\*(.+?)\*");
+    private static readonly Regex TokenPattern = new Regex(@"\{(\w+)\}");
 
     [SerializeField] private GameObject box;
     [SerializeField] private Image portrait;
@@ -23,7 +24,7 @@ public class DialogueBox : MonoBehaviour, IDialoguePresenter, IPointerClickHandl
     [SerializeField] private DialogueData previewDialogue;
 
     [Header("Input")]
-    [SerializeField] private InputAction advanceAction = new InputAction("AdvanceDialogue", InputActionType.Button, "<Keyboard>/enter");
+    [SerializeField] private InputActionReference advanceAction;
 
     private DialogueData current;
     private int lineIndex;
@@ -32,10 +33,12 @@ public class DialogueBox : MonoBehaviour, IDialoguePresenter, IPointerClickHandl
     private bool isHolding;
     private Action onFinished;
     private Coroutine typeRoutine;
+    private InputPrompts prompts;
+    private bool promptsChanged;
 
     public bool IsShowing => current != null;
 
-    private bool IsLastLine => lineIndex >= current.lines.Length - 1;
+    private bool IsLastLine => lineIndex >= current.Lines.Length - 1;
 
     private void Awake()
     {
@@ -50,14 +53,16 @@ public class DialogueBox : MonoBehaviour, IDialoguePresenter, IPointerClickHandl
 
     private void OnEnable()
     {
-        advanceAction.performed += HandleAdvance;
-        advanceAction.Enable();
+        advanceAction.action.performed += HandleAdvance;
+
+        prompts = InputPrompts.Instance;
+        if (prompts != null) prompts.Changed += HandlePromptsChanged;
     }
 
     private void OnDisable()
     {
-        advanceAction.performed -= HandleAdvance;
-        advanceAction.Disable();
+        advanceAction.action.performed -= HandleAdvance;
+        if (prompts != null) prompts.Changed -= HandlePromptsChanged;
 
         typeRoutine = null;
         isTyping = false;
@@ -66,7 +71,7 @@ public class DialogueBox : MonoBehaviour, IDialoguePresenter, IPointerClickHandl
 
     public void Play(DialogueData data, Action finished = null, bool holdLast = false)
     {
-        if (data == null || data.lines == null || data.lines.Length == 0)
+        if (data == null || data.Lines == null || data.Lines.Length == 0)
         {
             Hide();
             finished?.Invoke();
@@ -116,7 +121,6 @@ public class DialogueBox : MonoBehaviour, IDialoguePresenter, IPointerClickHandl
     private void Advance()
     {
         if (current == null || isHolding) return;
-        if (GameManager.Instance != null && GameManager.Instance.IsPaused) return;
 
         if (isTyping)
         {
@@ -139,11 +143,38 @@ public class DialogueBox : MonoBehaviour, IDialoguePresenter, IPointerClickHandl
 
     private void ShowLine()
     {
-        lineText.text = ApplyHighlights(current.lines[lineIndex]);
+        lineText.text = FormatLine(current.Lines[lineIndex]);
+        promptsChanged = false;
         lineText.maxVisibleCharacters = 0;
         continueIndicator.SetActive(false);
         isTyping = true;
         typeRoutine = StartCoroutine(TypeLine());
+    }
+
+    private string FormatLine(string line)
+    {
+        return ApplyHighlights(ApplyTokens(line));
+    }
+
+    private string ApplyTokens(string line)
+    {
+        if (prompts == null) return line;
+
+        return TokenPattern.Replace(line, match =>
+            prompts.TryGetLabel(match.Groups[1].Value, out string label) ? "*" + label + "*" : match.Value);
+    }
+
+    private void HandlePromptsChanged()
+    {
+        if (current == null) return;
+
+        if (isTyping)
+        {
+            promptsChanged = true;
+            return;
+        }
+
+        lineText.text = FormatLine(current.Lines[lineIndex]);
     }
 
     private string ApplyHighlights(string line)
@@ -183,6 +214,12 @@ public class DialogueBox : MonoBehaviour, IDialoguePresenter, IPointerClickHandl
         lineText.maxVisibleCharacters = AllCharacters;
 
         if (current == null) return;
+
+        if (promptsChanged)
+        {
+            promptsChanged = false;
+            lineText.text = FormatLine(current.Lines[lineIndex]);
+        }
 
         if (holdLastLine && IsLastLine)
         {

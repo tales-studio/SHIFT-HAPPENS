@@ -104,6 +104,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HoldToSkip
   fill: {fileID: 6105000000000000113}
+  skipAction: {fileID: -4420630918004054110, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+  pointerPressAction: {fileID: 7400272632668864824, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+  pointerPositionAction: {fileID: 2300618434148494292, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
 --- !u!1 &6105000000000000110
 GameObject:
   m_ObjectHideFlags: 0
@@ -191,6 +194,7 @@ GameObject:
   - component: {fileID: 6105000000000000122}
   - component: {fileID: 6105000000000000123}
   - component: {fileID: 1992967138281760139}
+  - component: {fileID: 6105000000000000999}
   m_Layer: 5
   m_Name: Label
   m_TagString: Untagged
@@ -225,6 +229,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6105000000000000120}
   m_CullTransparentMesh: 1
+--- !u!114 &6105000000000000999
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6105000000000000120}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34036d9b03244a0890d314a52428d353, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ActionPromptLabel
+  action: {fileID: -4420630918004054110, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+  format: 'Hold {0} to skip'
 --- !u!114 &6105000000000000123
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -245,7 +263,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Hold to skip
+  m_text: Hold X to skip
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b347d10c68ca6694d8ecffe7d5c98cc2, type: 2}
   m_sharedMaterial: {fileID: -3372486125142541716, guid: b347d10c68ca6694d8ecffe7d5c98cc2, type: 2}

@@ -1,30 +1,27 @@
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovement : MonoBehaviour, ILockable
 {
     [SerializeField] private float moveSpeed = 5f;
     [SerializeField] private float sneakSpeed = 2.5f;
 
-    [SerializeField] private Transform interactionArea;
-    [SerializeField] private float colliderPosMult = 2f;
-
     private Rigidbody2D rb;
-    private Animator animator;
+    private PlayerInputReader input;
 
     private Vector2 movement;
     private Vector2 lastMovement = Vector2.down;
 
     private bool isSneaking;
 
-    private readonly HashSet<object> locks = new HashSet<object>();
+    private readonly LockSet locks = new LockSet();
 
-    public bool IsLocked => locks.Count > 0;
+    public LockTarget LockTarget => LockTarget.Movement;
+    public bool IsLocked => locks.IsLocked;
     public bool IsMoving => enabled && CurrentMovement != Vector2.zero;
     public bool IsSneaking => isSneaking;
 
-    private Vector2 CurrentMovement => IsLocked ? Vector2.zero : movement;
+    public Vector2 CurrentMovement => IsLocked ? Vector2.zero : movement;
+    public Vector2 Facing => lastMovement;
 
     public void AddLock(object source)
     {
@@ -46,26 +43,28 @@ public class PlayerMovement : MonoBehaviour
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-        animator = GetComponent<Animator>();
+        input = GetComponent<PlayerInputReader>();
+    }
+
+    private void OnEnable()
+    {
+        Lockables.Register(this);
+    }
+
+    private void OnDisable()
+    {
+        Lockables.Unregister(this);
     }
 
     private void Update()
     {
+        movement = input.Move.normalized;
+        isSneaking = input.IsSneakHeld;
+
         if (CurrentMovement != Vector2.zero)
         {
             lastMovement = CurrentMovement;
         }
-
-        animator.SetFloat("MoveX", lastMovement.x);
-        animator.SetFloat("MoveY", lastMovement.y);
-        animator.SetFloat("Speed", CurrentMovement.sqrMagnitude);
-
-        animator.SetBool("Shift", isSneaking);
-
-        interactionArea.localPosition = new Vector2(
-            lastMovement.x * colliderPosMult,
-            lastMovement.y * colliderPosMult
-        );
     }
 
     private void FixedUpdate()
@@ -73,15 +72,5 @@ public class PlayerMovement : MonoBehaviour
         float currentSpeed = isSneaking ? sneakSpeed : moveSpeed;
 
         rb.linearVelocity = CurrentMovement * currentSpeed;
-    }
-
-    public void OnMove(InputValue value)
-    {
-        movement = value.Get<Vector2>().normalized;
-    }
-
-    public void OnSneak(InputValue value)
-    {
-        isSneaking = value.isPressed;
     }
 }

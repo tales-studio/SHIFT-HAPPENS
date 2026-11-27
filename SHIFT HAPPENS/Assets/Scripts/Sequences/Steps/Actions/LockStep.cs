@@ -1,12 +1,5 @@
 using UnityEngine;
 
-public enum LockTarget
-{
-    Movement,
-    Phone,
-    Interaction
-}
-
 public class LockStep : SequenceStep
 {
     [SerializeField] private LockTarget target;
@@ -14,27 +7,10 @@ public class LockStep : SequenceStep
 
     public static void Apply(LockTarget target, bool locked, object owner)
     {
-        Player player = Player.Instance;
+        if (!Lockables.TryGet(target, out ILockable lockable)) return;
 
-        switch (target)
-        {
-            case LockTarget.Movement:
-                if (player == null) return;
-                if (locked) player.Movement.AddLock(owner);
-                else player.Movement.RemoveLock(owner);
-                break;
-            case LockTarget.Phone:
-                PhoneView phone = FindFirstObjectByType<PhoneView>();
-                if (phone == null) return;
-                if (locked) phone.AddLock(owner);
-                else phone.RemoveLock(owner);
-                break;
-            case LockTarget.Interaction:
-                if (player == null || player.Interaction == null) return;
-                if (locked) player.Interaction.AddLock(owner);
-                else player.Interaction.RemoveLock(owner);
-                break;
-        }
+        if (locked) lockable.AddLock(owner);
+        else lockable.RemoveLock(owner);
     }
 
     protected override void OnEnter()

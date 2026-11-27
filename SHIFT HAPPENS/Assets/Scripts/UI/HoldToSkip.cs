@@ -8,11 +8,12 @@ using UnityEngine.UI;
 public class HoldToSkip : MonoBehaviour
 {
     [SerializeField] private Image fill;
-    [SerializeField] private InputAction skipAction = new InputAction("Skip", InputActionType.Button);
+    [SerializeField] private InputActionReference skipAction;
+    [SerializeField] private InputActionReference pointerPressAction;
+    [SerializeField] private InputActionReference pointerPositionAction;
 
     private CanvasGroup group;
     private Action onSkip;
-    private Func<bool> isBlocked;
     private float holdDuration;
     private float held;
     private bool active;
@@ -27,31 +28,18 @@ public class HoldToSkip : MonoBehaviour
         if (group != null) return;
 
         group = GetComponent<CanvasGroup>();
-
-        if (skipAction.bindings.Count == 0)
-        {
-            skipAction.AddBinding("<Keyboard>/x");
-            skipAction.AddBinding("<Gamepad>/select");
-        }
     }
 
-    private void OnDestroy()
-    {
-        skipAction.Disable();
-    }
-
-    public void Show(float duration, Action skip, Func<bool> blocked = null)
+    public void Show(float duration, Action skip)
     {
         EnsureReady();
         holdDuration = Mathf.Max(0f, duration);
         onSkip = skip;
-        isBlocked = blocked;
         held = 0f;
         active = true;
 
         SetProgress(0f);
         group.alpha = 1f;
-        skipAction.Enable();
     }
 
     public void Hide()
@@ -59,10 +47,8 @@ public class HoldToSkip : MonoBehaviour
         EnsureReady();
         active = false;
         onSkip = null;
-        isBlocked = null;
         held = 0f;
 
-        skipAction.Disable();
         SetProgress(0f);
         group.alpha = 0f;
         group.blocksRaycasts = false;
@@ -73,14 +59,7 @@ public class HoldToSkip : MonoBehaviour
     {
         if (!active) return;
 
-        if (isBlocked != null && isBlocked())
-        {
-            held = 0f;
-            SetProgress(0f);
-            return;
-        }
-
-        bool pressed = skipAction.IsPressed() || IsPointerHeld();
+        bool pressed = IsSkipHeld() || IsPointerHeld();
 
         held = pressed ? held + Time.unscaledDeltaTime : 0f;
         SetProgress(holdDuration > 0f ? Mathf.Clamp01(held / holdDuration) : 0f);
@@ -92,12 +71,19 @@ public class HoldToSkip : MonoBehaviour
         skip?.Invoke();
     }
 
+    private bool IsSkipHeld()
+    {
+        InputAction action = skipAction.action;
+        return action.enabled && action.IsPressed();
+    }
+
     private bool IsPointerHeld()
     {
-        Mouse mouse = Mouse.current;
-        if (mouse == null || !mouse.leftButton.isPressed) return false;
+        InputAction press = pointerPressAction.action;
+        InputAction position = pointerPositionAction.action;
+        if (!press.enabled || !position.enabled || !press.IsPressed()) return false;
 
-        return RectTransformUtility.RectangleContainsScreenPoint((RectTransform)transform, mouse.position.ReadValue(), null);
+        return RectTransformUtility.RectangleContainsScreenPoint((RectTransform)transform, position.ReadValue<Vector2>(), null);
     }
 
     private void SetProgress(float progress)

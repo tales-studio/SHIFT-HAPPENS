@@ -1,0 +1,59 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24e9fcbadfc344eb9f2e5306b322c8d1, type: 3}
+  m_Name: PromptLabels
+  m_EditorClassIdentifier: Assembly-CSharp::InputPromptLabels
+  entries:
+  - action: {fileID: -1680190386980627800, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+    keyboardLabel: WASD or the arrows
+    gamepadLabel: the left stick
+    webKeyboardLabel:
+  - action: {fileID: -675335286695609979, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+    keyboardLabel: SHIFT
+    gamepadLabel: LT
+    webKeyboardLabel:
+  - action: {fileID: 1781555164194001046, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+    keyboardLabel: E
+    gamepadLabel: Y
+    webKeyboardLabel:
+  - action: {fileID: 6622782550101256587, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+    keyboardLabel: MOUSE
+    gamepadLabel: RIGHT STICK
+    webKeyboardLabel:
+  - action: {fileID: 6930486049756334322, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+    keyboardLabel: MOUSE
+    gamepadLabel: RIGHT STICK
+    webKeyboardLabel:
+  - action: {fileID: -957765200136340706, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+    keyboardLabel: TAB
+    gamepadLabel: SELECT
+    webKeyboardLabel:
+  - action: {fileID: -6631448921105046318, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+    keyboardLabel: MOUSE WHEEL
+    gamepadLabel: D-PAD
+    webKeyboardLabel:
+  - action: {fileID: 2837265099270423165, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+    keyboardLabel: ESC
+    gamepadLabel: START
+    webKeyboardLabel: P
+  - action: {fileID: 8273400945198953526, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+    keyboardLabel: ESC
+    gamepadLabel: B
+    webKeyboardLabel: P
+  - action: {fileID: 1466683984403757890, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+    keyboardLabel: ENTER
+    gamepadLabel: A
+    webKeyboardLabel:
+  - action: {fileID: -4420630918004054110, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+    keyboardLabel: X
+    gamepadLabel: X
+    webKeyboardLabel:

@@ -22,6 +22,12 @@ public class TextStyle : MonoBehaviour
     }
 #endif
 
+    public void SetRole(TextRole newRole)
+    {
+        role = newRole;
+        Apply();
+    }
+
     public void Apply()
     {
         TypographyTheme current = Theme;

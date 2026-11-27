@@ -1,7 +1,6 @@
-using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovement : MonoBehaviour, ILockable
 {
     [SerializeField] private float moveSpeed = 5f;
     [SerializeField] private float sneakSpeed = 2.5f;
@@ -18,9 +17,10 @@ public class PlayerMovement : MonoBehaviour
 
     private bool isSneaking;
 
-    private readonly HashSet<object> locks = new HashSet<object>();
+    private readonly LockSet locks = new LockSet();
 
-    public bool IsLocked => locks.Count > 0;
+    public LockTarget LockTarget => LockTarget.Movement;
+    public bool IsLocked => locks.IsLocked;
     public bool IsMoving => enabled && CurrentMovement != Vector2.zero;
     public bool IsSneaking => isSneaking;
 
@@ -48,6 +48,16 @@ public class PlayerMovement : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         input = GetComponent<PlayerInputReader>();
+    }
+
+    private void OnEnable()
+    {
+        Lockables.Register(this);
+    }
+
+    private void OnDisable()
+    {
+        Lockables.Unregister(this);
     }
 
     private void Update()

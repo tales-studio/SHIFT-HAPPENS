@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class PlayerInteract : MonoBehaviour
+public class PlayerInteract : MonoBehaviour, ILockable
 {
     [SerializeField] private Collider2D interactionArea;
 
@@ -21,12 +21,13 @@ public class PlayerInteract : MonoBehaviour
     [SerializeField] private Vector2 signBackgroundPadding = new Vector2(0.3f, 0.18f);
 
     private readonly List<Collider2D> overlaps = new List<Collider2D>();
-    private readonly HashSet<object> locks = new HashSet<object>();
+    private readonly LockSet locks = new LockSet();
     private ContactFilter2D filter;
     private TextMeshPro sign;
     private PlayerInputReader input;
 
-    public bool IsLocked => locks.Count > 0;
+    public LockTarget LockTarget => LockTarget.Interaction;
+    public bool IsLocked => locks.IsLocked;
 
     public void AddLock(object source)
     {
@@ -52,11 +53,13 @@ public class PlayerInteract : MonoBehaviour
     private void OnEnable()
     {
         input.Interacted += HandleInteract;
+        Lockables.Register(this);
     }
 
     private void OnDisable()
     {
         input.Interacted -= HandleInteract;
+        Lockables.Unregister(this);
         if (sign != null) sign.gameObject.SetActive(false);
     }
 

@@ -1,11 +1,10 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 [DisallowMultipleComponent]
-public class PhoneView : MonoBehaviour
+public class PhoneView : MonoBehaviour, ILockable
 {
     [SerializeField] private RectTransform body;
     [SerializeField] private Vector2 hiddenPosition = new Vector2(-40f, -720f);
@@ -21,10 +20,11 @@ public class PhoneView : MonoBehaviour
 
     private GameManager gameManager;
     private Coroutine slideRoutine;
-    private readonly HashSet<object> locks = new HashSet<object>();
+    private readonly LockSet locks = new LockSet();
 
     public bool IsOpen { get; private set; }
-    public bool IsLocked => locks.Count > 0;
+    public LockTarget LockTarget => LockTarget.Phone;
+    public bool IsLocked => locks.IsLocked;
 
     public event Action<bool> OnOpenChanged;
 
@@ -46,11 +46,13 @@ public class PhoneView : MonoBehaviour
     private void OnEnable()
     {
         toggleAction.action.performed += HandleToggle;
+        Lockables.Register(this);
     }
 
     private void OnDisable()
     {
         toggleAction.action.performed -= HandleToggle;
+        Lockables.Unregister(this);
     }
 
     private void Start()

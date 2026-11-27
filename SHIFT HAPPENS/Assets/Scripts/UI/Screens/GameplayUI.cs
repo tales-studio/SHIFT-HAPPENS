@@ -13,25 +13,25 @@ public class GameplayUI : MonoBehaviour
     [SerializeField] private GameObject survivedBackdrop;
 
     [Header("Input")]
-    [SerializeField] private InputAction pauseAction = new InputAction("Pause", InputActionType.Button, "<Keyboard>/escape");
-    [SerializeField] private InputAction backAction = new InputAction("Back", InputActionType.Button, "<Gamepad>/buttonEast");
+    [SerializeField] private InputActionReference pauseAction;
+    [SerializeField] private InputActionReference backAction;
 
     private GameManager gameManager;
 
     private void OnEnable()
     {
-        pauseAction.performed += HandlePauseInput;
-        backAction.performed += HandleBackInput;
-        pauseAction.Enable();
-        backAction.Enable();
+        pauseAction.action.performed += HandlePauseInput;
+        backAction.action.performed += HandleBackInput;
+        pauseAction.action.Enable();
+        backAction.action.Enable();
     }
 
     private void OnDisable()
     {
-        pauseAction.performed -= HandlePauseInput;
-        backAction.performed -= HandleBackInput;
-        pauseAction.Disable();
-        backAction.Disable();
+        pauseAction.action.performed -= HandlePauseInput;
+        backAction.action.performed -= HandleBackInput;
+        pauseAction.action.Disable();
+        backAction.action.Disable();
     }
 
     private void Start()

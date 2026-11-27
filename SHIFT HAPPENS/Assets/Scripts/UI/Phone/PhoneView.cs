@@ -17,7 +17,7 @@ public class PhoneView : MonoBehaviour
     [SerializeField] private SoundId closeSound = SoundId.PhoneClose;
 
     [Header("Input")]
-    [SerializeField] private InputAction toggleAction = new InputAction("Phone", InputActionType.Button, "<Keyboard>/tab");
+    [SerializeField] private InputActionReference toggleAction;
 
     private GameManager gameManager;
     private Coroutine slideRoutine;
@@ -45,14 +45,14 @@ public class PhoneView : MonoBehaviour
 
     private void OnEnable()
     {
-        toggleAction.performed += HandleToggle;
-        toggleAction.Enable();
+        toggleAction.action.performed += HandleToggle;
+        toggleAction.action.Enable();
     }
 
     private void OnDisable()
     {
-        toggleAction.performed -= HandleToggle;
-        toggleAction.Disable();
+        toggleAction.action.performed -= HandleToggle;
+        toggleAction.action.Disable();
     }
 
     private void Start()

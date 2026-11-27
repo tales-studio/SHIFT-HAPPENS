@@ -60,7 +60,7 @@ public class TaskListView : MonoBehaviour
     [SerializeField, Min(0f)] private float entryHeight = 86f;
     [SerializeField] private GameObject scrollBar;
     [SerializeField] private RectTransform scrollThumb;
-    [SerializeField] private InputAction scrollAction = new InputAction("ScrollTasks", InputActionType.Value, "<Mouse>/scroll/y");
+    [SerializeField] private InputActionReference scrollAction;
 
     private readonly List<FloorGroup> floors = new List<FloorGroup>();
     private readonly List<Row> rows = new List<Row>();
@@ -82,12 +82,12 @@ public class TaskListView : MonoBehaviour
 
     private void OnEnable()
     {
-        scrollAction.Enable();
+        scrollAction.action.Enable();
     }
 
     private void OnDisable()
     {
-        scrollAction.Disable();
+        scrollAction.action.Disable();
     }
 
     private void Start()
@@ -109,7 +109,7 @@ public class TaskListView : MonoBehaviour
     {
         if (phone != null && !phone.IsOpen) return;
 
-        float scroll = scrollAction.ReadValue<float>();
+        float scroll = scrollAction.action.ReadValue<float>();
         if (scroll == 0f) return;
 
         scrollIndex += scroll > 0f ? -1 : 1;

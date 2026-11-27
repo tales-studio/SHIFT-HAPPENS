@@ -12204,48 +12204,8 @@ MonoBehaviour:
   survivedScreen: {fileID: 8400718573357853094}
   failedScreen: {fileID: 6100000000000000097}
   survivedBackdrop: {fileID: 6100000000000000058}
-  pauseAction:
-    m_Name: Pause
-    m_Type: 1
-    m_ExpectedControlType: Button
-    m_Id: 2d6d0e1d-26fe-47da-a765-57f71e05a279
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: 12e76238-c1b0-4802-a73a-3896e718f88e
-      m_Path: <Keyboard>/escape
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Pause
-      m_Flags: 0
-    - m_Name: 
-      m_Id: 66c169f1-25d8-4f25-8556-d09e2e5d146c
-      m_Path: <Gamepad>/start
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Pause
-      m_Flags: 0
-    m_Flags: 0
-  backAction:
-    m_Name: Back
-    m_Type: 1
-    m_ExpectedControlType: Button
-    m_Id: 2eb2a94a-de59-4521-bc25-faf98accb230
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: f7910ea0-fa08-4059-bb84-cf9a2cb85185
-      m_Path: <Gamepad>/buttonEast
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Back
-      m_Flags: 0
-    m_Flags: 0
+  pauseAction: {fileID: 2837265099270423165, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+  backAction: {fileID: 8273400945198953526, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
 --- !u!1 &6100000000000000008
 GameObject:
   m_ObjectHideFlags: 0
@@ -14749,31 +14709,7 @@ MonoBehaviour:
   slideDuration: 0.25
   openSound: 907
   closeSound: 908
-  toggleAction:
-    m_Name: Phone
-    m_Type: 1
-    m_ExpectedControlType: Button
-    m_Id: ecfa1ed6-0b6b-426a-ac37-5a949b3e18ed
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: 4c145640-65f6-4799-bea5-e7c21a8ffdc8
-      m_Path: <Keyboard>/tab
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Phone
-      m_Flags: 0
-    - m_Name: 
-      m_Id: d7584f79-a26d-4fef-9179-40096f014f3b
-      m_Path: <Gamepad>/select
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Phone
-      m_Flags: 0
-    m_Flags: 0
+  toggleAction: {fileID: -957765200136340706, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
 --- !u!1 &6200000000000000004
 GameObject:
   m_ObjectHideFlags: 0
@@ -14840,23 +14776,7 @@ MonoBehaviour:
   entryHeight: 98
   scrollBar: {fileID: 6200000000000000140}
   scrollThumb: {fileID: 6200000000000000145}
-  scrollAction:
-    m_Name: ScrollTasks
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 36b05e8e-160b-46ea-97be-d055a2441ee2
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: 1c8a68a1-fd98-4333-9c08-7aa6bfc9b5f4
-      m_Path: <Mouse>/scroll/y
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: ScrollTasks
-      m_Flags: 0
-    m_Flags: 0
+  scrollAction: {fileID: -6631448921105046318, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
 --- !u!1 &6200000000000000007
 GameObject:
   m_ObjectHideFlags: 0

@@ -9,6 +9,8 @@ public class HoldToSkip : MonoBehaviour
 {
     [SerializeField] private Image fill;
     [SerializeField] private InputActionReference skipAction;
+    [SerializeField] private InputActionReference pointerPressAction;
+    [SerializeField] private InputActionReference pointerPositionAction;
 
     private CanvasGroup group;
     private Action onSkip;
@@ -57,7 +59,7 @@ public class HoldToSkip : MonoBehaviour
     {
         if (!active) return;
 
-        bool pressed = skipAction.action.enabled && (skipAction.action.IsPressed() || IsPointerHeld());
+        bool pressed = IsSkipHeld() || IsPointerHeld();
 
         held = pressed ? held + Time.unscaledDeltaTime : 0f;
         SetProgress(holdDuration > 0f ? Mathf.Clamp01(held / holdDuration) : 0f);
@@ -69,12 +71,19 @@ public class HoldToSkip : MonoBehaviour
         skip?.Invoke();
     }
 
+    private bool IsSkipHeld()
+    {
+        InputAction action = skipAction.action;
+        return action.enabled && action.IsPressed();
+    }
+
     private bool IsPointerHeld()
     {
-        Mouse mouse = Mouse.current;
-        if (mouse == null || !mouse.leftButton.isPressed) return false;
+        InputAction press = pointerPressAction.action;
+        InputAction position = pointerPositionAction.action;
+        if (!press.enabled || !position.enabled || !press.IsPressed()) return false;
 
-        return RectTransformUtility.RectangleContainsScreenPoint((RectTransform)transform, mouse.position.ReadValue(), null);
+        return RectTransformUtility.RectangleContainsScreenPoint((RectTransform)transform, position.ReadValue<Vector2>(), null);
     }
 
     private void SetProgress(float progress)

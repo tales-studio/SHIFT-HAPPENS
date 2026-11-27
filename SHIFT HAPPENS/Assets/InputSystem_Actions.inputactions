@@ -772,6 +772,24 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "SkipPointerPress",
+                    "type": "Button",
+                    "id": "56802abb-ce2b-4883-851d-4cb753a7221e",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "SkipPointerPosition",
+                    "type": "Value",
+                    "id": "0ca7f5af-06dd-4d23-8fa7-145e53418d89",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -827,6 +845,28 @@
                     "processors": "",
                     "groups": "Gamepad",
                     "action": "Skip",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "5ec2b35c-0475-44f8-baef-953aa471bb77",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "SkipPointerPress",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "70d4818c-2dab-49d0-affc-2b7f5bf1416d",
+                    "path": "<Mouse>/position",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "SkipPointerPosition",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

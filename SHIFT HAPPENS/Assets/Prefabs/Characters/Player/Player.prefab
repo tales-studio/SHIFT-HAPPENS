@@ -255,6 +255,7 @@ GameObject:
   - component: {fileID: 2936021255400174294}
   - component: {fileID: 7314159265358979301}
   - component: {fileID: 8390986514315627031}
+  - component: {fileID: 7314159265358979311}
   - component: {fileID: 6001527583351373628}
   - component: {fileID: 7340192837465019283}
   - component: {fileID: 4416281937502846400}
@@ -492,6 +493,18 @@ MonoBehaviour:
   sneakSpeed: 2.5
   interactionArea: {fileID: 4437324220299100156}
   colliderPosMult: 2
+--- !u!114 &7314159265358979311
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5369124962322799454}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99978d56e9404d54bddca974b20f8f5a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerAnimator
 --- !u!114 &6001527583351373628
 MonoBehaviour:
   m_ObjectHideFlags: 0

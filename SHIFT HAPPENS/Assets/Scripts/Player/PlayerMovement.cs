@@ -9,7 +9,6 @@ public class PlayerMovement : MonoBehaviour, ILockable
     [SerializeField] private float colliderPosMult = 2f;
 
     private Rigidbody2D rb;
-    private Animator animator;
     private PlayerInputReader input;
 
     private Vector2 movement;
@@ -24,7 +23,8 @@ public class PlayerMovement : MonoBehaviour, ILockable
     public bool IsMoving => enabled && CurrentMovement != Vector2.zero;
     public bool IsSneaking => isSneaking;
 
-    private Vector2 CurrentMovement => IsLocked ? Vector2.zero : movement;
+    public Vector2 CurrentMovement => IsLocked ? Vector2.zero : movement;
+    public Vector2 Facing => lastMovement;
 
     public void AddLock(object source)
     {
@@ -46,7 +46,6 @@ public class PlayerMovement : MonoBehaviour, ILockable
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-        animator = GetComponent<Animator>();
         input = GetComponent<PlayerInputReader>();
     }
 
@@ -69,12 +68,6 @@ public class PlayerMovement : MonoBehaviour, ILockable
         {
             lastMovement = CurrentMovement;
         }
-
-        animator.SetFloat("MoveX", lastMovement.x);
-        animator.SetFloat("MoveY", lastMovement.y);
-        animator.SetFloat("Speed", CurrentMovement.sqrMagnitude);
-
-        animator.SetBool("Shift", isSneaking);
 
         interactionArea.localPosition = new Vector2(
             lastMovement.x * colliderPosMult,

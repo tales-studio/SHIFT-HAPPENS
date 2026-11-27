@@ -16,3 +16,5 @@ MonoBehaviour:
   portrait: {fileID: 8001473604841077134, guid: 85365c847ce778f4da0641f923f0c863, type: 3}
   lines:
   - "If you need a breather, *ESC* pauses everything."
+  webLines:
+  - "If you need a breather, *P* pauses everything."

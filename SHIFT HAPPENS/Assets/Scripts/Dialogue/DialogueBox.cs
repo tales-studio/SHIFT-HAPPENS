@@ -35,7 +35,7 @@ public class DialogueBox : MonoBehaviour, IDialoguePresenter, IPointerClickHandl
 
     public bool IsShowing => current != null;
 
-    private bool IsLastLine => lineIndex >= current.lines.Length - 1;
+    private bool IsLastLine => lineIndex >= current.Lines.Length - 1;
 
     private void Awake()
     {
@@ -66,7 +66,7 @@ public class DialogueBox : MonoBehaviour, IDialoguePresenter, IPointerClickHandl
 
     public void Play(DialogueData data, Action finished = null, bool holdLast = false)
     {
-        if (data == null || data.lines == null || data.lines.Length == 0)
+        if (data == null || data.Lines == null || data.Lines.Length == 0)
         {
             Hide();
             finished?.Invoke();
@@ -139,7 +139,7 @@ public class DialogueBox : MonoBehaviour, IDialoguePresenter, IPointerClickHandl
 
     private void ShowLine()
     {
-        lineText.text = ApplyHighlights(current.lines[lineIndex]);
+        lineText.text = ApplyHighlights(current.Lines[lineIndex]);
         lineText.maxVisibleCharacters = 0;
         continueIndicator.SetActive(false);
         isTyping = true;

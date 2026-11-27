@@ -13,16 +13,16 @@ MonoBehaviour:
   m_Name: Emo
   m_EditorClassIdentifier: Assembly-CSharp::StudentProfile
   archetype: 2
-  bathroomPreference: 0.5
+  bathroomPreference: 0.4
   kitchenPreference: 0.3
-  wanderPreference: 0.5
+  wanderPreference: 0.3
   exclusiveActivities:
   - activity: {fileID: 11400000, guid: 3b01233858b00d44eb2e23107e701123, type: 2}
-    preference: 0.8
+    preference: 0.6
   - activity: {fileID: 11400000, guid: b8724faf6f3a3c44893b770487062c80, type: 2}
-    preference: 0.3
+    preference: 0.6
   - activity: {fileID: 11400000, guid: d12fc898819610745898154705083ba2, type: 2}
-    preference: 0.7
+    preference: 0.4
   durationMultiplier: 1.2
-  decisionNoise: 0.3
+  decisionNoise: 0.05
   alwaysGeneratesTasks: 0

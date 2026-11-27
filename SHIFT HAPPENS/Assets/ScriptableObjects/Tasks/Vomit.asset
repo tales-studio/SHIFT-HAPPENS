@@ -17,6 +17,6 @@ MonoBehaviour:
   expirationSeconds: 0
   anxietyOnFail: 0
   reliefOnComplete: 20
-  spawnChance: 0.3
+  spawnChance: 1
   minutesGainedOnComplete: 15
   completeSound: 503

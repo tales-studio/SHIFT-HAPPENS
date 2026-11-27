@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: Cry
   m_EditorClassIdentifier: Assembly-CSharp::ActivityData
   destinationType: 0
-  minDuration: 10
-  maxDuration: 20
-  timeToFullNeed: 300
-  needWeight: 0.85
+  minDuration: 15
+  maxDuration: 30
+  timeToFullNeed: 400
+  needWeight: 0.5
   allowRepeatInARow: 0
   interactionMode: 2
   interactionTask: {fileID: 11400000, guid: 70ccd08a70786794bb6e23220505f28d, type: 2}

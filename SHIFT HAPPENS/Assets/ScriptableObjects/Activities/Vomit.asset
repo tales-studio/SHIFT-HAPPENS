@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: Vomit
   m_EditorClassIdentifier: Assembly-CSharp::ActivityData
   destinationType: 5
-  minDuration: 60
-  maxDuration: 120
-  timeToFullNeed: 300
-  needWeight: 0.85
+  minDuration: 10
+  maxDuration: 20
+  timeToFullNeed: 400
+  needWeight: 0.5
   allowRepeatInARow: 0
   interactionMode: 0
   interactionTask: {fileID: 0}

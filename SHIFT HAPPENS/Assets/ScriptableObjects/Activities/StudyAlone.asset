@@ -15,8 +15,8 @@ MonoBehaviour:
   destinationType: 4
   minDuration: 60
   maxDuration: 120
-  timeToFullNeed: 300
-  needWeight: 0.85
+  timeToFullNeed: 400
+  needWeight: 0.5
   allowRepeatInARow: 1
   interactionMode: 1
   interactionTask: {fileID: 11400000, guid: 8448c8f2aef8bd14a80bf000879eca6d, type: 2}

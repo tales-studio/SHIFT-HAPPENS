@@ -15,12 +15,12 @@ MonoBehaviour:
   archetype: 1
   bathroomPreference: 0.4
   kitchenPreference: 0.6
-  wanderPreference: 0.9
+  wanderPreference: 0.6
   exclusiveActivities:
   - activity: {fileID: 11400000, guid: 3b01233858b00d44eb2e23107e701123, type: 2}
-    preference: 0.2
+    preference: 0.3
   - activity: {fileID: 11400000, guid: d12fc898819610745898154705083ba2, type: 2}
     preference: 0.8
-  durationMultiplier: 1.5
-  decisionNoise: 0.3
+  durationMultiplier: 0.8
+  decisionNoise: 0.05
   alwaysGeneratesTasks: 0

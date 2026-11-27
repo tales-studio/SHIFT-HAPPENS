@@ -19,14 +19,19 @@ public class MenuNavigator : MonoBehaviour
 
     private void Start()
     {
-        usingPointer = Mouse.current != null;
+        SubscribeToInput();
+        usingPointer = module == null || HasPointer(module);
 
         foreach (UIScreen screen in GetComponentsInChildren<UIScreen>(true))
             screen.Hide();
 
         if (firstScreen != null) Push(firstScreen);
+    }
 
-        SubscribeToInput();
+    private static bool HasPointer(InputSystemUIInputModule inputModule)
+    {
+        InputActionReference point = inputModule.point;
+        return point != null && point.action != null && point.action.controls.Count > 0;
     }
 
     private void OnDestroy()

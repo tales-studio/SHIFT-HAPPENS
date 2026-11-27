@@ -2,6 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.UI;
 using UnityEngine.SceneManagement;
 
 [DisallowMultipleComponent]
@@ -106,7 +107,7 @@ public class InputContextService : MonoBehaviour
         if (references == null) return false;
 
         foreach (InputActionReference reference in references)
-            if (reference != null && reference.action != null && reference.action.id == action.id) return true;
+            if (Matches(reference, action)) return true;
 
         return false;
     }
@@ -115,14 +116,45 @@ public class InputContextService : MonoBehaviour
     {
         if (actions == null) return;
 
+        InputSystemUIInputModule uiModule = FindUIModule();
+
         foreach (InputActionMap map in actions.actionMaps)
         {
             foreach (InputAction action in map.actions)
             {
+                if (IsUIAction(uiModule, action)) continue;
+
                 if (IsAllowed(context, action)) action.Enable();
                 else action.Disable();
             }
         }
+    }
+
+    private static InputSystemUIInputModule FindUIModule()
+    {
+        EventSystem eventSystem = EventSystem.current;
+        return eventSystem != null ? eventSystem.GetComponent<InputSystemUIInputModule>() : null;
+    }
+
+    private static bool IsUIAction(InputSystemUIInputModule module, InputAction action)
+    {
+        if (module == null) return false;
+
+        return Matches(module.point, action)
+            || Matches(module.move, action)
+            || Matches(module.submit, action)
+            || Matches(module.cancel, action)
+            || Matches(module.leftClick, action)
+            || Matches(module.middleClick, action)
+            || Matches(module.rightClick, action)
+            || Matches(module.scrollWheel, action)
+            || Matches(module.trackedDevicePosition, action)
+            || Matches(module.trackedDeviceOrientation, action);
+    }
+
+    private static bool Matches(InputActionReference reference, InputAction action)
+    {
+        return reference != null && reference.action != null && reference.action.id == action.id;
     }
 
     private void ApplyMenus(InputContext context)

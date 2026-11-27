@@ -68,9 +68,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InputContextService
   actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
-  pauseAction: {fileID: 2837265099270423165, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
-  backAction: {fileID: 8273400945198953526, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
-  skipAction: {fileID: -4420630918004054110, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+  menuActions:
+  - {fileID: 2837265099270423165, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+  - {fileID: 8273400945198953526, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+  cutsceneActions:
+  - {fileID: -4420630918004054110, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+  - {fileID: 7400272632668864824, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+  - {fileID: 2300618434148494292, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
 --- !u!1001 &5527390148261937200
 PrefabInstance:
   m_ObjectHideFlags: 0

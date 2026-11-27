@@ -10,9 +10,8 @@ public class InputContextService : MonoBehaviour
     public static InputContextService Instance { get; private set; }
 
     [SerializeField] private InputActionAsset actions;
-    [SerializeField] private InputActionReference pauseAction;
-    [SerializeField] private InputActionReference backAction;
-    [SerializeField] private InputActionReference skipAction;
+    [SerializeField] private InputActionReference[] menuActions;
+    [SerializeField] private InputActionReference[] cutsceneActions;
 
     private GameManager gameManager;
     private ICutscenePlayer cutscenePlayer;
@@ -94,17 +93,22 @@ public class InputContextService : MonoBehaviour
                 return true;
             case InputContext.Paused:
             case InputContext.Ended:
-                return Is(action, pauseAction) || Is(action, backAction);
+                return Contains(menuActions, action);
             case InputContext.Cutscene:
-                return Is(action, skipAction);
+                return Contains(cutsceneActions, action);
             default:
                 return false;
         }
     }
 
-    private static bool Is(InputAction action, InputActionReference reference)
+    private static bool Contains(InputActionReference[] references, InputAction action)
     {
-        return reference != null && reference.action != null && action.id == reference.action.id;
+        if (references == null) return false;
+
+        foreach (InputActionReference reference in references)
+            if (reference != null && reference.action != null && reference.action.id == action.id) return true;
+
+        return false;
     }
 
     private void ApplyActions(InputContext context)

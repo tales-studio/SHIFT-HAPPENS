@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using Unity.Cinemachine;
 using UnityEngine;
 
 [DisallowMultipleComponent]
@@ -30,8 +31,11 @@ public class PlayerTeleporter : MonoBehaviour
     public void PlaceAt(Vector2 position)
     {
         OnTeleportStarted?.Invoke();
+        Vector3 delta = (Vector3)(position - body.position);
         body.position = position;
+        transform.position = new Vector3(position.x, position.y, transform.position.z);
         body.linearVelocity = Vector2.zero;
+        CinemachineCore.OnTargetObjectWarped(transform, delta);
         OnTeleported?.Invoke();
     }
 

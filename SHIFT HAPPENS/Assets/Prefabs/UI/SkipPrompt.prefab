@@ -104,6 +104,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HoldToSkip
   fill: {fileID: 6105000000000000113}
+  skipAction: {fileID: -4420630918004054110, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
 --- !u!1 &6105000000000000110
 GameObject:
   m_ObjectHideFlags: 0

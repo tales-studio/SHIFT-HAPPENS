@@ -23,7 +23,7 @@ public class DialogueBox : MonoBehaviour, IDialoguePresenter, IPointerClickHandl
     [SerializeField] private DialogueData previewDialogue;
 
     [Header("Input")]
-    [SerializeField] private InputAction advanceAction = new InputAction("AdvanceDialogue", InputActionType.Button, "<Keyboard>/enter");
+    [SerializeField] private InputActionReference advanceAction;
 
     private DialogueData current;
     private int lineIndex;
@@ -50,14 +50,14 @@ public class DialogueBox : MonoBehaviour, IDialoguePresenter, IPointerClickHandl
 
     private void OnEnable()
     {
-        advanceAction.performed += HandleAdvance;
-        advanceAction.Enable();
+        advanceAction.action.performed += HandleAdvance;
+        advanceAction.action.Enable();
     }
 
     private void OnDisable()
     {
-        advanceAction.performed -= HandleAdvance;
-        advanceAction.Disable();
+        advanceAction.action.performed -= HandleAdvance;
+        advanceAction.action.Disable();
 
         typeRoutine = null;
         isTyping = false;

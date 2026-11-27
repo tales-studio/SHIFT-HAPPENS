@@ -8,7 +8,7 @@ using UnityEngine.UI;
 public class HoldToSkip : MonoBehaviour
 {
     [SerializeField] private Image fill;
-    [SerializeField] private InputAction skipAction = new InputAction("Skip", InputActionType.Button);
+    [SerializeField] private InputActionReference skipAction;
 
     private CanvasGroup group;
     private Action onSkip;
@@ -27,17 +27,6 @@ public class HoldToSkip : MonoBehaviour
         if (group != null) return;
 
         group = GetComponent<CanvasGroup>();
-
-        if (skipAction.bindings.Count == 0)
-        {
-            skipAction.AddBinding("<Keyboard>/x");
-            skipAction.AddBinding("<Gamepad>/select");
-        }
-    }
-
-    private void OnDestroy()
-    {
-        skipAction.Disable();
     }
 
     public void Show(float duration, Action skip, Func<bool> blocked = null)
@@ -51,7 +40,7 @@ public class HoldToSkip : MonoBehaviour
 
         SetProgress(0f);
         group.alpha = 1f;
-        skipAction.Enable();
+        skipAction.action.Enable();
     }
 
     public void Hide()
@@ -62,7 +51,6 @@ public class HoldToSkip : MonoBehaviour
         isBlocked = null;
         held = 0f;
 
-        skipAction.Disable();
         SetProgress(0f);
         group.alpha = 0f;
         group.blocksRaycasts = false;
@@ -80,7 +68,7 @@ public class HoldToSkip : MonoBehaviour
             return;
         }
 
-        bool pressed = skipAction.IsPressed() || IsPointerHeld();
+        bool pressed = skipAction.action.IsPressed() || IsPointerHeld();
 
         held = pressed ? held + Time.unscaledDeltaTime : 0f;
         SetProgress(holdDuration > 0f ? Mathf.Clamp01(held / holdDuration) : 0f);

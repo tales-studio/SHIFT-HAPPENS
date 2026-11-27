@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5527390148261937101}
   - component: {fileID: 5527390148261937102}
+  - component: {fileID: 5527390148261937103}
   m_Layer: 0
   m_Name: Services
   m_TagString: Untagged
@@ -54,6 +55,22 @@ MonoBehaviour:
     sceneName: MainMenu
   - id: 1
     sceneName: World
+--- !u!114 &5527390148261937103
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5527390148261937100}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d30ba276e124c2eb5367cf36500fab9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InputContextService
+  actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+  pauseAction: {fileID: 2837265099270423165, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+  backAction: {fileID: 8273400945198953526, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+  skipAction: {fileID: -4420630918004054110, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
 --- !u!1001 &5527390148261937200
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -266,7 +283,6 @@ GameObject:
   - component: {fileID: 5527390148261937504}
   - component: {fileID: 5527390148261937505}
   - component: {fileID: 5527390148261937506}
-  - component: {fileID: 5527390148261937507}
   m_Layer: 0
   m_Name: CutscenePlayer
   m_TagString: Untagged
@@ -731,15 +747,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CutsceneVolume
   audioSource: {fileID: 5527390148261937504}
---- !u!114 &5527390148261937507
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5527390148261937500}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7de9de6a87974b94b97c13873ea11827, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CutsceneMenuBlocker

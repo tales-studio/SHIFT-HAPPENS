@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerInteract : MonoBehaviour, ILockable
 {
     [SerializeField] private Collider2D interactionArea;
+    [SerializeField] private float areaDistance = 2f;
 
     [Tooltip("Layers whose colliders count as interactable. Exclude helper triggers like FadeZone.")]
     [SerializeField] private LayerMask interactableLayers = ~0;
@@ -26,6 +27,7 @@ public class PlayerInteract : MonoBehaviour, ILockable
     private TextMeshPro sign;
     private Transform signBackground;
     private PlayerInputReader input;
+    private PlayerMovement movement;
     private InputPrompts prompts;
 
     public LockTarget LockTarget => LockTarget.Interaction;
@@ -48,6 +50,7 @@ public class PlayerInteract : MonoBehaviour, ILockable
         filter.useTriggers = true;
 
         input = GetComponent<PlayerInputReader>();
+        movement = GetComponent<PlayerMovement>();
 
         CreateSign();
     }
@@ -77,6 +80,8 @@ public class PlayerInteract : MonoBehaviour, ILockable
 
     private void LateUpdate()
     {
+        PlaceArea();
+
         IInteractable closest = IsLocked ? null : GetClosestInteractable();
 
         if (closest == null)
@@ -87,6 +92,13 @@ public class PlayerInteract : MonoBehaviour, ILockable
 
         sign.transform.position = closest.SignPosition + Vector3.up * signHeightOffset;
         sign.gameObject.SetActive(true);
+    }
+
+    private void PlaceArea()
+    {
+        if (movement == null) return;
+
+        interactionArea.transform.localPosition = movement.Facing * areaDistance;
     }
 
     private void HandleInteract()

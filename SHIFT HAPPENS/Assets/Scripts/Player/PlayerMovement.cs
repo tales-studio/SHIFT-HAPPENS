@@ -5,9 +5,6 @@ public class PlayerMovement : MonoBehaviour, ILockable
     [SerializeField] private float moveSpeed = 5f;
     [SerializeField] private float sneakSpeed = 2.5f;
 
-    [SerializeField] private Transform interactionArea;
-    [SerializeField] private float colliderPosMult = 2f;
-
     private Rigidbody2D rb;
     private PlayerInputReader input;
 
@@ -68,11 +65,6 @@ public class PlayerMovement : MonoBehaviour, ILockable
         {
             lastMovement = CurrentMovement;
         }
-
-        interactionArea.localPosition = new Vector2(
-            lastMovement.x * colliderPosMult,
-            lastMovement.y * colliderPosMult
-        );
     }
 
     private void FixedUpdate()

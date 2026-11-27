@@ -491,8 +491,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
   moveSpeed: 10
   sneakSpeed: 2.5
-  interactionArea: {fileID: 4437324220299100156}
-  colliderPosMult: 2
 --- !u!114 &7314159265358979311
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -518,6 +516,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerInteract
   interactionArea: {fileID: 3938547208934638834}
+  areaDistance: 2
   interactableLayers:
     serializedVersion: 2
     m_Bits: 55

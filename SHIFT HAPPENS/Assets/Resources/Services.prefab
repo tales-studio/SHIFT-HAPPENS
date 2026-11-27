@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5527390148261937101}
   - component: {fileID: 5527390148261937102}
   - component: {fileID: 5527390148261937103}
+  - component: {fileID: 5527390148261937104}
   m_Layer: 0
   m_Name: Services
   m_TagString: Untagged
@@ -75,6 +76,18 @@ MonoBehaviour:
   - {fileID: -4420630918004054110, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   - {fileID: 7400272632668864824, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   - {fileID: 2300618434148494292, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+--- !u!114 &5527390148261937104
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5527390148261937100}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f08985e3a6949ac8ae41d2cf934eaaf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InputDeviceTracker
 --- !u!1001 &5527390148261937200
 PrefabInstance:
   m_ObjectHideFlags: 0

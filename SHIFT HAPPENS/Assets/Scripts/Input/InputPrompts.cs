@@ -47,6 +47,7 @@ public class InputPrompts : MonoBehaviour
 
     public string GetLabel(InputAction action)
     {
+        if (action == null) return string.Empty;
         if (labels == null) return action.GetBindingDisplayString();
 
         return labels.GetLabel(action, Device);

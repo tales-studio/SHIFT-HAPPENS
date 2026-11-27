@@ -17,20 +17,22 @@ public class PlayerInputReader : MonoBehaviour
     private InputAction interact;
     private InputAction aim;
     private InputAction aimStick;
+    private bool resolved;
 
     public event Action Interacted;
 
-    public Vector2 Move => move.ReadValue<Vector2>();
-    public bool IsSneakHeld => sneak.IsPressed();
-    public Vector2 AimScreenPosition => aim.ReadValue<Vector2>();
-    public Vector2 AimStick => aimStick.ReadValue<Vector2>();
-    public bool IsAimActive => aim.enabled;
-    public InputAction InteractAction => interact;
+    public Vector2 Move { get { ResolveActions(); return move.ReadValue<Vector2>(); } }
+    public bool IsSneakHeld { get { ResolveActions(); return sneak.IsPressed(); } }
+    public Vector2 AimScreenPosition { get { ResolveActions(); return aim.ReadValue<Vector2>(); } }
+    public Vector2 AimStick { get { ResolveActions(); return aimStick.ReadValue<Vector2>(); } }
+    public bool IsAimActive { get { ResolveActions(); return aim.enabled; } }
+    public InputAction InteractAction { get { ResolveActions(); return interact; } }
 
     public bool UsingGamepad
     {
         get
         {
+            ResolveActions();
             if (playerInput == null) return false;
 
             foreach (InputDevice device in playerInput.devices)
@@ -42,6 +44,14 @@ public class PlayerInputReader : MonoBehaviour
 
     private void Awake()
     {
+        ResolveActions();
+    }
+
+    private void ResolveActions()
+    {
+        if (resolved) return;
+        resolved = true;
+
         playerInput = GetComponent<PlayerInput>();
 
         move = Resolve(moveAction);
@@ -58,6 +68,7 @@ public class PlayerInputReader : MonoBehaviour
 
     private void OnEnable()
     {
+        ResolveActions();
         interact.performed += HandleInteract;
     }
 

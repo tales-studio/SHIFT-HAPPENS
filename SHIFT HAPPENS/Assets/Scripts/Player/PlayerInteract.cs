@@ -143,7 +143,8 @@ public class PlayerInteract : MonoBehaviour, ILockable
     {
         if (sign == null) return;
 
-        sign.text = prompts != null ? prompts.GetLabel(input.InteractAction) : signText;
+        string label = prompts != null ? prompts.GetLabel(input.InteractAction) : null;
+        sign.text = string.IsNullOrEmpty(label) ? signText : label;
         FitSignBackground();
     }
 

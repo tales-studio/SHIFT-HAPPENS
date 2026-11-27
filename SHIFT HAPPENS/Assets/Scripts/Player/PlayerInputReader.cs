@@ -50,6 +50,11 @@ public class PlayerInputReader : MonoBehaviour
         aimStick = Resolve(aimStickAction);
     }
 
+    private void Start()
+    {
+        if (InputContextService.Instance != null) InputContextService.Instance.Refresh();
+    }
+
     private void OnEnable()
     {
         interact.performed += HandleInteract;

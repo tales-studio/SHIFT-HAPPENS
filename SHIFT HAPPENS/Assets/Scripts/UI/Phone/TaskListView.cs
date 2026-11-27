@@ -82,11 +82,13 @@ public class TaskListView : MonoBehaviour
 
     private void OnEnable()
     {
+        scrollAction.action.performed += HandleScroll;
         scrollAction.action.Enable();
     }
 
     private void OnDisable()
     {
+        scrollAction.action.performed -= HandleScroll;
         scrollAction.action.Disable();
     }
 
@@ -105,11 +107,11 @@ public class TaskListView : MonoBehaviour
         if (phone != null) phone.OnOpenChanged -= HandlePhoneOpenChanged;
     }
 
-    private void Update()
+    private void HandleScroll(InputAction.CallbackContext context)
     {
         if (phone != null && !phone.IsOpen) return;
 
-        float scroll = scrollAction.action.ReadValue<float>();
+        float scroll = context.ReadValue<float>();
         if (scroll == 0f) return;
 
         scrollIndex += scroll > 0f ? -1 : 1;

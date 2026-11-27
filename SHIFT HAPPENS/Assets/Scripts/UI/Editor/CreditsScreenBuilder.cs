@@ -21,7 +21,6 @@ public static class CreditsScreenBuilder
     private const float ScrollbarWidth = 14f;
     private const float ScrollbarGap = 30f;
     private static readonly Color ScrollbarTrackColor = new Color(0.16f, 0.16f, 0.2f, 0.6f);
-    private const string FontGuid = "3289301038f08104f9b59b212961d0f8";
     private const string DataFolder = "Assets/ScriptableObjects/Credits";
     private const string DataPath = DataFolder + "/Credits.asset";
     private const string InputActionsPath = "Assets/InputSystem_Actions.inputactions";
@@ -49,21 +48,19 @@ public static class CreditsScreenBuilder
         Undo.SetCurrentGroupName("Build Credits Screen");
         int undoGroup = Undo.GetCurrentGroup();
 
-        TMP_FontAsset font = AssetDatabase.LoadAssetAtPath<TMP_FontAsset>(AssetDatabase.GUIDToAssetPath(FontGuid));
-
         RectTransform viewport = (RectTransform)screen.Find(ViewportName);
         if (viewport == null) viewport = Register(CreateViewport(screen));
 
         RectTransform content = (RectTransform)viewport.Find(ContentName);
         if (content == null) content = Register(CreateContent(viewport));
 
-        TMP_Text heading = FindOrCreateTemplate(content, "HeadingTemplate", "SECTION HEADING", font, 56f, HeadingColor, FontStyles.Bold);
-        TMP_Text role = FindOrCreateTemplate(content, "RoleTemplate", "Role", font, 30f, RoleColor, FontStyles.Normal);
-        TMP_Text names = FindOrCreateTemplate(content, "NamesTemplate", "Name", font, 40f, NamesColor, FontStyles.Normal);
-        TMP_Text tasks = FindOrCreateTemplate(content, "TasksTemplate", "Task · Task", font, 26f, TasksColor, FontStyles.Italic);
+        TMP_Text heading = FindOrCreateTemplate(content, "HeadingTemplate", "SECTION HEADING", TextRole.Title, 56f, HeadingColor, FontStyles.Bold);
+        TMP_Text role = FindOrCreateTemplate(content, "RoleTemplate", "Role", TextRole.Body, 30f, RoleColor, FontStyles.Normal);
+        TMP_Text names = FindOrCreateTemplate(content, "NamesTemplate", "Name", TextRole.Body, 40f, NamesColor, FontStyles.Normal);
+        TMP_Text tasks = FindOrCreateTemplate(content, "TasksTemplate", "Task · Task", TextRole.Body, 26f, TasksColor, FontStyles.Italic);
         tasks.transform.SetSiblingIndex(names.transform.GetSiblingIndex() + 1);
-        TMP_Text closing = FindOrCreateTemplate(content, "ClosingTemplate", "Thanks for playing!", font, 64f, ClosingColor, FontStyles.Bold);
-        Image logo = FindOrCreateLogoTemplate(content, font);
+        TMP_Text closing = FindOrCreateTemplate(content, "ClosingTemplate", "Thanks for playing!", TextRole.Title, 64f, ClosingColor, FontStyles.Bold);
+        Image logo = FindOrCreateLogoTemplate(content);
 
         ScrollRect scrollRect = EnsureScrollRect(viewport, content);
 
@@ -143,14 +140,14 @@ public static class CreditsScreenBuilder
         return rect;
     }
 
-    private static TMP_Text CreateTemplate(Transform parent, string name, string text, TMP_FontAsset font, float size, Color color, FontStyles style)
+    private static TMP_Text CreateTemplate(Transform parent, string name, string text, TextRole role, float size, Color color, FontStyles style)
     {
-        GameObject go = new GameObject(name, typeof(RectTransform), typeof(CanvasRenderer), typeof(TextMeshProUGUI));
+        GameObject go = new GameObject(name, typeof(RectTransform), typeof(CanvasRenderer), typeof(TextMeshProUGUI), typeof(TextStyle));
         go.layer = parent.gameObject.layer;
         go.transform.SetParent(parent, false);
+        go.GetComponent<TextStyle>().SetRole(role);
 
         TextMeshProUGUI tmp = go.GetComponent<TextMeshProUGUI>();
-        if (font != null) tmp.font = font;
         tmp.text = text;
         tmp.fontSize = size;
         tmp.fontStyle = style;
@@ -253,15 +250,15 @@ public static class CreditsScreenBuilder
         return component;
     }
 
-    private static TMP_Text FindOrCreateTemplate(RectTransform content, string name, string text, TMP_FontAsset font, float size, Color color, FontStyles style)
+    private static TMP_Text FindOrCreateTemplate(RectTransform content, string name, string text, TextRole role, float size, Color color, FontStyles style)
     {
         Transform existing = content.Find(name);
         if (existing != null && existing.TryGetComponent(out TMP_Text found)) return found;
 
-        return Register(CreateTemplate(content, name, text, font, size, color, style));
+        return Register(CreateTemplate(content, name, text, role, size, color, style));
     }
 
-    private static Image FindOrCreateLogoTemplate(RectTransform content, TMP_FontAsset font)
+    private static Image FindOrCreateLogoTemplate(RectTransform content)
     {
         Transform existing = content.Find(LogoName);
         if (existing != null && existing.TryGetComponent(out Image found)) return found;
@@ -281,7 +278,7 @@ public static class CreditsScreenBuilder
         element.preferredWidth = LogoSize;
         element.preferredHeight = LogoSize;
 
-        TMP_Text label = CreateTemplate(go.transform, "PlaceholderLabel", "STUDIO LOGO", font, 28f, Color.white, FontStyles.Bold);
+        TMP_Text label = CreateTemplate(go.transform, "PlaceholderLabel", "STUDIO LOGO", TextRole.Body, 28f, Color.white, FontStyles.Bold);
         RectTransform labelRect = label.rectTransform;
         labelRect.anchorMin = Vector2.zero;
         labelRect.anchorMax = Vector2.one;

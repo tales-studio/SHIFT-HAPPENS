@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 8761248928709413492}
   - component: {fileID: -346094228755023223}
   - component: {fileID: -2417839121038307817}
+  - component: {fileID: 2529171096167831070}
   m_Layer: 0
   m_Name: EmoGuy
   m_TagString: Untagged
@@ -186,7 +187,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::StudentBehaviour
   inertia: 1.3
   idleUtility: 0.05
-  runtimeDebugger: {fileID: 0}
+  runtimeDebugger: {fileID: 2529171096167831070}
 --- !u!114 &8761248928709413492
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -238,6 +239,21 @@ MonoBehaviour:
   animator: {fileID: 0}
   idleThreshold: 0.05
   directionSmoothing: 10
+--- !u!114 &2529171096167831070
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6198924082522426097}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1726e9fdb9ff2d4baa8710d607b31ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: BehaviourAPI.UnityToolkit.GUIDesigner.Runtime::BehaviourAPI.UnityToolkit.GUIDesigner.Runtime.BSRuntimeDebugger
+  _eventHandler:
+    debugStatusChanges: 0
+    identifier: 
 --- !u!1001 &4644755225675478863
 PrefabInstance:
   m_ObjectHideFlags: 0

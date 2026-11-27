@@ -8,8 +8,6 @@ public enum ActivityInteractionMode
     Blocking      // Lo pide al empezar y no termina hasta recibirlo (llorar)
 }
 
-// Qué ES una actividad. Se crea un asset por actividad y lo comparten
-// todos los estudiantes que la tengan (Bathroom, Kitchen, Wander, StudyAlone...).
 [CreateAssetMenu(fileName = "NewActivity", menuName = "Shift Happens/Activity Data")]
 public class ActivityData : ScriptableObject
 {
@@ -22,7 +20,7 @@ public class ActivityData : ScriptableObject
     [Min(0f)] public float minDuration = 5f;
     [Min(0f)] public float maxDuration = 10f;
 
-    [Header("Necesidad (solo baño y cocina)")]
+    [Header("Necesidad")]
     [Tooltip("Segundos sin hacerla para que la necesidad llegue al máximo. 0 = sin necesidad.")]
     [Min(0f)] public float timeToFullNeed = 0f;
 
@@ -36,8 +34,7 @@ public class ActivityData : ScriptableObject
     [Header("Interacción con Ramón")]
     public ActivityInteractionMode interactionMode = ActivityInteractionMode.None;
 
-    [Tooltip("Tarea propia del estudiante que se activa (apuntes, consolar). " +
-             "El estudiante debe tener un hijo con un TaskLogic que use esta TaskData.")]
+    [Tooltip("Tarea propia del estudiante que se activa (apuntes, consolar).")]
     public TaskData interactionTask;
 
     [Tooltip("Momento (0-1) en el que la pide en modo MidActivity.")]
@@ -47,7 +44,7 @@ public class ActivityData : ScriptableObject
     [Tooltip("Bool del Animator que se activa mientras la realiza (opcional).")]
     public string animatorBool = "";
 
-    [Tooltip("Mientras la realiza, su entidad no puede aparecer (Cry del emo).")]
+    [Tooltip("Mientras la realiza, su entidad no puede aparecer (Cry).")]
     public bool blocksEntity = false;
 
     public float RandomDuration(float multiplier)

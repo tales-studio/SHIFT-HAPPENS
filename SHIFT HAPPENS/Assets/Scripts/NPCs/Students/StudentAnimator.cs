@@ -56,8 +56,7 @@ public class StudentAnimator : MonoBehaviour
         animator.SetFloat(MoveY, lastDirection.y);
 
         // El jugador usa sqrMagnitude de un vector normalizado (0 o 1).
-        // Aquí usamos lo rápido que va respecto a su velocidad máxima (0-1),
-        // así las mismas transiciones "Speed > 0.01" funcionan igual.
+        // Aquí usamos lo rápido que va respecto a su velocidad máxima (0-1)
         float normalizedSpeed = agent.speed > 0f ? speed / agent.speed : 0f;
         animator.SetFloat(Speed, speed > idleThreshold ? normalizedSpeed : 0f);
     }

@@ -11,17 +11,13 @@ public enum StudentGender
     Female
 }
 
-// Funciones propias del estudiante. StudentBehaviour monta el Utility System
-// y el BT con la librería, pero todo lo que hacen es llamar a estos métodos.
-//
-//  - Utility System → GetTimeSinceLast() y ApplyModifiers()
-//  - UtilityAction  → SetActivity()
-//  - BT compartido  → RequestDestination(), UpdateMovement(), ... (leen CurrentActivity)
-//  - Al terminar    → EndActivity()
+// Funciones propias del estudiante. Monta el Utility System
+// y el BT con la librería
+
 [RequireComponent(typeof(NPCFloorNavigator))]
 public class StudentBrain : MonoBehaviour
 {
-    // Constantes de diseño (antes eran configurables; de momento no hace falta)
+    // Constantes de diseño 
     private const float RepeatPenalty = 0.2f;   // Si es la misma que la última
     private const float FailCooldown = 5f;      // Si no encontró destino o falló el camino
 
@@ -219,7 +215,7 @@ public class StudentBrain : MonoBehaviour
     }
 
     // ==================================================================
-    // UTILITY ACTION: fija la actividad antes de arrancar el BT compartido
+    // Fija la actividad antes de arrancar el BT compartido
     // ==================================================================
     public void SetActivity(ActivityData data)
     {
@@ -238,7 +234,7 @@ public class StudentBrain : MonoBehaviour
     // BT COMPARTIDO: acciones (todas leen CurrentActivity)
     // ==================================================================
 
-    // 1. Solicitar destino (+ inicia el movimiento)
+    //Solicitar destino
     public Status RequestDestination()
     {
         ActivityData data = CurrentActivity;
@@ -266,14 +262,14 @@ public class StudentBrain : MonoBehaviour
         return destination != null ? Status.Success : Status.Failure;
     }
 
-    // 2. Desplazarse (espera la percepción push de llegada)
+    //Desplazarse (espera la percepción push de llegada)
     public Status UpdateMovement()
     {
         if (moveFailed) return Status.Failure;
         return arrived ? Status.Success : Status.Running;
     }
 
-    // 3. Realizar actividad (1ª parte): hasta el momento de pedir ayuda
+    //Realizar actividad (1ª parte): hasta el momento de pedir ayuda
     public void StartFirstPart()
     {
         SetAnimation(true);
@@ -285,7 +281,7 @@ public class StudentBrain : MonoBehaviour
         }
     }
 
-    // 5. Realizar actividad (2ª parte): lo que queda
+    //Realizar actividad (2ª parte): lo que queda
     public void StartSecondPart()
     {
         // Bloqueante (llorar): al recibir ayuda ya ha terminado
@@ -302,7 +298,7 @@ public class StudentBrain : MonoBehaviour
         return timer >= partEnd ? Status.Success : Status.Running;
     }
 
-    // 4. Pedir ayuda a Ramón y esperarla (percepción push: tarea completada)
+    //Pedir ayuda a Ramón y esperarla (percepción push: tarea completada)
     public void StartAskRamon()
     {
         waitingTask = null;
@@ -328,7 +324,7 @@ public class StudentBrain : MonoBehaviour
         return waitingTask != null && waitingTask.isActive ? Status.Running : Status.Success;
     }
 
-    // 6. Generar tarea: la tarea es la del propio punto de destino
+    //Generar tarea: la tarea es la del propio punto de destino
     public Status GenerateTask()
     {
         TaskLogic task = destination != null? 
@@ -345,7 +341,7 @@ public class StudentBrain : MonoBehaviour
         return Status.Success;
     }
 
-    // 7. Liberar destino y registrar en el historial
+    //Liberar destino y registrar en el historial
     public Status FinishActivity()
     {
         SetAnimation(false);
@@ -357,8 +353,7 @@ public class StudentBrain : MonoBehaviour
         return Status.Success;
     }
 
-    // Llamado por StudentBehaviour cuando el US termina (éxito o fallo) o se desactiva.
-    // Se puede llamar aunque FinishActivity ya haya limpiado.
+    // Llamado por StudentBehaviour cuando el US termina (éxito o fallo) o se desactiva
     public void EndActivity(bool success)
     {
         if (CurrentActivity == null) return;
@@ -393,8 +388,6 @@ public class StudentBrain : MonoBehaviour
     // ==================================================================
     // Visibilidad (entidades)
     // ==================================================================
-    // No desactivéis el GameObject al aparecer la entidad: NPCFloorNavigator.OnDisable
-    // cancela el viaje y la especificación pide que la simulación siga.
     public void SetVisible(bool visible)
     {
         foreach (Renderer r in GetComponentsInChildren<Renderer>(true))

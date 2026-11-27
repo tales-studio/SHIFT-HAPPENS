@@ -5,13 +5,13 @@ using BehaviourAPI.UnityToolkit.GUIDesigner.Runtime;
 using BehaviourAPI.UtilitySystems;
 using UnityEngine;
 
-// Monta y ejecuta el comportamiento del estudiante con la BehaviourAPI:
+// Monta y ejecuta el comportamiento del estudiante con la BehaviourAPI
 //
-//   Utility System: una UtilityAction por actividad + Idle.
-//   Behaviour Tree: UNO solo, compartido. Cada UtilityAction le dice al
-//   cerebro qué actividad toca (SetActivity) y arranca ese mismo árbol.
+// Utility System: una UtilityAction por actividad + Idle.
+// Behaviour Tree: UNO solo, compartido. Cada UtilityAction le dice al
+// cerebro qué actividad toca (SetActivity) y arranca ese mismo árbol.
 //
-// Toda la lógica está en StudentBrain; aquí solo se conecta.
+// Lógica en StudentBrain, aquí solo se conecta.
 [RequireComponent(typeof(StudentBrain))]
 public class StudentBehaviour : MonoBehaviour
 {
@@ -29,7 +29,6 @@ public class StudentBehaviour : MonoBehaviour
 
     private void Start()
     {
-        // En Start (no en Awake) para que StudentBrain ya tenga su lista de actividades
         brain = GetComponent<StudentBrain>();
         activityTree = BuildActivityTree();
         utilitySystem = BuildUtilitySystem();
@@ -51,8 +50,7 @@ public class StudentBehaviour : MonoBehaviour
 
         utilitySystem.Update();
 
-        // Las UtilityAction tienen finishOnComplete = true: al acabar una
-        // actividad termina el US. Limpiamos y reiniciamos para decidir de nuevo.
+        // Limpiamos y reiniciamos para decidir de nuevo.
         if (utilitySystem.Status == Status.Success || utilitySystem.Status == Status.Failure)
         {
             brain.EndActivity(utilitySystem.Status == Status.Success);
@@ -72,11 +70,6 @@ public class StudentBehaviour : MonoBehaviour
     // ==================================================================
     // UTILITY SYSTEM
     // ==================================================================
-    //  Con necesidad (baño, cocina):
-    //    Preferencia (Constant) ──────────────────────────┐
-    //    Tiempo desde la última (Variable) ─ Exponencial ─┴─ Ponderada ─ Modificadores ─ Acción
-    //  Sin necesidad (resto):
-    //    Preferencia (Constant) ─ Modificadores ─ Acción
     private UtilitySystem BuildUtilitySystem()
     {
         UtilitySystem us = new UtilitySystem(inertia);

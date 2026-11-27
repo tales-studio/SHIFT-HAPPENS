@@ -3,10 +3,10 @@ using UnityEngine;
 
 public enum StudentArchetype
 {
-    Nerd,         // Empollón
+    Nerd,         
     Bully,
     Emo,
-    Sleepwalker   // Sonámbulo
+    Sleepwalker   
 }
 
 [Serializable]
@@ -16,9 +16,9 @@ public class ActivityEntry
     [Range(0f, 1f)] public float preference = 0.5f;
 }
 
-// Cómo es un ARQUETIPO. Un asset por arquetipo, compartido por sus estudiantes.
-// Las actividades comunes (baño, cocina, deambular) las tiene todo el mundo:
-// aquí solo se ajusta cuánto le gustan. Las exclusivas se añaden a la lista.
+// Un asset por arquetipo, compartido por sus estudiantes.
+// Las actividades comunes (baño, cocina, deambular) las tiene todo el mundo
+// Las exclusivas se añaden a la lista.
 [CreateAssetMenu(fileName = "NewStudentProfile", menuName = "Shift Happens/Student Profile")]
 public class StudentProfile : ScriptableObject
 {

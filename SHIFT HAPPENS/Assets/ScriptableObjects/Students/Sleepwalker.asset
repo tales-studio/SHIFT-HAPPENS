@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: Sleepwalker
   m_EditorClassIdentifier: Assembly-CSharp::StudentProfile
   archetype: 3
-  bathroomPreference: 0.2
-  kitchenPreference: 0
+  bathroomPreference: 0.3
+  kitchenPreference: 0.3
   wanderPreference: 1
   exclusiveActivities: []
   durationMultiplier: 1.2
-  decisionNoise: 0.3
-  alwaysGeneratesTasks: 0
+  decisionNoise: 0.05
+  alwaysGeneratesTasks: 1

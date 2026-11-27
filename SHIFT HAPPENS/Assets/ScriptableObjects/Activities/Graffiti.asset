@@ -16,7 +16,7 @@ MonoBehaviour:
   minDuration: 5
   maxDuration: 10
   timeToFullNeed: 300
-  needWeight: 0.85
+  needWeight: 0.5
   allowRepeatInARow: 0
   interactionMode: 0
   interactionTask: {fileID: 0}

@@ -13,12 +13,14 @@ MonoBehaviour:
   m_Name: Nerd
   m_EditorClassIdentifier: Assembly-CSharp::StudentProfile
   archetype: 0
-  bathroomPreference: 0.2
-  kitchenPreference: 0.3
+  bathroomPreference: 0.3
+  kitchenPreference: 0.4
   wanderPreference: 0
   exclusiveActivities:
+  - activity: {fileID: 11400000, guid: e65298070cd58b04f81777ab8c322fa9, type: 2}
+    preference: 0.95
   - activity: {fileID: 11400000, guid: 3b01233858b00d44eb2e23107e701123, type: 2}
-    preference: 0.9
-  durationMultiplier: 0.8
-  decisionNoise: 0.3
+    preference: 0.5
+  durationMultiplier: 1.2
+  decisionNoise: 0.05
   alwaysGeneratesTasks: 0

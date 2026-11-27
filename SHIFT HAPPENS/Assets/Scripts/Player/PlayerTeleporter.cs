@@ -12,6 +12,7 @@ public class PlayerTeleporter : MonoBehaviour
     public bool IsTeleporting { get; private set; }
 
     public event Action OnTeleportStarted;
+    public event Action OnTeleported;
 
     private void Awake()
     {
@@ -31,6 +32,7 @@ public class PlayerTeleporter : MonoBehaviour
         OnTeleportStarted?.Invoke();
         body.position = position;
         body.linearVelocity = Vector2.zero;
+        OnTeleported?.Invoke();
     }
 
     private IEnumerator TeleportRoutine(Vector2 destination)
@@ -39,10 +41,14 @@ public class PlayerTeleporter : MonoBehaviour
         movement.AddLock(this);
 
         IScreenFader fader = SceneServices.Fader;
+        Vector2 origin = body.position;
 
         OnTeleportStarted?.Invoke();
         yield return fader.FadeOut();
         body.position = destination;
+        movement.Face(Vector2.down);
+        OnTeleported?.Invoke();
+        yield return SceneServices.TransitionCard.Play(origin, destination);
         yield return fader.FadeIn();
 
         movement.RemoveLock(this);

@@ -6,7 +6,8 @@ public enum HudElement
 {
     None,
     Phone,
-    Clock
+    Clock,
+    Location
 }
 
 [DisallowMultipleComponent]

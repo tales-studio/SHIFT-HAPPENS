@@ -36,6 +36,13 @@ public class PlayerMovement : MonoBehaviour
         locks.Remove(source);
     }
 
+    public void Face(Vector2 direction)
+    {
+        if (direction == Vector2.zero) return;
+
+        lastMovement = direction.normalized;
+    }
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();

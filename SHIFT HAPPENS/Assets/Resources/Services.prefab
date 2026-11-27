@@ -34,6 +34,7 @@ Transform:
   - {fileID: 5527390148261937301}
   - {fileID: 5527390148261937401}
   - {fileID: 5527390148261937501}
+  - {fileID: 5527390148261937901}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5527390148261937102
@@ -74,6 +75,28 @@ PrefabInstance:
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4416281937502846101, guid: 774c339479ff4fadb6f1785887512c86, type: 3}
   m_PrefabInstance: {fileID: 5527390148261937200}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &5527390148261937900
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 5527390148261937101}
+    m_Modifications:
+    - target: {fileID: 4813027719350261001, guid: ac79a81cbd81474b92b92510bf2c0049, type: 3}
+      propertyPath: m_Name
+      value: FloorBanner
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: ac79a81cbd81474b92b92510bf2c0049, type: 3}
+--- !u!224 &5527390148261937901 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 4813027719350261002, guid: ac79a81cbd81474b92b92510bf2c0049, type: 3}
+  m_PrefabInstance: {fileID: 5527390148261937900}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &5527390148261937300
 GameObject:

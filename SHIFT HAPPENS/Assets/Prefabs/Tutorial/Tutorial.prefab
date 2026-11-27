@@ -51,8 +51,8 @@ Transform:
   - {fileID: 314201801}
   - {fileID: 314201901}
   - {fileID: 314202001}
-  - {fileID: 314202101}
   - {fileID: 314202201}
+  - {fileID: 314202101}
   - {fileID: 314202301}
   - {fileID: 314202401}
   - {fileID: 314202501}
@@ -605,7 +605,6 @@ GameObject:
   - component: {fileID: 314200805}
   - component: {fileID: 314200806}
   - component: {fileID: 314200807}
-  - component: {fileID: 314200808}
   m_Layer: 0
   m_Name: 00 Setup
   m_TagString: Untagged
@@ -709,21 +708,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HudStep
   element: 1
-  visible: 0
-  instant: 1
---- !u!114 &314200808
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 314200800}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8e1a881d89be413b95d7680e93008214, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::HudStep
-  element: 2
   visible: 0
   instant: 1
 --- !u!1 &314200900
@@ -1341,10 +1325,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 314202101}
-  - component: {fileID: 314202102}
   - component: {fileID: 314202103}
   m_Layer: 0
-  m_Name: 13 Progress
+  m_Name: 14 Progress
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1365,21 +1348,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 314159002}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &314202102
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 314202100}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8e1a881d89be413b95d7680e93008214, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::HudStep
-  element: 2
-  visible: 1
-  instant: 0
 --- !u!114 &314202103
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1404,7 +1372,7 @@ GameObject:
   - component: {fileID: 314202201}
   - component: {fileID: 314202202}
   m_Layer: 0
-  m_Name: 14 Close Phone
+  m_Name: 13 Close Phone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -15,6 +15,6 @@ MonoBehaviour:
   speakerName: Encarni
   portrait: {fileID: 8001473604841077134, guid: 85365c847ce778f4da0641f923f0c863, type: 3}
   lines:
-  - "See that *clock*? Around here the night doesn't pass by itself."
+  - "See the *time* on your *phone*? Around here the night doesn't pass by itself."
   - "*Every job you finish* brings the *morning* closer. Sit on your hands and you'll be here forever."
   - "And don't leave the kids waiting. *Missed jobs* pile up, and so will your nerves."

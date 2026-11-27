@@ -2,14 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum BuildingFloor
-{
-    Basement,
-    GroundFloor,
-    FirstFloor,
-    SecondFloor
-}
-
 public enum NPCDestinationType
 {
     Generic,

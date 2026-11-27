@@ -10,6 +10,7 @@ public class NPCFloorNavigationTest : MonoBehaviour
     [Header("Test Controls")]
     [SerializeField] private bool useNumpadControls;
 
+#if UNITY_EDITOR || DEVELOPMENT_BUILD
     private void Update()
     {
         if (Keyboard.current == null)
@@ -62,6 +63,7 @@ public class NPCFloorNavigationTest : MonoBehaviour
         if (key6)
             Request(NPCDestinationType.Bathroom, BuildingFloor.SecondFloor);
     }
+#endif
 
     private void Request(
         NPCDestinationType type,

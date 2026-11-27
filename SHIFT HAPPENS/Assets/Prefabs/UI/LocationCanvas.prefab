@@ -198,6 +198,7 @@ GameObject:
   - component: {fileID: 7465628881425401856}
   - component: {fileID: 6440536903071100928}
   - component: {fileID: 6440536903071100929}
+  - component: {fileID: 4579394393867630822}
   m_Layer: 5
   m_Name: LocationText
   m_TagString: Untagged
@@ -342,3 +343,17 @@ MonoBehaviour:
   floorSizePercent: 130
   roomSizePercent: 85
   changeFadeDuration: 0.25
+--- !u!114 &4579394393867630822
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1626889689979297792}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41d52464256b7044e9e6c6ef4f27533b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TextStyle
+  role: 0
+  theme: {fileID: 0}

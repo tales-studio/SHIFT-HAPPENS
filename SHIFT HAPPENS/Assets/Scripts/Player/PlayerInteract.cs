@@ -11,7 +11,7 @@ public class PlayerInteract : MonoBehaviour
 
     [Header("Sign")]
     [SerializeField] private string signText = "E";
-    [SerializeField] private TMP_FontAsset signFont;
+    [SerializeField] private TextRole signRole = TextRole.Title;
     [SerializeField] private float signFontSize = 8f;
     [SerializeField] private Color signColor = Color.white;
     [SerializeField] private Material signMaterial;
@@ -86,7 +86,7 @@ public class PlayerInteract : MonoBehaviour
     {
         GameObject signObject = new GameObject("InteractSign");
         sign = signObject.AddComponent<TextMeshPro>();
-        if (signFont != null) sign.font = signFont;
+        signObject.AddComponent<TextStyle>().SetRole(signRole);
         sign.text = signText;
         sign.fontSize = signFontSize;
         sign.fontStyle = FontStyles.Bold;

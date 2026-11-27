@@ -22,6 +22,8 @@ public class TaskListView : MonoBehaviour
     {
         public string Name;
         public TMP_Text Header;
+        public RectTransform Badge;
+        public TMP_Text BadgeCount;
         public readonly List<TaskEntryView> Entries = new List<TaskEntryView>();
     }
 
@@ -39,12 +41,17 @@ public class TaskListView : MonoBehaviour
     [SerializeField] private GameObject emptyMessage;
     [SerializeField] private FloorCatalog floorCatalog;
     [SerializeField] private string unknownLocation = "Elsewhere";
-    [SerializeField] private Color countColor = new Color(0.85f, 0.87f, 0.97f);
+    [SerializeField] private Sprite countBadgeSprite;
+    [SerializeField] private Color countBadgeColor = new Color(1f, 1f, 1f);
+    [SerializeField] private Color countTextColor = new Color(0.18f, 0.173f, 0.212f);
+    [SerializeField, Min(1f)] private float countBadgeSize = 28f;
+    [SerializeField, Min(1f)] private float countFontSize = 18f;
+    [SerializeField, Min(0f)] private float countBadgeSpacing = 10f;
     [SerializeField] private Color roomHeaderColor = new Color(1f, 1f, 1f);
-    [SerializeField] private Color floorHeaderColor = new Color(0.9f, 0.92f, 1f);
+    [SerializeField] private Color floorHeaderColor = new Color(0.8f, 0.22f, 0.2f);
     [SerializeField, Min(1f)] private float floorHeaderFontSize = 23f;
     [SerializeField] private float floorHeaderSpacing = 10f;
-    [SerializeField] private Color dividerColor = new Color(0.9f, 0.92f, 1f, 0.55f);
+    [SerializeField] private Color dividerColor = new Color(0.8f, 0.22f, 0.2f, 1f);
     [SerializeField, Min(1f)] private float dividerThickness = 2f;
     [SerializeField, Min(0f)] private float dividerSpacing = 14f;
     [SerializeField, Min(0f)] private float floorHeaderHeight = 46f;
@@ -233,18 +240,59 @@ public class TaskListView : MonoBehaviour
         return header;
     }
 
-    private TMP_Text CreateRoomHeader()
+    private void CreateRoomHeader(RoomGroup room)
     {
         TMP_Text header = CreateHeader();
         header.color = roomHeaderColor;
-        return header;
+        room.Header = header;
+
+        GameObject badge = new GameObject("CountBadge", typeof(RectTransform), typeof(CanvasRenderer), typeof(Image));
+        RectTransform badgeRect = (RectTransform)badge.transform;
+        badgeRect.SetParent(header.rectTransform, false);
+        badgeRect.anchorMin = new Vector2(0f, 0.5f);
+        badgeRect.anchorMax = new Vector2(0f, 0.5f);
+        badgeRect.pivot = new Vector2(0f, 0.5f);
+        badgeRect.sizeDelta = new Vector2(countBadgeSize, countBadgeSize);
+
+        Image image = badge.GetComponent<Image>();
+        image.sprite = countBadgeSprite;
+        image.color = countBadgeColor;
+        image.preserveAspect = true;
+        image.raycastTarget = false;
+
+        GameObject countObject = new GameObject("Count", typeof(RectTransform));
+        RectTransform countRect = (RectTransform)countObject.transform;
+        countRect.SetParent(badgeRect, false);
+        countRect.anchorMin = Vector2.zero;
+        countRect.anchorMax = Vector2.one;
+        countRect.offsetMin = Vector2.zero;
+        countRect.offsetMax = Vector2.zero;
+
+        TextMeshProUGUI count = countObject.AddComponent<TextMeshProUGUI>();
+        count.font = header.font;
+        count.fontSharedMaterial = header.fontSharedMaterial;
+        count.fontSize = countFontSize;
+        count.fontStyle = FontStyles.Bold;
+        count.color = countTextColor;
+        count.alignment = TextAlignmentOptions.Center;
+        count.textWrappingMode = TextWrappingModes.NoWrap;
+        count.raycastTarget = false;
+
+        room.Badge = badgeRect;
+        room.BadgeCount = count;
+    }
+
+    private void PlaceCountBadge(RoomGroup room)
+    {
+        room.BadgeCount.text = room.Entries.Count.ToString();
+        room.Badge.anchoredPosition = new Vector2(room.Header.preferredWidth + countBadgeSpacing, 0f);
     }
 
     private TMP_Text CreateFloorHeader()
     {
         TMP_Text header = CreateHeader();
         header.color = floorHeaderColor;
-        header.fontStyle = FontStyles.UpperCase;
+        header.fontStyle = FontStyles.UpperCase | FontStyles.Bold;
         header.enableAutoSizing = false;
         header.fontSize = floorHeaderFontSize;
         header.characterSpacing = floorHeaderSpacing;
@@ -283,8 +331,6 @@ public class TaskListView : MonoBehaviour
 
     private void Refresh()
     {
-        string countHex = ColorUtility.ToHtmlStringRGB(countColor);
-
         rows.Clear();
         foreach (FloorGroup floor in floors)
         {
@@ -296,8 +342,9 @@ public class TaskListView : MonoBehaviour
             {
                 if (room.Name != null)
                 {
-                    if (room.Header == null) room.Header = CreateRoomHeader();
-                    room.Header.text = room.Name + "  <color=#" + countHex + ">" + room.Entries.Count + "</color>";
+                    if (room.Header == null) CreateRoomHeader(room);
+                    room.Header.text = room.Name;
+                    PlaceCountBadge(room);
                     rows.Add(new Row { Rect = room.Header.rectTransform, Height = headerHeight, X = headerX });
                 }
 

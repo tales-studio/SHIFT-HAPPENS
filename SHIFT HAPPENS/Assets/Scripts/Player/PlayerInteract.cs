@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 
 public class PlayerInteract : MonoBehaviour, ILockable
@@ -10,25 +9,12 @@ public class PlayerInteract : MonoBehaviour, ILockable
     [Tooltip("Layers whose colliders count as interactable. Exclude helper triggers like FadeZone.")]
     [SerializeField] private LayerMask interactableLayers = ~0;
 
-    [Header("Sign")]
-    [SerializeField] private string signText = "E";
-    [SerializeField] private TextRole signRole = TextRole.Title;
-    [SerializeField] private float signFontSize = 8f;
-    [SerializeField] private Color signColor = Color.white;
-    [SerializeField] private Material signMaterial;
-    [SerializeField] private float signHeightOffset = 0.6f;
-    [SerializeField] private int signSortingOrder = 500;
-    [SerializeField] private Color signBackgroundColor = new Color(0f, 0f, 0f, 0.75f);
-    [SerializeField] private Vector2 signBackgroundPadding = new Vector2(0.3f, 0.18f);
-
     private readonly List<Collider2D> overlaps = new List<Collider2D>();
     private readonly LockSet locks = new LockSet();
     private ContactFilter2D filter;
-    private TextMeshPro sign;
-    private Transform signBackground;
     private PlayerInputReader input;
     private PlayerMovement movement;
-    private InputPrompts prompts;
+    private InteractSign sign;
 
     public LockTarget LockTarget => LockTarget.Interaction;
     public bool IsLocked => locks.IsLocked;
@@ -51,31 +37,20 @@ public class PlayerInteract : MonoBehaviour, ILockable
 
         input = GetComponent<PlayerInputReader>();
         movement = GetComponent<PlayerMovement>();
-
-        CreateSign();
+        sign = GetComponent<InteractSign>();
     }
 
     private void OnEnable()
     {
         input.Interacted += HandleInteract;
         Lockables.Register(this);
-
-        prompts = InputPrompts.Instance;
-        if (prompts != null) prompts.Changed += RefreshSignText;
-        RefreshSignText();
     }
 
     private void OnDisable()
     {
         input.Interacted -= HandleInteract;
         Lockables.Unregister(this);
-        if (prompts != null) prompts.Changed -= RefreshSignText;
-        if (sign != null) sign.gameObject.SetActive(false);
-    }
-
-    private void OnDestroy()
-    {
-        if (sign != null) Destroy(sign.gameObject);
+        if (sign != null) sign.Hide();
     }
 
     private void LateUpdate()
@@ -83,15 +58,10 @@ public class PlayerInteract : MonoBehaviour, ILockable
         PlaceArea();
 
         IInteractable closest = IsLocked ? null : GetClosestInteractable();
+        if (sign == null) return;
 
-        if (closest == null)
-        {
-            sign.gameObject.SetActive(false);
-            return;
-        }
-
-        sign.transform.position = closest.SignPosition + Vector3.up * signHeightOffset;
-        sign.gameObject.SetActive(true);
+        if (closest == null) sign.Hide();
+        else sign.Show(closest.SignPosition);
     }
 
     private void PlaceArea()
@@ -111,66 +81,6 @@ public class PlayerInteract : MonoBehaviour, ILockable
         {
             closest.Interact();
         }
-    }
-
-    private void CreateSign()
-    {
-        GameObject signObject = new GameObject("InteractSign");
-        sign = signObject.AddComponent<TextMeshPro>();
-        signObject.AddComponent<TextStyle>().SetRole(signRole);
-        sign.text = signText;
-        sign.fontSize = signFontSize;
-        sign.fontStyle = FontStyles.Bold;
-        sign.color = signColor;
-        sign.alignment = TextAlignmentOptions.Bottom;
-        sign.textWrappingMode = TextWrappingModes.NoWrap;
-        sign.rectTransform.sizeDelta = new Vector2(2f, 2f);
-        sign.rectTransform.pivot = new Vector2(0.5f, 0f);
-        if (signMaterial != null) sign.fontSharedMaterial = signMaterial;
-        sign.sortingOrder = signSortingOrder;
-        CreateSignBackground();
-        signObject.SetActive(false);
-    }
-
-    private void CreateSignBackground()
-    {
-        Texture2D texture = new Texture2D(1, 1);
-        texture.SetPixel(0, 0, Color.white);
-        texture.Apply();
-        Sprite sprite = Sprite.Create(texture, new Rect(0f, 0f, 1f, 1f), new Vector2(0.5f, 0.5f), 1f);
-
-        GameObject background = new GameObject("Background");
-        background.transform.SetParent(sign.transform, false);
-
-        SpriteRenderer backgroundRenderer = background.AddComponent<SpriteRenderer>();
-        backgroundRenderer.sprite = sprite;
-        backgroundRenderer.color = new Color(signBackgroundColor.r, signBackgroundColor.g, signBackgroundColor.b, Mathf.Min(signBackgroundColor.a, 0.9f));
-        backgroundRenderer.sortingOrder = signSortingOrder - 1;
-
-        signBackground = background.transform;
-        FitSignBackground();
-    }
-
-    private void RefreshSignText()
-    {
-        if (sign == null) return;
-
-        string label = prompts != null ? prompts.GetLabel(input.InteractAction) : null;
-        sign.text = string.IsNullOrEmpty(label) ? signText : label;
-        FitSignBackground();
-    }
-
-    private void FitSignBackground()
-    {
-        if (signBackground == null) return;
-
-        sign.ForceMeshUpdate(true);
-        Bounds textBounds = sign.textBounds;
-        signBackground.localPosition = new Vector3(textBounds.center.x, textBounds.center.y, 0f);
-        signBackground.localScale = new Vector3(
-            textBounds.size.x + signBackgroundPadding.x * 2f,
-            textBounds.size.y + signBackgroundPadding.y * 2f,
-            1f);
     }
 
     private IInteractable GetClosestInteractable()

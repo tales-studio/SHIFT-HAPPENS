@@ -257,6 +257,7 @@ GameObject:
   - component: {fileID: 8390986514315627031}
   - component: {fileID: 7314159265358979311}
   - component: {fileID: 6001527583351373628}
+  - component: {fileID: 7314159265358979321}
   - component: {fileID: 7340192837465019283}
   - component: {fileID: 4416281937502846400}
   - component: {fileID: 6194254994279942972}
@@ -520,8 +521,27 @@ MonoBehaviour:
   interactableLayers:
     serializedVersion: 2
     m_Bits: 55
-  signRole: 0
-  signMaterial: {fileID: 2100000, guid: 0fe3ed4eb3834a8d80195645d6617879, type: 2}
+--- !u!114 &7314159265358979321
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5369124962322799454}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d302506a9e74a09989a9ab4ffd3ab3a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InteractSign
+  fallbackText: E
+  role: 0
+  fontSize: 8
+  color: {r: 1, g: 1, b: 1, a: 1}
+  material: {fileID: 2100000, guid: 0fe3ed4eb3834a8d80195645d6617879, type: 2}
+  heightOffset: 0.6
+  sortingOrder: 500
+  backgroundColor: {r: 0, g: 0, b: 0, a: 0.75}
+  backgroundPadding: {x: 0.3, y: 0.18}
 --- !u!114 &7340192837465019283
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -189,6 +189,17 @@
                 },
                 {
                     "name": "",
+                    "id": "84416e03-6469-42c6-b813-c444c97b7a06",
+                    "path": "<Gamepad>/leftTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "Sneak",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "d34714ca-d2a4-4fb3-9bec-ae03cace0a84",
                     "path": "<Mouse>/position",
                     "interactions": "",
@@ -684,6 +695,39 @@
                     "action": "ScrollTasks",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "Dpad",
+                    "id": "4fe4bcba-cf5f-4614-934e-5afe1e8f3b6b",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ScrollTasks",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "f0c1b8e5-9fb3-4cfc-b746-f613e8533fd2",
+                    "path": "<Gamepad>/dpad/down",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "ScrollTasks",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "bfd7caa1-453b-44bf-ac6a-439c6d46032b",
+                    "path": "<Gamepad>/dpad/up",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "ScrollTasks",
+                    "isComposite": false,
+                    "isPartOfComposite": true
                 }
             ]
         },
@@ -735,6 +779,17 @@
                 },
                 {
                     "name": "",
+                    "id": "439b1c0f-0f76-43bd-999d-784068bd283b",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "Advance",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "a30ba0ee-6095-4ae0-a75b-0e5750aa9719",
                     "path": "<Keyboard>/x",
                     "interactions": "",
@@ -747,7 +802,7 @@
                 {
                     "name": "",
                     "id": "6586d57a-aade-495c-a092-364ad9deac06",
-                    "path": "<Gamepad>/select",
+                    "path": "<Gamepad>/buttonWest",
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
